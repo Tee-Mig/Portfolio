@@ -1,0 +1,40 @@
+{
+  "kind": "bigquery#queryResponse",
+  "schema": {
+    "fields": [
+      {
+        "name": "n",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  "jobReference": {
+    "projectId": "my-data-weather-77",
+    "jobId": "job_pLz2he9uNWWAZMBg3nMbAC5-8tfT",
+    "location": "EU"
+  },
+  "totalRows": "1",
+  "rows": [
+    {
+      "f": [
+        {
+          "v": "1680"
+        }
+      ]
+    }
+  ],
+  "totalBytesProcessed": "0",
+  "jobComplete": true,
+  "cacheHit": false,
+  "queryId": "job_pLz2he9uNWWAZMBg3nMbAC5-8tfT",
+  "jobCreationReason": {
+    "code": "REQUESTED"
+  },
+  "totalBytesBilled": "0",
+  "totalSlotMs": "62",
+  "location": "EU",
+  "creationTime": "1765474059156",
+  "startTime": "1765474059363",
+  "endTime": "1765474059599"
+}

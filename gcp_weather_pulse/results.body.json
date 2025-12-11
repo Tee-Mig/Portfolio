@@ -1,0 +1,1 @@
+{"query": "SELECT COUNT(*) AS n FROM `my-data-weather-77.weather.observations` WHERE DATE(ts) >= DATE_SUB(CURRENT_DATE(), INTERVAL 2 DAY)\n", "useLegacySql": false}
