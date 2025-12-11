@@ -2,11 +2,11 @@
 
 Projet 42 : Recréer un shell UNIX basique en C, avec gestion de processus, redirections et commandes internes.
 
-## 🎯 Objectif
+## Objectif
 
 Créer un shell interactif capable d’exécuter des commandes avec redirections (`<`, `>`, `<<`, `>>`), pipes (`|`), variables d’environnement (`$`, `$?`) et commandes intégrées (`cd`, `echo`, `pwd`, `export`, `unset`, `env`, `exit`).
 
-## ✅ Contraintes
+## Contraintes
 
 - Langage : C (norme 42)
 - Libft autorisée
@@ -14,7 +14,7 @@ Créer un shell interactif capable d’exécuter des commandes avec redirections
 - Un **seul** `global variable` autorisé (signal uniquement)
 - Utilisation de readline autorisée
 
-## ⚙️ Lancement
+## Lancement
 
 make
 

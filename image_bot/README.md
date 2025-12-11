@@ -4,12 +4,12 @@ Ce projet permet d'automatiser des interactions graphiques sur écran (clics, d�
 
 ## Fonctionnalités principales
 
-- 🔍 **Détection d’image à l’écran** avec précision configurable
-- 🎯 **Clics automatisés** sur des images avec position aléatoire dans une zone définie
-- 🔁 **Clics conditionnels** jusqu’à détection d’un pixel rouge ou de changements d’écran
-- 🧠 **Filtrage intelligent** des correspondances proches pour éviter les doublons
-- 🧱 **Drag and drop** entre deux zones avec vérification de stabilité de l’écran
-- 🔐 **Sécurité des clics** avec vérification de la similarité couleur et des dimensions
+- **Détection d’image à l’écran** avec précision configurable
+- **Clics automatisés** sur des images avec position aléatoire dans une zone définie
+- **Clics conditionnels** jusqu’à détection d’un pixel rouge ou de changements d’écran
+- **Filtrage intelligent** des correspondances proches pour éviter les doublons
+- **Drag and drop** entre deux zones avec vérification de stabilité de l’écran
+- **Sécurité des clics** avec vérification de la similarité couleur et des dimensions
 
 ## Technologies
 
