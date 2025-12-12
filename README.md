@@ -80,8 +80,6 @@ Pipeline de données serverless pour l’ingestion, la transformation et l’exp
 - Exposition de vues analytiques (gold)
 - Architecture orientée automatisation et reproductibilité
 
-Voir le projet : `gcp-weather-pulse/`
-
 
 ### Mini Data Lake — Analyse de la pollution de l’air
 `mini_data_lake/`
@@ -92,8 +90,6 @@ Implémentation d’un **mini Data Lake local** basé sur des fichiers Parquet i
 - Conversion en Parquet optimisé
 - Interrogation locale et distante avec DuckDB
 - Visualisation des données
-
-Voir le projet : `mini_data_lake/`
 
 
 ### Food Nutrition Pipeline
@@ -107,8 +103,6 @@ Pipeline ETL automatisé pour l’extraction et l’analyse de données nutritio
 - Exposition des résultats via une API Flask
 - Déploiement et exécution via Docker
 
-Voir le projet : `food_nutrition_pipeline/`
-
 
 ### Tennis Stats Tracker
 `tennis_stats_tracker/`
@@ -121,8 +115,6 @@ Pipeline ETL et application de visualisation de statistiques de tennis.
 - Interface Streamlit interactive
 - Environnement conteneurisé avec Docker
 
-Voir le projet : `tennis_stats_tracker/`
-
 
 ### NPS Prediction
 `nps_prediction/`
@@ -134,9 +126,7 @@ Projet d’analyse et de prédiction du **Net Promoter Score** à partir de donn
 - Entraînement de modèles de machine learning
 - Visualisation et restitution des résultats (RMarkdown / Shiny)
 
-Voir le projet : `nps_prediction/`
 
----
 
 ### Game Price / Sales Prediction
 `price_sale_prediction/`
@@ -147,8 +137,6 @@ Projet de prédiction du prix de vente de jeux vidéo à partir de données stru
 - Feature engineering
 - Modélisation avec TensorFlow / Keras
 - Évaluation des performances du modèle
-
-Voir le projet : `price_sale_prediction/`
 
 
 ## Ce que je mets en pratique
