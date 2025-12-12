@@ -21,28 +21,47 @@ J’apprécie particulièrement :
 ### Langages
 - Python
 - SQL
+- R
 - C / C++
 
-### Bases de données
+### Bases de données & stockage
 - PostgreSQL
+- DuckDB
+- SQLite
 - BigQuery
-- Conception de schémas relationnels
-- Modélisation OLTP / OLAP
+- Parquet
 
-### Cloud & Infrastructure
+### Cloud & services managés
 - Google Cloud Platform
 - Google Cloud Storage
 - Cloud Run
-- Docker
+- Cloud Scheduler
+- Pub/Sub
+- BigQuery
 
-### Données & automatisation
-- Scripts Python
+### Pipelines & automatisation
 - Pipelines ETL / ELT
-- Automatisation de traitements
-- Nettoyage et transformation de données
-- Structuration de données analytiques
+- Orchestration de workflows (Luigi)
+- Scripts Python d’ingestion et de transformation
+- Automatisation via Makefile
+- Nettoyage, normalisation et préparation des données
 
-### Outils
+### Infrastructure & environnement
+- Docker
+- Docker Compose
+
+### Librairies & outils data
+- pandas
+- pyarrow
+- lxml
+- sqlalchemy
+- matplotlib
+
+### Visualisation & restitution
+- Streamlit
+- Shiny (R)
+
+### 🔧 Outils système & collaboration
 - Git / GitHub
 - Linux
 - Bash
