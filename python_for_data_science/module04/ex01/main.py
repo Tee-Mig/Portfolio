@@ -16,15 +16,11 @@ def subject_tests():
 
 
 def tests():
-    """
-    Run automated tests for outer, square, and pow, and display green checkmark
-    if the output matches the expected result, otherwise a red cross.
-    """
-    GREEN = "\u2705"   # checkmark
-    RED = "\u274C"     # cross
+    GREEN = "\u2705"
+    RED = "\u274C"
 
     def check(test_name: str, got: float, expected: float) -> None:
-        """Print success/failure for a single numerical test."""
+        # Print success/failure for a single numerical test
         if abs(got - expected) < 1e-12:
             print(f"{test_name}: {GREEN}  (got {got})")
         else:

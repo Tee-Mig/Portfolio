@@ -1,4 +1,6 @@
 from statistics import ft_statistics
+from io import StringIO
+from contextlib import redirect_stdout
 
 
 def subject_tests():
@@ -17,18 +19,15 @@ def tests():
     GREEN = "\u2705"
     RED = "\u274C"
 
-    from io import StringIO
-    from contextlib import redirect_stdout
-
     def capture(*args, **kwargs) -> str:
-        """Capture and return printed output of ft_statistics."""
+        # Capture and return printed output of ft_statistics
         buf = StringIO()
         with redirect_stdout(buf):
             ft_statistics(*args, **kwargs)
         return buf.getvalue().strip()
 
     def show_result(name: str, got: str, expected: str) -> None:
-        """Print comparison with checkmark and detailed outputs."""
+        # Print comparison with checkmark and detailed outputs
         if got == expected:
             print(f"{name}: {GREEN}")
         else:
@@ -39,7 +38,7 @@ def tests():
             print(got if got else "(no output)")
             print("---")
 
-    # === Expected outputs from the subject ===
+    # Expected outputs
 
     expected1 = (
         "mean : 95.6\n"
@@ -52,11 +51,11 @@ def tests():
         "var : 323377543.9183673"
     )
 
-    expected3 = ""  # no output at all
+    expected3 = ""
 
     expected4 = "ERROR\nERROR\nERROR"
 
-    # === Run tests ===
+    # Tests
 
     got1 = capture(
         1, 42, 360, 11, 64,

@@ -4,30 +4,28 @@ import math
 
 def _is_number(x: Any) -> bool:
     """
-    Return True if x is a real number (int or float), excluding booleans.
+    Return True if x is a real number (int or float), excluding booleans
 
     Parameters:
-        x (Any): The value to test.
+        x: The value to test
 
     Returns:
-        bool: True if x is int/float and not a bool, else False.
+        bool: True if x is int/float and not a bool, else False
     """
     return isinstance(x, (int, float)) and not isinstance(x, bool)
 
 
 def _to_list_numbers(args: Iterable[Any]) -> List[float]:
     """
-    Convert *args to a list of numbers if valid.
-
-    Rules:
-    - If the iterable is empty → return []
-    - If ANY element is not a valid number → return []
+    Convert *args to a list of numbers if valid
+    If the iterable is empty return []
+    If any element is not a valid number return []
 
     Parameters:
-        args (Iterable[Any]): Input values.
+        args (Iterable[Any]): Input values
 
     Returns:
-        List[float]: A list of numbers, or [] on invalid input.
+        List[float]: A list of numbers, or [] on invalid input
     """
     vals = list(args)
     if not vals or not all(_is_number(v) for v in vals):
@@ -37,26 +35,26 @@ def _to_list_numbers(args: Iterable[Any]) -> List[float]:
 
 def _mean(xs: List[float]) -> float:
     """
-    Compute the arithmetic mean of a non-empty list of numbers.
+    Compute the arithmetic mean of a non-empty list of numbers
 
     Parameters:
-        xs (List[float]): Input list.
+        xs (List[float]): Input list
 
     Returns:
-        float: The mean value.
+        float: The mean value
     """
     return sum(xs) / len(xs)
 
 
 def _median(xs: List[float]) -> float:
     """
-    Compute the median of a non-empty list of numbers.
+    Compute the median of a non-empty list of numbers
 
     Parameters:
-        xs (List[float]): Input list.
+        xs (List[float]): Input list
 
     Returns:
-        float: The median value.
+        float: The median value
     """
     s = sorted(xs)
     n = len(s)
@@ -68,14 +66,14 @@ def _median(xs: List[float]) -> float:
 
 def _quantile(xs: List[float], q: float) -> float:
     """
-    Compute a quantile of a list using linear interpolation.
+    Compute a quantile of a list using linear interpolation
 
     Parameters:
         xs (List[float]): Input list.
-        q (float): Quantile in [0,1], e.g., 0.25 or 0.75.
+        q (float): Quantile in [0,1], e.g., 0.25 or 0.75
 
     Returns:
-        float: The interpolated quantile value.
+        float: The interpolated quantile value
     """
     s = sorted(xs)
     n = len(s)
@@ -94,13 +92,13 @@ def _quantile(xs: List[float], q: float) -> float:
 
 def _variance(xs: List[float]) -> float:
     """
-    Compute the population variance of a non-empty list.
+    Compute the population variance of a non-empty list
 
     Parameters:
-        xs (List[float]): Input list.
+        xs (List[float]): Input list
 
     Returns:
-        float: The population variance (division by n).
+        float: The population variance (division by n)
     """
     mu = _mean(xs)
     return sum((x - mu) ** 2 for x in xs) / len(xs)
@@ -110,33 +108,24 @@ def _print_right_number_type(x: float) -> str:
     """
     Format numbers for display:
     - If x is an integer (e.g., 42.0), return "42"
-    - Otherwise return a float string.
+    - Otherwise return a float string
 
     Parameters:
-        x (float): The number to display.
+        x (float): The number to display
 
     Returns:
-        str: The formatted number as a string.
+        str: The formatted number as a string
     """
     return str(int(x)) if float(x).is_integer() else repr(float(x))
 
 
 def ft_statistics(*args: Any, **kwargs: Any) -> None:
     """
-    Compute and print statistics based on the metrics requested in **kwargs.
-
-    Accepted metric values:
-        "mean", "median", "quartile", "std", "var"
-
-    Behavior:
-    - If *args is empty or contains
-        a non-number → print "ERROR" for each metric.
-    - Unknown metrics are ignored silently.
-    - Results are printed in the order of kwargs.values().
+    Compute and print statistics based on the metrics requested in **kwargs
 
     Parameters:
-        **args (Any): Numerical values to process.
-        **kwargs (Any): Metrics to compute (values, not keys).
+        *args (Any): Numerical values or math operator(s) to process
+        **kwargs (Any): Numerical values or math operator(s) to process
 
     Returns:
         None

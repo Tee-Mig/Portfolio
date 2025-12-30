@@ -5,29 +5,29 @@ Number = Union[int, float]
 
 def _is_number(x: Any) -> bool:
     """
-    Return True if x is an int or float (but not a bool).
+    Return True if x is an int or float (but not a bool)
 
     Parameters:
-        x: Value to check.
+        x: Value to check
 
     Returns:
-        bool: True if x is a real number, False otherwise.
+        bool: True if x is a real number, False otherwise
     """
     return isinstance(x, (int, float)) and not isinstance(x, bool)
 
 
 def square(x: Number) -> Number:
     """
-    Return x squared.
+    Return x squared
 
     Parameters:
-        x: Input number.
+        x: Input number
 
     Returns:
-        Number: x * x.
+        Number: x * x
 
     Raises:
-        TypeError: If x is not an int or a float.
+        TypeError: If x is not an int or a float
     """
     if not _is_number(x):
         raise TypeError("square(x): x must be an int or a float")
@@ -36,18 +36,15 @@ def square(x: Number) -> Number:
 
 def pow(x: Number) -> Number:
     """
-    Return x raised to the power of itself (x ** x).
+    Return x raised to the power of itself (x ** x)
 
-    This function intentionally shadows the built-in pow for the exercise.
+    This function intentionally shadows the built-in pow for the exercise
 
     Parameters:
-        x: Input number.
+        x: Input number
 
     Returns:
-        Number: x ** x.
-
-    Raises:
-        TypeError: If x is not an int or a float.
+        Number: x ** x
     """
     if not _is_number(x):
         raise TypeError("pow(x): x must be an int or a float")
@@ -56,23 +53,20 @@ def pow(x: Number) -> Number:
 
 def outer(x: Number, function: Callable[[Number], Number]) -> object:
     """
-    Return a stateful closure that repeatedly applies a function to a value.
+    Return a stateful closure that repeatedly applies a function to a value
 
     The returned inner function keeps an internal value. Each time it is
     called, it:
-        1. Applies `function` to the current value.
-        2. Updates the stored value with the result.
-        3. Returns the result.
+        1. Applies `function` to the current value
+        2. Updates the stored value with the result
+        3. Returns the result
 
     Parameters:
         x: Initial numeric value.
-        function: A callable that takes a Number and returns a Number.
+        function: A callable that takes a Number and returns a Number
 
     Returns:
-        object: A zero-argument callable (the inner function).
-
-    Raises:
-        TypeError: If x is not numeric or function is not callable.
+        object: A zero-argument callable (the inner function)
     """
     if not _is_number(x):
         raise TypeError("outer(x, function): x must be an int or a float")
