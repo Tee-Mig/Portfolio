@@ -7,7 +7,7 @@ Ce dépôt Github sert de point d’entrée pour découvrir mon travail, mon app
 
 ## À propos de moi
 
-Je suis étudiant à **42 Paris**, avec un intérêt marqué pour l’informatique appliquée, les bases de données, les systèmes et le traitement de données.
+Je suis étudiant à **42 Paris**, avec un intérêt marqué pour l’informatique appliquée, les bases de données et le traitement de données.
 
 J’apprécie particulièrement :
 - concevoir des projets complets et cohérents,
