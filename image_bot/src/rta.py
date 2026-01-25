@@ -3,7 +3,7 @@ from src.click import click_img
 from src.constants import DEFAULT_FAST_RECLICK_TIME, DEFAULT_CONFIDENCE
 from src.screen import find_img, find_img_with_red_top_right
 from src.enums import Rta
-from src.arena import go_to_arena
+from src.go_to import go_to_rta
 
 REGION_TEAM = (169, 691, 453, 314)
 REGION_LEAD = (207, 177, 612, 385)
@@ -79,7 +79,7 @@ LEAD = [
 
 
 def handle_quit_sequence(button_to_begin):
-    click_img([("img/croix4.png",)], [("img/oui.png",), ("img/ok.png",)])
+    click_img([("img/croix2.png",)], [("img/oui.png",), ("img/ok.png",)])
     click_img([("img/oui.png",), ("img/ok.png",)], button_to_begin)
 
 
@@ -168,31 +168,6 @@ def fight_four_stars_SL():
             click_on_target()
 
 
-def go_to_rta(rta_type):
-    if find_img([("img/combat_de_classement.png",)]) is False:
-        go_to_arena(False)
-        click_img(
-            [("img/rta_tab.png",)], [("img/combat_de_classement.png",), ("img/ok.png",)]
-        )
-        click_img([("img/ok.png",)], [("img/combat_de_classement.png",)])
-
-    if rta_type is Rta.REGULAR:
-        if (
-            find_img([{"path": "img/combat_de_classement.png", "precise": True}])
-            is False
-        ):
-            return False
-    else:
-        if find_img([("img/special_league.png",)]):
-            click_img([("img/special_league.png",)], [("img/commencer_SL.png",)])
-            if (find_img([{"path": "img/commencer_SL.png", "precise": True}])) is False:
-                return False
-        else:
-            return False
-
-    return True
-
-
 def collect_rta_rewards():
     if find_img_with_red_top_right(("img/info.png",), 1000):
         click_img([("img/info.png",)], [("img/defis_de_saison.png",)])
@@ -219,7 +194,7 @@ def rta(rta_type):
         else:
             button_to_begin = [{"path": "img/commencer_SL.png", "precise": True}]
 
-        if rta_type is Rta.REGULAR:
+        if rta_type is Rta.REGULAR or rta_type is Rta.SL_BAN:
             rta_team = RTA_TEAM
         elif rta_type is Rta.SL_FOUR_STARS_ONLY:
             rta_team = RTA_TEAM_FOUR_STARS_ONLY
@@ -234,7 +209,21 @@ def rta(rta_type):
                 or (find_img([("img/placement_en_cours.png",)]) and random() > 0.3)
                 else 0
             )
-            click_img(button_to_begin, [("img/croix4.png",), ("img/ok.png",)])
+            quit = 0
+            if rta_type is Rta.SL_BAN:
+                click_img(button_to_begin, [("img/fire_megumi.png",), ("img/ok.png",)])
+                click_img(
+                    [("img/fire_megumi.png",)],
+                    [
+                        ("img/check_monster.png", DEFAULT_CONFIDENCE - 0.2),
+                        ("img/ok.png",),
+                    ],
+                )
+                click_img(
+                    [("img/ok_ban_rta.png",)], wait_until_images_to_click_gone=True
+                )
+            else:
+                click_img(button_to_begin, [("img/croix2.png",), ("img/ok.png",)])
             if find_img([("img/no_rta_wing_SL.png",), ("img/no_rta_wing.png",)]):
                 click_img([("img/ok.png",)], button_to_begin)
                 break
@@ -297,14 +286,14 @@ def rta(rta_type):
                 handle_quit_sequence(button_to_begin)
                 continue
 
-            if rta_type is Rta.REGULAR:
+            if rta_type is Rta.REGULAR or rta_type is Rta.SL_BAN:
                 fight()
             elif rta_type is Rta.SL_FOUR_STARS_ONLY:
                 fight_four_stars_SL()
             click_img(
                 [
-                    ("img/victory.png", DEFAULT_CONFIDENCE - 0.05),
-                    ("img/defeated.png", DEFAULT_CONFIDENCE - 0.05),
+                    ("img/victory.png", DEFAULT_CONFIDENCE - 0.1),
+                    ("img/defeated.png", DEFAULT_CONFIDENCE - 0.1),
                 ],
                 button_to_begin,
                 reclick_time=DEFAULT_FAST_RECLICK_TIME,

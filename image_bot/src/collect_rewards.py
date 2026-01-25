@@ -1,43 +1,56 @@
 from src.click import click_img, drag_and_drop_with_random_area, click_until_red_pixel
 from src.screen import find_img_with_red_top_right, find_img
 from src.constants import DEFAULT_FAST_RECLICK_TIME, DEFAULT_CONFIDENCE
-from src.packs import remove_packs
+from src.packs import remove_packs, GRASS, CROIX_PACKS
 
 
 def collect_missions_rewards():
-    remove_packs([("img/missions.png",)])
+    remove_packs(
+        [{"path": "img/missions.png", "precise": True}],
+        close_packs=(CROIX_PACKS + GRASS),
+    )
 
     if find_img_with_red_top_right(("img/missions.png",), number_of_red_pixel=700):
-        click_img([("img/missions.png",)], [("img/croix4.png",)])
+        click_img([("img/missions.png",)], [("img/croix2.png",)])
         click_img(
             [("img/recevoir_missions.png",)],
             wait_until_images_to_click_gone=True,
             reclick_time=DEFAULT_FAST_RECLICK_TIME,
         )
 
-    click_img(
-        [
-            ("img/croix1.png",),
-            ("img/croix_rune.png",),
-            ("img/recolter.png",),
-        ],  # todo upgrade rune ?
-        wait_until_images_to_click_gone=True,
-        click_random=False,
-    )
+        # * upgrade rune ?
+        click_img(
+            [
+                ("img/croix1.png",),
+                ("img/croix_fenetre.png",),
+                ("img/recolter.png",),
+            ],
+            wait_until_images_to_click_gone=True,
+            reclick_time=DEFAULT_FAST_RECLICK_TIME,
+            click_random=False,
+        )
+
+        click_img(
+            [("img/croix2.png",), ("img/croix_fenetre.png",)],
+            wait_until_images_to_click_gone=True,
+        )
 
 
 def collect_shop_reward():
-    remove_packs([("img/shop.png",)])
+    remove_packs(
+        [{"path": "img/shop.png", "precise": True}], close_packs=(CROIX_PACKS + GRASS)
+    )
 
     if find_img_with_red_top_right(("img/shop.png",), number_of_red_pixel=2950):
-        click_img([("img/shop.png",)], [("img/croix4.png",)])
+        click_img([("img/shop.png",)], [("img/croix2.png",)])
         click_img(
             [("img/croix1.png",)],
             [{"path": "img/limite.png", "precise": True}],
         )
         click_img(
-            [{"path": "img/limite.png", "precise": True}],
+            [("img/croix1.png",), {"path": "img/limite.png", "precise": True}],
             [{"path": "img/limite_selected.png", "precise": True}],
+            click_random=False,
         )
         # collect 25 crystals
         if find_img([("img/free_crystals.png",)]):
@@ -73,19 +86,25 @@ def collect_current_inbox():
 
 
 def collect_inbox_rewards():
-    remove_packs([("img/magic_shop_building.png", DEFAULT_CONFIDENCE - 0.35)])
+    remove_packs([{"path": "img/inbox.png", "precise": True}])
 
-    while drag_and_drop_with_random_area(
+    drag_and_drop_with_random_area(
         start_point=(166, 454),
         start_area_radius=50,
         end_point=(166, 775),
         end_area_radius=50,
         image_conditions=[("img/inbox.png",)],
-    ):
-        pass
+    )
 
     if find_img([("img/inbox.png",)]):
-        click_img([("img/inbox.png",)], [("img/inbox_refresh.png",)])
+        click_img(
+            [{"path": "img/inbox.png", "precise": True}],
+            wait_until_images_to_click_gone=True,
+        )
+        click_img(
+            [{"path": "img/coffre_inbox.png", "precise": True}],
+            [{"path": "img/coffre_inbox_selected.png", "precise": True}],
+        )
         if find_img([("img/box_unchecked2.png",)]):
             click_img([("img/box_unchecked2.png",)], [("img/ok.png",)])
             click_img([("img/ok.png",)], [("img/box_checked2.png",)])
@@ -131,7 +150,10 @@ def collect_inbox_rewards():
 
 
 def collect_social_points_and_guild_energy():
-    remove_packs([("img/communaute.png",)])
+    remove_packs(
+        [{"path": "img/communaute.png", "precise": True}],
+        close_packs=(CROIX_PACKS + GRASS),
+    )
 
     click_img([("img/communaute.png",)], [("img/ami.png",)])
 
@@ -183,7 +205,15 @@ def collect_social_points_and_guild_energy():
 
 
 def collect_energy_and_crystals_buildings():
-    remove_packs([("img/magic_shop_building.png", DEFAULT_CONFIDENCE - 0.35)])
+    remove_packs(
+        [
+            {
+                "path": "img/magic_shop_building.png",
+                "confidence": (DEFAULT_CONFIDENCE - 0.2),
+                "precise": True,
+            }
+        ]
+    )
 
     click_img(
         [
@@ -191,6 +221,7 @@ def collect_energy_and_crystals_buildings():
                 "path": "img/energy_icon.png",
                 "region": (0, 0, 1500, 1080),
                 "y_offset": 90,
+                "confidence": DEFAULT_CONFIDENCE - 0.01,
             }
         ],
         wait_until_images_to_click_gone=True,
@@ -199,8 +230,10 @@ def collect_energy_and_crystals_buildings():
         [
             {
                 "path": "img/crystal_icon.png",
+                "region": (0, 0, 1550, 1080),
                 "y_offset": 90,
-            }
+                "confidence": DEFAULT_CONFIDENCE - 0.01,
+            },
         ],
         wait_until_images_to_click_gone=True,
         reclick_time=DEFAULT_FAST_RECLICK_TIME,
@@ -208,7 +241,15 @@ def collect_energy_and_crystals_buildings():
 
 
 def collect_energy_and_crystals_dimension():
-    remove_packs([("img/magic_shop_building.png", DEFAULT_CONFIDENCE - 0.35)])
+    remove_packs(
+        [
+            {
+                "path": "img/magic_shop_building.png",
+                "confidence": (DEFAULT_CONFIDENCE - 0.2),
+                "precise": True,
+            }
+        ]
+    )
 
     click_img([("img/energy_icon2.png",)], [("img/plus.png",)])
     click_img(
@@ -235,7 +276,7 @@ def collect_energy_and_crystals_dimension():
         click_img([("img/ok.png",)], [("img/energy_social_point.png",)])
 
     # get crystal dimension
-    while drag_and_drop_with_random_area(
+    drag_and_drop_with_random_area(
         start_point=(1233, 569),
         start_area_radius=50,
         end_point=(416, 556),
@@ -244,8 +285,7 @@ def collect_energy_and_crystals_dimension():
             ("img/crystal_dimension.png",),
             ("img/no_crystal_dimension.png",),
         ],
-    ):
-        pass
+    )
     if find_img([("img/crystal_dimension.png",)]):
         click_img([("img/crystal_dimension.png",)], [("img/acheter_shop.png",)])
         click_img([("img/acheter_shop.png",)], [("img/ok.png",)])
@@ -278,13 +318,20 @@ def buy_max(reaps=True):
                 click_img([("img/fermer.png",)], wait_until_images_to_click_gone=True)
             else:
                 click_img([("img/creer.png",)], [("img/oui.png",)])
-                click_img([("img/oui.png",)], [("img/vente_selective.png",)])
+                click_img([("img/oui.png",)], [("img/vente_selective4.png",)])
                 click_img(
-                    [("img/vente_selective.png",)], [("img/vente_selective3.png",)]
+                    [("img/vente_selective4.png",)], [("img/vente_selective3.png",)]
                 )
-                click_img([("img/vente_selective3.png",)], [("img/oui.png",)])
                 click_img(
-                    [("img/oui.png",)],
+                    [("img/vente_selective3.png",)],
+                    [("img/oui.png",), ("img/ok.png",)],
+                )
+                click_img(
+                    [
+                        ("img/ne_plus_montrer_ajd2.png",),
+                        ("img/oui.png",),
+                        ("img/ok.png",),
+                    ],
                     [
                         {
                             "path": "img/croix1.png",
@@ -292,6 +339,7 @@ def buy_max(reaps=True):
                             "precise": True,
                         }
                     ],
+                    click_random=False,
                 )
                 click_img(
                     [{"path": "img/croix1.png", "region": (0, 0, 1500, 1080)}],
@@ -300,7 +348,7 @@ def buy_max(reaps=True):
 
 
 def get_reap_and_buy_magic_boxes():
-    remove_packs([("img/crafting_building.png",)])
+    remove_packs([{"path": "img/crafting_building.png", "precise": True}])
 
     click_img([("img/crafting_building.png",)], [("img/crafting.png",)])
     click_img([("img/crafting.png",)], [("img/special.png",)])
@@ -329,7 +377,7 @@ def get_reap_and_buy_magic_boxes():
 
 
 def make_wish():
-    remove_packs([("img/wish_building.png",)])
+    remove_packs([{"path": "img/wish_building.png", "precise": True}])
 
     click_img([("img/wish_building.png",)], [("img/voeux.png",)])
     click_img([("img/voeux.png",)], [("img/make_a_wish.png",)])
@@ -339,24 +387,22 @@ def make_wish():
             [("img/oui.png",)],
             [{"path": "img/make_a_wish_greyish.png", "precise": True}],
         )
-        while (
-            find_img([{"path": "img/make_a_wish_greyish.png", "precise": True}])
-            or find_img([{"path": "img/croix1.png", "precise": True}]) is False
-        ):
+        while find_img([{"path": "img/make_a_wish_greyish.png", "precise": True}]):
             pass
         click_img(
-            [("img/croix_rune.png",), ("img/croix1.png",)],
-            wait_until_images_to_click_gone=True,
-            click_random=False,
+            [("img/croix_fenetre.png",)], [{"path": "img/croix1.png", "precise": True}]
         )
     else:
         click_img([("img/non.png",)], wait_until_images_to_click_gone=True)
 
     # * reset view
-    remove_packs([("img/magic_shop_building.png", DEFAULT_CONFIDENCE - 0.35)])
+    remove_packs(
+        [("img/magic_shop_building.png", DEFAULT_CONFIDENCE - 0.2)],
+        close_packs=(CROIX_PACKS + [("img/croix_fenetre.png",)]),
+    )
 
     click_img(
-        [("img/magic_shop_building.png", DEFAULT_CONFIDENCE - 0.35)],
+        [("img/magic_shop_building.png", DEFAULT_CONFIDENCE - 0.2)],
         [("img/acheter.png",)],
     )
     click_img(
@@ -369,61 +415,116 @@ def make_wish():
     )
 
 
-def collect_rewards_on_event_page(recevoir_buttons, termine_buttons, errors):
+def collect_rewards_on_event_page(
+    recevoir_buttons, termine_buttons, errors, confirmation_button
+):
     while find_img([("img/reward_on_event.png",)]):
         click_img([("img/reward_on_event.png",)], [("img/back_event.png",)])
-        while drag_and_drop_with_random_area((977, 943), 50, (973, 112), 50):
+        while True:
             click_counter = 0
-            while find_img(recevoir_buttons) and click_counter < 8:
+            stop = False
+            while find_img(recevoir_buttons) and click_counter < 8 and stop is False:
                 click_img(recevoir_buttons)
-                if find_img(errors):
-                    while find_img(recevoir_buttons) is False:
-                        pass
-                    break
+                stop = False
                 while find_img(termine_buttons) is False:
-                    pass
+                    if find_img(confirmation_button):
+                        click_img(confirmation_button, termine_buttons)
+                    if find_img(errors):
+                        stop = True
+                        while find_img(recevoir_buttons) is False:
+                            pass
+                        break
                 click_counter += 1
+            if drag_and_drop_with_random_area((977, 943), 50, (973, 112), 50) is False:
+                break
         click_img([("img/back_event.png",)], [("img/nouvelles.png",)])
 
 
-def get_events_rewards():
-    remove_packs([("img/event_icon.png",)])
+def collect_events_rewards():
+    remove_packs([{"path": "img/event_icon.png", "precise": True}])
 
     recevoir_buttons = [
+        {"path": "img/recevoir_vm.png", "precise": True},
         {"path": "img/recevoir_event1.png", "precise": True},
         {"path": "img/recevoir_event2.png", "precise": True},
         {"path": "img/recevoir_event3.png", "precise": True},
         {"path": "img/recevoir_event4.png", "precise": True},
+        {"path": "img/recevoir_event5.png", "precise": True},
+        {"path": "img/recevoir_event6.png", "precise": True},
+        {"path": "img/recevoir_event7.png", "precise": True},
+        {"path": "img/recevoir_event8.png", "precise": True},
+        {"path": "img/recevoir_event9.png", "precise": True},
+        {"path": "img/recevoir_event10.png", "precise": True},
+        {"path": "img/recevoir_event11.png", "precise": True},
+        {"path": "img/recevoir_event12.png", "precise": True},
+        {"path": "img/recevoir_event13.png", "precise": True},
+        {"path": "img/recevoir_event14.png", "precise": True},
+        {"path": "img/recevoir_event15.png", "precise": True},
     ]
 
     termine_buttons = [
+        {"path": "img/recevoir_vm_grey.png", "precise": True},
         {"path": "img/recevoir_event_grey1.png", "precise": True},
         {"path": "img/recevoir_event_grey2.png", "precise": True},
+        {"path": "img/recevoir_event_grey3.png", "precise": True},
+        {"path": "img/recevoir_event_grey4.png", "precise": True},
+        {"path": "img/recevoir_event_grey5.png", "precise": True},
         {"path": "img/termine_event1.png", "precise": True},
         {"path": "img/termine_event2.png", "precise": True},
         {"path": "img/termine_event3.png", "precise": True},
         {"path": "img/termine_event4.png", "precise": True},
+        {"path": "img/termine_event5.png", "precise": True},
+        {"path": "img/termine_event6.png", "precise": True},
+        {"path": "img/termine_event7.png", "precise": True},
+        {"path": "img/termine_event8.png", "precise": True},
+        {"path": "img/termine_event9.png", "precise": True},
+        {"path": "img/termine_event10.png", "precise": True},
+        {"path": "img/termine_event11.png", "precise": True},
+        {"path": "img/termine_event12.png", "precise": True},
+        {"path": "img/termine_event13.png", "precise": True},
+        {"path": "img/termine_event14.png", "precise": True},
+        {"path": "img/termine_event15.png", "precise": True},
+        {
+            "path": "img/termine_event13.png",
+            "precise": True,
+            "confidence": DEFAULT_CONFIDENCE + 0.05,
+        },
     ]
 
-    errors = [("img/veuillez_verifier.png",)]
+    confirmation_button = [("img/oui_event.png",)]
+
+    errors = [("img/veuillez_verifier.png",), ("img/selectionnez.png",)]
 
     click_img([("img/event_icon.png",)], [("img/nouvelles.png",)])
     click_img([("img/evenement.png",)], [("img/evenement_selected.png",)])
 
-    collect_rewards_on_event_page(recevoir_buttons, termine_buttons, errors)
-    while drag_and_drop_with_random_area((1128, 827), 50, (1141, 326), 50):
-        collect_rewards_on_event_page(recevoir_buttons, termine_buttons, errors)
+    while True:
+        collect_rewards_on_event_page(
+            recevoir_buttons, termine_buttons, errors, confirmation_button
+        )
+        if drag_and_drop_with_random_area((1128, 827), 50, (1141, 326), 50) is False:
+            break
 
     click_img([("img/croix_page_events.png",)], wait_until_images_to_click_gone=True)
 
 
-def collect_all_rewards():
-    collect_energy_and_crystals_buildings()  # * perfect
-    collect_shop_reward()  # * perfect
-    collect_social_points_and_guild_energy()  # * perfect
-    collect_missions_rewards()  # * good todo: upgrade rune after ?
-    collect_energy_and_crystals_dimension()  # * perfect
-    make_wish()  # * good todo: upgrade rune after ?
-    get_events_rewards()  # * perfect
-    collect_inbox_rewards()  # * perfect
-    get_reap_and_buy_magic_boxes()  # * perfect
+def collect_all_rewards(collect_rewards):
+    if any(collect_rewards.values()) is False:
+        return
+
+    if collect_rewards["collect_shop_reward"]:
+        collect_shop_reward()  # * perfect
+    if collect_rewards["collect_social_points_and_guild_energy"]:
+        collect_social_points_and_guild_energy()  # * perfect
+    if collect_rewards["collect_missions_rewards"]:
+        collect_missions_rewards()  # * good todo: upgrade rune after
+    if collect_rewards["collect_energy_and_crystals_dimension"]:
+        collect_energy_and_crystals_dimension()  # * perfect
+    if collect_rewards["make_wish"]:
+        make_wish()  # * good todo: upgrade rune after
+    if collect_rewards["collect_events_rewards"]:
+        collect_events_rewards()  # * perfect
+    if collect_rewards["collect_inbox_rewards"]:
+        collect_inbox_rewards()  # * perfect
+    if collect_rewards["get_reap_and_buy_magic_boxes"]:
+        get_reap_and_buy_magic_boxes()  # * perfect

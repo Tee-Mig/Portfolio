@@ -1,17 +1,16 @@
 from typing import List, Tuple
 from typing import Union
 from src.click import click_img
-from src.constants import DEFAULT_FAST_RECLICK_TIME
+from src.constants import DEFAULT_FAST_RECLICK_TIME, DEFAULT_CONFIDENCE
 
-CROIX_RUNE = [("img/croix_rune.png",)]
+croix_fenetre = [("img/croix_fenetre.png",)]
 
-CLOSE_PACKS = [
+CROIX_PACKS = [
     ("img/croix1.png",),
     ("img/croix2.png",),
-    ("img/croix3.png",),
-    ("img/croix4.png",),
-    ("img/croix_collab1.png",),
-    ("img/croix_collab2.png",),
+    ("img/croix3.png", DEFAULT_CONFIDENCE - 0.15),
+    ("img/croix4.png", DEFAULT_CONFIDENCE - 0.15),
+    ("img/croix5.png", DEFAULT_CONFIDENCE - 0.15),
 ]
 
 NOT_SHOW_TODAY_PACKS = [
@@ -39,11 +38,10 @@ GRASS = [
 def remove_packs(
     images: List[Union[Tuple, dict]],
     not_show_today: List[Union[Tuple, dict]] = NOT_SHOW_TODAY_PACKS,
-    close_packs: List[Union[Tuple, dict]] = CLOSE_PACKS,
-    grass: List[Union[Tuple, dict]] = GRASS,
+    close_packs: List[Union[Tuple, dict]] = CROIX_PACKS,
 ):
     click_img(
-        not_show_today + close_packs + grass,
+        not_show_today + close_packs,
         images,
         reclick_time=DEFAULT_FAST_RECLICK_TIME,
         click_random=False,

@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 from PIL import ImageGrab
 import pyautogui
+from src.constants import DEFAULT_CONFIDENCE
 
 from src.fill_defaults import to_waiting_image_list_fill_default
 from src.image_utils import (
@@ -12,6 +13,27 @@ from src.image_utils import (
     find_image_position,
     filter_close_matches,
 )
+
+
+def count_image_on_screen(image, confidence: float = DEFAULT_CONFIDENCE - 0.1) -> int:
+    screenshot = pyautogui.screenshot()
+    screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+
+    template = cv2.imread(image, cv2.IMREAD_COLOR)
+    w, h = template.shape[1], template.shape[0]
+
+    result = cv2.matchTemplate(screenshot, template, cv2.TM_CCOEFF_NORMED)
+    loc = np.where(result >= confidence)
+
+    rectangles = []
+    for pt in zip(*loc[::-1]):
+        rect = [pt[0], pt[1], w, h]
+        rectangles.append(rect)
+        rectangles.append(rect)
+
+    rectangles, _ = cv2.groupRectangles(rectangles, groupThreshold=1, eps=0.5)
+
+    return len(rectangles)
 
 
 # * perfect

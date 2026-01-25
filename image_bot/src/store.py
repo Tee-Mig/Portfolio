@@ -4,6 +4,7 @@ from src.screen import find_img
 
 
 def put_in_storage():
+    click_img([("img/unchecked_box.png",)], [("img/checked_box.png",)])
     if find_img([{"path": "img/arrow_storage.png", "precise": True}]):
         click_img(
             [{"path": "img/arrow_storage.png", "precise": True}],
@@ -11,29 +12,30 @@ def put_in_storage():
         )
 
 
-def check_if_all_selected():
-    if find_img([("img/unchecked_box.png",)]):
-        click_img([("img/unchecked_box.png",)], [("img/checked_box.png",)])
-
-
 def store_arcemon():
-    remove_packs([("img/arcemon_building.png",)])
+    remove_packs([{"path": "img/arcemon_building.png", "precise": True}])
 
     click_img([("img/arcemon_building.png",)], [("img/entreposer.png",)])
-    click_img([("img/entreposer.png",)], [("img/croix1.png",)])
-    check_if_all_selected()
+    click_img(
+        [("img/entreposer.png",)],
+        [("img/unchecked_box.png",), ("img/checked_box.png",)],
+    )
     put_in_storage()
 
 
 def store_monster():
-    remove_packs([("img/monster_building.png",)])
+    remove_packs([{"path": "img/monster_building.png", "precise": True}])
 
     click_img([("img/monster_building.png",)], [("img/invoque.png",)])
-    click_img([("img/invoque.png",)], [("img/croix1.png",)])
-    check_if_all_selected()
+    click_img(
+        [("img/invoque.png",)], [("img/unchecked_box.png",), ("img/checked_box.png",)]
+    )
     put_in_storage()
 
 
-def store_all():
-    store_arcemon()
-    store_monster()
+def store_all(store_units_data):
+    if store_units_data["monsters"]:
+        store_monster()
+
+    if store_units_data["arcemons"]:
+        store_arcemon()

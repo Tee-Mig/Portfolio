@@ -2,13 +2,19 @@ from src.click import click_img, drag_and_drop_with_random_area, click_coords
 from src.constants import (
     DEFAULT_FAST_RECLICK_TIME,
     DEFAULT_CONFIDENCE,
+    NUMBER_OF_ENERGY_REFILL,
+    TIME_BETWEEN_VOLUME_DECREASES,
 )
 from src.screen import find_img
 from src.packs import remove_packs
 from src.packs import NOT_SHOW_TODAY_DUNGEON
 import pytesseract
 from src.arena import go_to_arena
+from src.enums import Dungeon, DailyDungeon
 
+from time import time
+import subprocess
+import sys
 import cv2
 import numpy as np
 import pyautogui
@@ -207,7 +213,7 @@ def remove_rune_with_bad_subs():
                     [("img/rejouer.png",)],
                 )
             else:
-                click_img([("img/croix_rune.png",)], [("img/rejouer.png",)])
+                click_img([("img/croix_fenetre.png",)], [("img/rejouer.png",)])
 
 
 def sell_bad_runes():
@@ -218,32 +224,111 @@ def sell_bad_runes():
         remove_rune_with_bad_subs()
 
 
-def farm_dj(upgrade_runes: bool = True):
-    go_to_arena()
+def sleep_screen():
+    DETACHED_PROCESS = 0x00000008
+    CREATE_NO_WINDOW = 0x08000000
 
-    while True:
+    script = "import ctypes; ctypes.windll.powrprof.SetSuspendState(1, 1, 0)"
+
+    subprocess.Popen(
+        [sys.executable, "-c", script],
+        creationflags=DETACHED_PROCESS | CREATE_NO_WINDOW,
+    )
+
+
+def check_stop_after_current_energy(stop_after_current_energy_status):
+    if stop_after_current_energy_status:
         click_img(
-            [("img/open_combat_repet.png",)], wait_until_images_to_click_gone=True
+            [{"path": "img/croix1.png", "region": (0, 0, 1430, 1080)}],
+            wait_until_images_to_click_gone=True,
+        )
+        return True
+    else:
+        return False
+
+
+def decrease_volume(last_time):
+    if time() - last_time >= TIME_BETWEEN_VOLUME_DECREASES:
+        pyautogui.press("volumedown")
+        print("Volume down")
+        last_time = time()
+    return last_time
+
+
+def farm_dj(dungeon_data, daily_dungeon_data):
+    go_to_arena()
+    last_time = time()
+    while True:
+        last_time = decrease_volume(last_time)
+        if (
+            daily_dungeon_data["dungeon"] is DailyDungeon.NONE
+            and dungeon_data["dungeon"] is Dungeon.NONE
+        ):
+            break
+        click_img(
+            [("img/open_combat_repet.png", DEFAULT_CONFIDENCE - 0.1)],
+            [("img/vente_selective.png",)],
         )
         if find_img([("img/rejouer.png",)]):
-            sort_and_upgrade_runes(upgrade_runes)
+            sell_sort_and_upgrade_runes()
+            if (
+                (
+                    daily_dungeon_data["dungeon"] is not DailyDungeon.NONE
+                    and daily_dungeon_data["continue_dungeon"]
+                )
+                or daily_dungeon_data["dungeon"] is DailyDungeon.NONE
+                and find_img([("img/max_xp.png",)]) is False
+                and find_img([("img/max_xp_dim.png",)]) is False
+            ):
+                click_img(
+                    [("img/rejouer.png",)],
+                    [
+                        ("img/combats_a_repetition_button_raid.png",),
+                        ("img/combats_a_repetition_button.png",),
+                    ],
+                )
+                click_img(
+                    [
+                        ("img/combats_a_repetition_button.png",),
+                        ("img/combats_a_repetition_button_raid.png",),
+                    ],
+                    [("img/reduce_combat_repet.png",), ("img/coffre.png",)],
+                )
 
-            click_img(
-                [("img/rejouer.png",)], [("img/combats_a_repetition_button_raid.png",)]
-            )  # mig
-            click_img(
-                [("img/box_unchecked.png",)], [("img/box_checked.png",)]
-            )  # put to x30 runs
-            click_img(
-                [("img/combats_a_repetition_button_raid.png",)],
-                [("img/reduce_combat_repet.png",)],
-            )
+                if find_img([("img/coffre.png",)]):
+                    if (
+                        check_stop_after_current_energy(
+                            daily_dungeon_data["stop_after_current_energy"]
+                        )
+                        or collect_energy_coffre()
+                    ):
+                        click_img(
+                            [("img/croix2.png",)],
+                            wait_until_images_to_click_gone=True,
+                        )
+                        click_img(
+                            [("img/croix1.png",)], wait_until_images_to_click_gone=True
+                        )
+                        break
+                    click_img(
+                        [
+                            ("img/combats_a_repetition_button.png",),
+                            ("img/combats_a_repetition_button_raid.png",),
+                        ],
+                        [("img/reduce_combat_repet.png",)],
+                    )
+            elif daily_dungeon_data["dungeon"] is not DailyDungeon.NONE:
+                daily_dungeon_data["dungeon"] = DailyDungeon.NONE
+                launch_dj(dungeon_data, False)
+
+    sleep_screen()
+    # print("stop")
 
 
-def sort_and_upgrade_runes(upgrade_runes: bool = True):
+def sell_sort_and_upgrade_runes():
+    print("test")
     click_img([("img/vente_selective.png",)], [("img/vente_selective2.png",)])
-    if upgrade_runes:
-        sell_bad_runes()
+    sell_bad_runes()
     click_img(
         [("img/vente_selective2.png",)],
         NOT_SHOW_TODAY_DUNGEON + [("img/ok.png",)],
@@ -260,7 +345,8 @@ def sort_and_upgrade_runes(upgrade_runes: bool = True):
             click_random=False,
             reclick_time=DEFAULT_FAST_RECLICK_TIME,
         )
-    # upgrade_runes()
+    # if sort_and_upgrade_runes()
+    #     upgrade_runes()
 
 
 def stop_dj():
@@ -271,35 +357,29 @@ def stop_dj():
         reclick_time=DEFAULT_FAST_RECLICK_TIME,
     )
 
-    sort_and_upgrade_runes()
-    click_img(
-        [("img/selection_du_donjon.png",)],
-        [("img/donjon_de_cairos.png",)],
-        reclick_time=DEFAULT_FAST_RECLICK_TIME,
-    )
+    sell_sort_and_upgrade_runes()
 
 
-def launch_dj(dungeon_data):
-    remove_packs([("img/repet_building.png", DEFAULT_CONFIDENCE - 0.3)])
+def collect_energy_coffre():
+    if find_img([{"path": "img/empty_coffre.png", "precise": True}]):
+        result = True
+    else:
+        result = False
+
+    if find_img([{"path": "img/coffre.png", "precise": True}]):
+        click_img([("img/coffre.png",)], [("img/recevoir_energy_coffre.png",)])
+        for _ in range(NUMBER_OF_ENERGY_REFILL):
+            click_img([("img/recevoir_energy_coffre.png",)])
 
     click_img(
-        [("img/repet_building.png", DEFAULT_CONFIDENCE - 0.3)],
-        [("img/combats_a_repetition_icon.png",)],
+        [{"path": "img/croix1.png", "region": (0, 0, 1430, 1080)}],
+        wait_until_images_to_click_gone=True,
     )
-    click_img(
-        [("img/combats_a_repetition_icon.png",)], [("img/combats_a_repetition.png",)]
-    )
-    if find_img([("img/vente_selective.png",)]):
-        stop_dj()
-    click_img(
-        [("img/donjon_de_cairos.png",)],
-        [{"path": "img/go_launch_dj.png", "region": (0, 800, 1920, 280)}],
-    )
-    click_img(
-        [{"path": "img/go_launch_dj.png", "region": (0, 800, 1920, 280)}],
-        [("img/combats_a_repetition_button.png",)],
-    )
-    if dungeon_data["30x10_run"]:
+    return result
+
+
+def check_number_of_runs_dj(max_runs):
+    if max_runs:
         click_img(
             [("img/box_unchecked.png",)], [("img/box_checked.png",)]
         )  # put to x30 runs
@@ -307,7 +387,194 @@ def launch_dj(dungeon_data):
         click_img(
             [("img/box_checked.png",)], [("img/box_unchecked.png",)]
         )  # put to x10 runs
-    click_img(
-        [("img/combats_a_repetition_button.png",)], [("img/reduce_combat_repet.png",)]
-    )
-    click_img([("img/reduce_combat_repet.png",)], wait_until_images_to_click_gone=True)
+
+
+def launch_dj(dungeon_data, launch_with_building=True):
+    if launch_with_building:
+        remove_packs(
+            [
+                {
+                    "path": "img/repet_building.png",
+                    "confidence": (DEFAULT_CONFIDENCE - 0.3),
+                    "precise": True,
+                }
+            ]
+        )
+
+        click_img(
+            [("img/repet_building.png", DEFAULT_CONFIDENCE - 0.3)],
+            [("img/combats_a_repetition_icon.png",)],
+        )
+        click_img(
+            [("img/combats_a_repetition_icon.png",)],
+            [("img/combats_a_repetition.png",)],
+        )
+        if find_img([("img/vente_selective.png",)]):
+            stop_dj()
+            click_img(
+                [("img/selection_du_donjon.png",)],
+                [("img/select_dungeon.png",)],
+                reclick_time=DEFAULT_FAST_RECLICK_TIME,
+            )
+    else:
+        click_img(
+            [("img/selection_du_donjon.png",)],
+            [("img/select_dungeon.png",)],
+            reclick_time=DEFAULT_FAST_RECLICK_TIME,
+        )
+
+    if (
+        dungeon_data["dungeon"].value >= Dungeon.GIANT.value
+        and dungeon_data["dungeon"].value <= Dungeon.WIND_RAID.value
+    ):
+        click_img(
+            [{"path": "img/carte_du_monde.png", "precise": True}],
+            [{"path": "img/carte_du_monde_selected.png", "precise": True}],
+            reclick_time=DEFAULT_FAST_RECLICK_TIME,
+        )
+
+    dj_tab = [(f"img/{dungeon_data['dungeon'].name.lower()}_tab.png",)]
+    dj = [(f"img/{dungeon_data['dungeon'].name.lower()}_dj.png",)]
+    if (
+        dungeon_data["dungeon"].value >= Dungeon.GIANT.value
+        and dungeon_data["dungeon"].value <= Dungeon.DARK_ESSENCE.value
+    ):
+        click_img([("img/donjon_de_cairos.png",)], [("img/giant_tab.png",)])
+
+        drag_and_drop_with_random_area(
+            start_point=(494, 807),
+            start_area_radius=50,
+            end_point=(498, 455),
+            end_area_radius=50,
+            image_conditions=dj_tab,
+        )
+
+        if find_img(dj_tab):
+            click_img(dj_tab, dj)
+            click_img(
+                [{"path": "img/go_launch_dj.png", "region": (0, 800, 1920, 280)}],
+                [("img/combats_a_repetition_button.png",), ("img/coffre.png",)],
+            )
+            if find_img([("img/coffre.png",)]):
+                if (
+                    check_stop_after_current_energy(
+                        dungeon_data["stop_after_current_energy"]
+                    )
+                    or collect_energy_coffre()
+                ):
+                    dungeon_data["dungeon"] = Dungeon.NONE
+                    click_img(
+                        [("img/croix1.png",)], wait_until_images_to_click_gone=True
+                    )
+                    if launch_with_building:
+                        click_img(
+                            [("img/croix_dj.png",)],
+                            wait_until_images_to_click_gone=True,
+                        )
+                    return
+                click_img(
+                    [
+                        {
+                            "path": "img/go_launch_dj.png",
+                            "region": (0, 800, 1920, 280),
+                        }
+                    ],
+                    [("img/combats_a_repetition_button.png",)],
+                )
+            check_number_of_runs_dj(dungeon_data["30x10_run"])
+            click_img(
+                [("img/combats_a_repetition_button.png",)],
+                [("img/reduce_combat_repet.png",)],
+            )
+            if launch_with_building:
+                click_img(
+                    [("img/reduce_combat_repet.png",)],
+                    wait_until_images_to_click_gone=True,
+                )
+        else:
+            dungeon_data["dungeon"] = Dungeon.NONE
+            click_coords([("img/croix1.png",)], [("img/croix_dj.png",)])
+            if launch_with_building:
+                click_img([("img/croix_dj.png",)], wait_until_images_to_click_gone=True)
+
+    elif (
+        dungeon_data["dungeon"].value >= Dungeon.FIRE_RIFT.value
+        and dungeon_data["dungeon"].value <= Dungeon.DARK_RIFT.value
+    ):
+        click_img([("img/donjon_du_rift.png",)], [("img/combat.png",)])
+
+        click_img(dj_tab, dj)
+        click_img(
+            [("img/combat.png",)],
+            [("img/combats_a_repetition_button.png",), ("img/coffre.png",)],
+        )
+        if find_img([("img/coffre.png",)]):
+            if (
+                check_stop_after_current_energy(
+                    dungeon_data["stop_after_current_energy"]
+                )
+                or collect_energy_coffre()
+            ):
+                dungeon_data["dungeon"] = Dungeon.NONE
+                click_img([("img/croix1.png",)], wait_until_images_to_click_gone=True)
+                if launch_with_building:
+                    click_img(
+                        [("img/croix_dj.png",)],
+                        wait_until_images_to_click_gone=True,
+                    )
+                return
+            click_img(
+                [("img/combat.png",)],
+                [("img/combats_a_repetition_button.png",)],
+            )
+
+        check_number_of_runs_dj(dungeon_data["30x10_run"])
+        click_img(
+            [("img/combats_a_repetition_button.png",)],
+            [("img/reduce_combat_repet.png",)],
+        )
+        if launch_with_building:
+            click_img(
+                [("img/reduce_combat_repet.png",)],
+                wait_until_images_to_click_gone=True,
+            )
+    elif (
+        dungeon_data["dungeon"].value >= Dungeon.RAID.value
+        and dungeon_data["dungeon"].value <= Dungeon.WIND_RAID.value
+    ):
+        click_img([("img/raid_des_mondes.png",)], [("img/combat_raid.png",)])
+
+        click_img(dj_tab, dj)
+        click_img(
+            [("img/combat_raid.png",)], [("img/combats_a_repetition_button_raid.png",)]
+        )
+        check_number_of_runs_dj(dungeon_data["30x10_run"])
+        click_img(
+            [("img/combats_a_repetition_button_raid.png",)],
+            [("img/reduce_combat_repet.png",), ("img/coffre.png",)],
+        )
+        if find_img([("img/coffre.png",)]):
+            if (
+                check_stop_after_current_energy(
+                    dungeon_data["stop_after_current_energy"]
+                )
+                or collect_energy_coffre()
+            ):
+                dungeon_data["dungeon"] = Dungeon.NONE
+                click_img([("img/croix2.png",)], [("img/croix1.png",)])
+                click_img([("img/croix1.png",)], wait_until_images_to_click_gone=True)
+                if launch_with_building:
+                    click_img(
+                        [("img/croix_dj.png",)], wait_until_images_to_click_gone=True
+                    )
+                return
+            click_img(
+                [("img/combats_a_repetition_button_raid.png",)],
+                [("img/reduce_combat_repet.png",)],
+            )
+
+        if launch_with_building:
+            click_img(
+                [("img/reduce_combat_repet.png",)],
+                wait_until_images_to_click_gone=True,
+            )
