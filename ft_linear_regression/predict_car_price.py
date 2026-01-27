@@ -11,9 +11,6 @@ def predict_csv(file_to_predict):
     theta0 = thetas.split(",")[0]
     theta1 = thetas.split(",")[1]
 
-    x_mean = df["km"].mean()
-    x_std = df["km"].std()
-
     with (
         open("data_to_predict.csv", "r") as f_in,
         open("predictions.csv", "w") as f_out
@@ -22,8 +19,8 @@ def predict_csv(file_to_predict):
             if ("km" in line):
                 f_out.write(line)
                 continue
-            x_norm = (float(line) - x_mean) / x_std
-            f_out.write(line.strip() + "," + str(float(theta0) + float(theta1) * x_norm) + "\n")
+            km = float(line.strip())
+            f_out.write(line.strip() + "," + str(float(theta0) + float(theta1) * km) + "\n")
 
 
 def main():
