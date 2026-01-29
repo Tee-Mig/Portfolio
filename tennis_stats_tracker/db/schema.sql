@@ -27,7 +27,7 @@ CREATE TABLE matches (
   l_bpSaved INT,
   l_bpFaced INT,
   winner_rank INT,
-  loser_rank INT
+  loser_rank INT,
   winner_id INT REFERENCES players(player_id),
-  loser_id INT REFERENCES players(player_id),
+  loser_id INT REFERENCES players(player_id)
 );

@@ -25,7 +25,7 @@ def wait_for_db(db_url: str, timeout: int = 30):
             break
         except OperationalError:
             if time.time() - start_time > timeout:
-                raise Exception("⛔ La base de données n'est pas accessible après 30 secondes.")
+                raise Exception("❌ La base de données n'est pas accessible après 30 secondes.")
             print("⏳ Attente de la base de données...")
             time.sleep(2)
 
@@ -44,7 +44,7 @@ def display_stats():
 
     engine = create_engine(db_url)
 
-    st.title("🎾 Tennis Stats Tracker")
+    st.title("Tennis Stats Tracker")
 
     tab1, tab2 = st.tabs(["Joueurs", "Matchs"])
 
@@ -52,19 +52,84 @@ def display_stats():
         st.header("Liste des joueurs")
         try:
             st.header("Clique sur un joueur pour voir ses matchs")
-            players_df = pd.read_sql("SELECT * FROM players", engine)
+            players_df = pd.read_sql(
+                "SELECT name FROM players ORDER BY name",
+                engine
+            )
+
+            search = st.text_input("🔎 Rechercher un joueur", "")
+            if search.strip():
+                players_filtered = players_df[players_df["name"].str.contains(search, case=False, na=False)]
+            else:
+                players_filtered = players_df
+
             matches_df = pd.read_sql("SELECT * FROM matches", engine)
 
-            gb = GridOptionsBuilder.from_dataframe(players_df)
-            gb.configure_selection(selection_mode="single", use_checkbox=True)
+            FR_COLS = {
+                "tourney_id": "ID tournoi",
+                "tourney_name": "Tournoi",
+                "surface": "Surface",
+                "tourney_level": "Niveau",
+                "tourney_date": "Date",
+                "round": "Tour",
+                "score": "Score",
+                "minutes": "Durée (min)",
+
+                "winner_name": "Vainqueur",
+                "loser_name": "Perdant",
+
+                "winner_rank": "Classement vainqueur",
+                "loser_rank": "Classement perdant",
+
+                "w_ace": "Aces (vainqueur)",
+                "w_df": "Doubles fautes (vainqueur)",
+                "w_1stIn": "1res IN (vainqueur)",
+                "w_1stWon": "1res gagnées (vainqueur)",
+                "w_bpSaved": "BP sauvées (vainqueur)",
+                "w_bpFaced": "BP subies (vainqueur)",
+
+                "l_ace": "Aces (perdant)",
+                "l_df": "Doubles fautes (perdant)",
+                "l_1stIn": "1res IN (perdant)",
+                "l_1stWon": "1res gagnées (perdant)",
+                "l_bpSaved": "BP sauvées (perdant)",
+                "l_bpFaced": "BP subies (perdant)",
+            }
+
+            # 1) Renommer d'abord
+            matches_df = matches_df.rename(columns=FR_COLS)
+
+            # 2) Supprimer la colonne technique
+            matches_df = matches_df.drop(columns=["ID tournoi", "winner_id", "loser_id", "match_num"], errors="ignore")
+
+            # 3) Date sans heure
+            matches_df["Date"] = pd.to_datetime(matches_df["Date"], errors="coerce").dt.date
+
+            # 4) Durée lisible
+            def format_duration(minutes):
+                if pd.isna(minutes) or minutes <= 0:
+                    return "—"
+                minutes = int(minutes)
+                if minutes < 60:
+                    return f"{minutes} min"
+                h = minutes // 60
+                m = minutes % 60
+                return f"{h}h{m:02d}"
+
+            matches_df["Durée"] = matches_df["Durée (min)"].apply(format_duration)
+            matches_df = matches_df.drop(columns=["Durée (min)"], errors="ignore")
+
+            gb = GridOptionsBuilder.from_dataframe(players_filtered)
+            gb.configure_selection(selection_mode="single", use_checkbox=False)
+            gb.configure_column("name", header_name="Joueur", sortable=True, filter=True, cellStyle={"fontWeight": "bold"})
             grid_options = gb.build()
 
             grid_response = AgGrid(
-                players_df,
+                players_filtered,
                 gridOptions=grid_options,
                 update_mode="SELECTION_CHANGED",
                 fit_columns_on_grid_load=True,
-                height=300
+                height=320
             )
 
             selected = grid_response.get("selected_rows", [])
@@ -73,11 +138,11 @@ def display_stats():
                 player_name = selected_row["name"]
                 st.info(f"Joueur sélectionné : {player_name}")
 
-                player_name_lower = player_name.lower()
+                player_name_lower = player_name.lower().strip()
 
                 player_matches = matches_df[
-                    (matches_df["winner_name"].str.lower() == player_name_lower) |
-                    (matches_df["loser_name"].str.lower() == player_name_lower)
+                    (matches_df["Vainqueur"].fillna("").str.lower().str.strip() == player_name_lower) |
+                    (matches_df["Perdant"].fillna("").str.lower().str.strip() == player_name_lower)
                 ]
 
                 st.subheader(f"Matchs joués par {player_name}")

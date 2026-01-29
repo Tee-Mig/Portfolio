@@ -11,10 +11,18 @@ services:
     ports:
       - "5431:5432"
 
+  etl:
+    build: .
+    command: python etl/run_etl.py
+    env_file:
+      - .env
+    depends_on:
+      - db
+
   streamlit:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: streamlit/Dockerfile
     container_name: tennis_streamlit
     ports:
       - "8501:8501"
@@ -22,6 +30,7 @@ services:
       - .env
     depends_on:
       - db
+    command: streamlit run streamlit/app.py --server.port=8501 --server.address=0.0.0.0
 
 volumes:
   pgdata:
