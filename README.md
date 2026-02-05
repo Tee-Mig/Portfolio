@@ -51,8 +51,8 @@
 
 ### GCP Weather Pulse — Serverless Data Pipeline
 
-![Dashboard météo 1](qcp_weather/assets/tableau_de_board1.png)
-![Dashboard météo 2](qcp_weather/assets/tableau_de_board2.png)
+![Dashboard météo 1](qcp_weather_pulse/assets/tableau_de_board1.png)
+![Dashboard météo 2](qcp_weather_pulse/assets/tableau_de_board2.png)
 
 Pipeline cloud automatisé pour collecter, transformer et analyser des **données météo**.
 
@@ -69,9 +69,9 @@ Dossier : `gcp-weather-pulse/`
 
 ### Tennis Stats Tracker — Data Pipeline & Dashboard
 
-![Dashboard tennis 1](qcp_weather/assets/photo1.png)
-![Dashboard tennis 2](qcp_weather/assets/photo2.png)
-![Dashboard tennis 3](qcp_weather/assets/photo3.png)
+![Dashboard tennis 1](tennis_stats_tracker/assets/photo1.png)
+![Dashboard tennis 2](tennis_stats_tracker/assets/photo2.png)
+![Dashboard tennis 3](tennis_stats_tracker/assets/photo3.png)
 
 Pipeline ETL et application interactive pour l’analyse de **performances de tennis**.
 
@@ -88,9 +88,9 @@ Dossier : `tennis_stats_tracker/`
 
 ### Snake Agent RL — Reinforcement Learning Analysis
 
-![Dashboard snake agent 1](qcp_weather/assets/photo1.png)
-![Dashboard snake agent 2](qcp_weather/assets/photo2.png)
-![Dashboard snake agent 3](qcp_weather/assets/photo3.png)
+![Dashboard snake agent 1](snake_agent_rl/assets/photo1.png)
+![Dashboard snake agent 2](snake_agent_rl/assets/photo2.png)
+![Dashboard snake agent 3](snake_agent_rl/assets/photo3.png)
 
 Analyse des données d’apprentissage d’un agent de **reinforcement learning**.
 
