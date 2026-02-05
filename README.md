@@ -1,157 +1,166 @@
-# Projets & Portfolio
+# Data Engineering & Analytics Portfolio
 
-Bienvenue sur ce dépôt qui regroupe mes **projets académiques et personnels** réalisés dans le cadre de ma formation à **42 Paris**, ainsi que des projets liés aux données, aux bases de données, à l’automatisation et au backend.
+## Profil
 
-Ce dépôt Github sert de point d’entrée pour découvrir mon travail, mon approche technique et les technologies que j’utilise au quotidien.
+Étudiant à **42 Paris**, avec un fort intérêt pour :
 
+- la conception de **pipelines data**
+- la **structuration et modélisation** des données
+- l’**automatisation** des tâches
 
-## À propos de moi
+---
 
-Je suis étudiant à **42 Paris**, avec un intérêt marqué pour l’informatique appliquée, les bases de données et le traitement de données.
-
-J’apprécie particulièrement :
-- concevoir des projets complets et cohérents,
-- structurer et exploiter des données,
-- **automatiser** des traitements et des flux,
-- rendre des solutions techniques compréhensibles et réutilisables
-
-
-## Technologies & outils
+## Compétences clés
 
 ### Langages
-- Python
-- SQL
-- R
-- C / C++
+
+- Python · SQL · Bash · R · C/C++
+
+### Data Engineering & Architecture
+
+- ETL / ELT
+- Ingestion de données
+- APIs
+- Modélisation relationnelle
+- Pipelines analytiques
 
 ### Bases de données & stockage
-- PostgreSQL
-- DuckDB
-- SQLite
-- BigQuery
-- Parquet
 
-### Cloud & services managés
-- Google Cloud Platform
-- Google Cloud Storage
-- Cloud Run
-- Cloud Scheduler
-- Pub/Sub
-- BigQuery
+- PostgreSQL · BigQuery · DuckDB · SQLite · Parquet
 
-### Pipelines & automatisation
-- Pipelines ETL / ELT
-- Orchestration de workflows (Luigi)
-- Scripts Python d’ingestion et de transformation
-- Automatisation via Makefile
-- Nettoyage, normalisation et préparation des données
+### Cloud & DevOps
 
-### Infrastructure & environnement
-- Docker
-- Docker Compose
+- GCP (BigQuery, GCS, Cloud Run, Pub/Sub)
+- Docker · Docker Compose · CI/CD
 
-### Librairies & outils data
-- pandas
-- pyarrow
-- lxml
-- sqlalchemy
-- matplotlib
+### Machine Learning
 
-### Visualisation & restitution
-- Streamlit
-- Shiny (R)
+- scikit-learn · TensorFlow · Keras · OpenAI Gym
 
-### 🔧 Outils système & collaboration
-- Git / GitHub
-- Linux
-- Bash
+### Visualisation & BI
 
+- Streamlit · Matplotlib · Seaborn · Power BI · Excel
 
-## Projets mis en avant
+### Systèmes & collaboration
 
-### Weather Pulse — Serverless Data Pipeline (GCP)
-`gcp-weather-pulse/`
+- Linux · Git (GitHub, GitLab) · automatisation Bash
 
-Pipeline de données serverless pour l’ingestion, la transformation et l’exposition analytique de données météo.
+---
 
-- Ingestion automatisée via Cloud Run et Cloud Scheduler
-- Stockage des données brutes en GCS (bronze)
-- Transformation et chargement dans BigQuery (silver)
-- Exposition de vues analytiques (gold)
-- Architecture orientée automatisation et reproductibilité
+## Projets
 
+### GCP Weather Pulse — Serverless Data Pipeline
 
-### Mini Data Lake — Analyse de la pollution de l’air
+![Dashboard météo 1](qcp_weather/assets/tableau_de_board1.png)
+![Dashboard météo 2](qcp_weather/assets/tableau_de_board2.png)
+
+Pipeline cloud automatisé pour collecter, transformer et analyser des **données météo**.
+
+- Ingestion de données externes via **Cloud Run**
+- Planification avec **Cloud Scheduler**
+- Stockage des données brutes dans **GCS (Bronze)**
+- Transformation et chargement dans **BigQuery (Silver)**
+- Vues analytiques prêtes à l’analyse (**Gold**)
+- Architecture **serverless**, automatisée et reproductible
+
+Dossier : `gcp-weather-pulse/`
+
+---
+
+### Tennis Stats Tracker — Data Pipeline & Dashboard
+
+![Dashboard tennis 1](qcp_weather/assets/photo1.png)
+![Dashboard tennis 2](qcp_weather/assets/photo2.png)
+![Dashboard tennis 3](qcp_weather/assets/photo3.png)
+
+Pipeline ETL et application interactive pour l’analyse de **performances de tennis**.
+
+- Collecte et nettoyage de données sportives (ATP)
+- Modélisation relationnelle
+- Stockage **PostgreSQL**
+- Requêtes SQL analytiques
+- Dashboard interactif avec **Streamlit**
+- Environnement **Dockerisé**
+
+Dossier : `tennis_stats_tracker/`
+
+---
+
+### Snake Agent RL — Reinforcement Learning Analysis
+
+![Dashboard snake agent 1](qcp_weather/assets/photo1.png)
+![Dashboard snake agent 2](qcp_weather/assets/photo2.png)
+![Dashboard snake agent 3](qcp_weather/assets/photo3.png)
+
+Analyse des données d’apprentissage d’un agent de **reinforcement learning**.
+
+- Environnement personnalisé basé sur **OpenAI Gym**
+- Collecte et analyse des métriques d’entraînement
+- Étude de la convergence et de l’exploration/exploitation
+- Visualisation et interprétation des performances
+
+Dossier : `snake_rl_agent/`
+
+---
+
+### Mini Data Lake — Pollution de l’air
+
 `mini_data_lake/`
 
-Implémentation d’un **mini Data Lake local** basé sur des fichiers Parquet interrogeables via SQL.
-
 - Nettoyage et transformation de données CSV
-- Conversion en Parquet optimisé
-- Interrogation locale et distante avec DuckDB
-- Visualisation des données
+- Conversion en **Parquet optimisé**
+- Interrogation avec **DuckDB**
+- Analyse locale type Data Lake
 
+---
 
-### Food Nutrition Pipeline
+### Food Nutrition Pipeline — ETL & API
+
 `food_nutrition_pipeline/`
 
-Pipeline ETL automatisé pour l’extraction et l’analyse de données nutritionnelles issues de l’API Open Food Facts.
+- Extraction de données via l’API **Open Food Facts**
+- Orchestration ETL avec **Luigi**
+- Transformation de données **XML**
+- Stockage **Parquet + SQLite**
+- Exposition des résultats via **API Flask**
+- Déploiement **Docker**
 
-- Orchestration des tâches ETL avec Luigi
-- Transformation de données XML
-- Stockage optimisé (Parquet + SQLite)
-- Exposition des résultats via une API Flask
-- Déploiement et exécution via Docker
+---
 
+### NPS Prediction — Data Analysis & ML
 
-### Tennis Stats Tracker
-`tennis_stats_tracker/`
-
-Pipeline ETL et application de visualisation de statistiques de tennis.
-
-- Nettoyage et transformation de données ATP
-- Modélisation relationnelle et stockage PostgreSQL
-- Requêtes SQL analytiques
-- Interface Streamlit interactive
-- Environnement conteneurisé avec Docker
-
-
-### NPS Prediction
 `nps_prediction/`
 
-Projet d’analyse et de prédiction du **Net Promoter Score** à partir de données clients structurées et textuelles.
+- Analyse de données clients
+- Text mining
+- Modélisation prédictive
+- Visualisation avec **RMarkdown / Shiny**
 
-- Préparation et exploration des données
-- Analyse de texte (text mining)
-- Entraînement de modèles de machine learning
-- Visualisation et restitution des résultats (RMarkdown / Shiny)
-
-
+---
 
 ### Game Price / Sales Prediction
+
 `price_sale_prediction/`
 
-Projet de prédiction du prix de vente de jeux vidéo à partir de données structurées.
-
-- Préparation et transformation des données
 - Feature engineering
-- Modélisation avec TensorFlow / Keras
-- Évaluation des performances du modèle
+- Modélisation avec **TensorFlow / Keras**
+- Prédiction de prix de vente de jeux vidéo
+- Évaluation des performances
 
+---
 
-## Ce que je mets en pratique
+## Ce que je mets concrètement en pratique
 
-- Conception et exploitation de bases de données
-- Construction de pipelines de données
+- Conception de **pipelines de données robustes**
+- Modélisation et exploitation de bases de données
 - Automatisation de traitements
-- Utilisation d’outils cloud et conteneurisation
+- Environnements **Dockerisés**
+- Utilisation d’outils **cloud** en conditions réelles
 
+---
 
 ## Contact
 
-- Email : **miguelfaucheux@hotmail.com**
-- GitHub : https://github.com/Tee-Mig
-- Profil 42 : https://cv.42.fr/fPu1xydA
-
-
-Merci de votre visite. N’hésitez pas à explorer les projets ou à me contacter.
+- 📧 Email : **miguelfaucheux@hotmail.com**
+- 💻 GitHub : https://github.com/Tee-Mig
+- 🎓 Profil 42 : https://cv.42.fr/fPu1xydA
