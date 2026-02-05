@@ -72,15 +72,15 @@ Dossier : `gcp-weather-pulse/`
 <table align="center">
   <tr>
     <td align="center">
-      <img src="tennis_stats_tracker/assets/photo1.png" width="600"/><br/>
+      <img src="tennis_stats_tracker/assets/photo1.png" width="800"/><br/>
       <sub>Liste des joueurs</sub>
     </td>
     <td align="center">
-      <img src="tennis_stats_tracker/assets/photo2.png" width="600"/><br/>
+      <img src="tennis_stats_tracker/assets/photo2.png" width="800"/><br/>
       <sub>Matchs du joueur</sub>
     </td>
     <td align="center">
-      <img src="tennis_stats_tracker/assets/photo3.png" width="600"/><br/>
+      <img src="tennis_stats_tracker/assets/photo3.png" width="800"/><br/>
       <sub>Table des matchs</sub>
     </td>
   </tr>
