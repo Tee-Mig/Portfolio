@@ -104,7 +104,7 @@ Dossier : `tennis_stats_tracker/`
 ### Snake Agent RL — Reinforcement Learning Analysis
 
 <p align="center">
-  <img src="assets/demo_snake.gif" width="500"/>
+  <img src="snake_agent_rl/assets/demo_snake.gif" width="500"/>
 </p>
 
 **Vidéo complète (1 min)** :  [`snake_agent_rl/assets/demo_snake.mp4`](snake_agent_rl/assets/demo_snake.mp4)
