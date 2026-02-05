@@ -51,8 +51,8 @@
 
 ### GCP Weather Pulse — Serverless Data Pipeline
 
-![Dashboard météo 1](gcp_weather_pulse/assets/tableau_de_board1.png)
-![Dashboard météo 2](gcp_weather_pulse/assets/tableau_de_board2.png)
+![Dashboard météo 1](gcp_weather_pulse/assets/tableau_de_bord1.png)
+![Dashboard météo 2](gcp_weather_pulse/assets/tableau_de_bord2.png)
 
 Pipeline cloud automatisé pour collecter, transformer et analyser des **données météo**.
 
