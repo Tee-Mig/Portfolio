@@ -124,6 +124,25 @@ Dossier : `snake_rl_agent/`
 
 ---
 
+### Product Sales Dashboard — Power BI
+
+<p align="center">
+  <img src="powerbi_product_dashboard/assets/dashboard_img.png" width="800"/><br/>
+  <sub>Dashboard Power BI — Performance commerciale</sub>
+</p>
+
+Dashboard **Power BI** orienté pilotage de la performance commerciale.
+
+- Modélisation BI en **schéma en étoile**
+- Mesures **DAX** (KPI, ratios, Time Intelligence)
+- Analyse **WOW / MOM / QOQ** via table
+- Performance par **SalesPerson, Team et Product Category**
+- Design orienté **lecture exécutive & décisionnelle**
+
+Dossier : `powerbi_product_dashboard/`
+
+---
+
 ### Mini Data Lake — Pollution de l’air
 
 `mini_data_lake/`
