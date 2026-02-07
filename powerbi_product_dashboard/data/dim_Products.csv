@@ -1,0 +1,16 @@
+ProductId,Product,Category,Team,CostPerBox
+1,Choco Bar,Bars,Yummies,3.53
+2,Protein Bar,Bars,Juices,2.8
+3,Granola Bar,Bars,Juices,3.27
+4,Fruit Bar,Bars,Yummies,3.33
+5,Oat Bar,Bars,Delish,3.33
+6,Nut Bites,Bites,Tempo,3.61
+7,Energy Bites,Bites,Yummies,3.37
+8,Cookie Bites,Bites,Delish,3.58
+9,Coconut Bites,Bites,Juices,3.01
+10,Berry Bites,Bites,Tempo,2.92
+11,Mix Pack,Other,Tempo,3.03
+12,Sampler Box,Other,Tempo,4.1
+13,Gift Box,Other,Juices,3.78
+14,Seasonal Pack,Other,Tempo,2.19
+15,Bulk Pack,Other,Delish,3.3
