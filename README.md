@@ -201,6 +201,6 @@ Dossier : `powerbi_product_dashboard/`
 
 ## Contact
 
-- 📧 Email : **miguelfaucheux@hotmail.com**
-- 💻 GitHub : https://github.com/Tee-Mig
-- 🎓 Profil 42 : https://cv.42.fr/fPu1xydA
+- Email : **miguelfaucheux@hotmail.com**
+- GitHub : https://github.com/Tee-Mig
+- Profil 42 : https://cv.42.fr/fPu1xydA
