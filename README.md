@@ -70,6 +70,13 @@ Dossier : `gcp-weather-pulse/`
 ### Tennis Stats Tracker — Data Pipeline & Dashboard
 
 <p align="center">
+  <img src="tennis_stats_tracker/assets/photo2.png" width="800"/><br/>
+  <sub>Table complète des matchs</sub>
+</p>
+
+<br/>
+
+<p align="center">
   <img src="tennis_stats_tracker/assets/photo1.png" width="800"/><br/>
   <sub>Liste des joueurs</sub>
 </p>
@@ -77,15 +84,8 @@ Dossier : `gcp-weather-pulse/`
 <br/>
 
 <p align="center">
-  <img src="tennis_stats_tracker/assets/photo2.png" width="800"/><br/>
-  <sub>Matchs du joueur sélectionné</sub>
-</p>
-
-<br/>
-
-<p align="center">
   <img src="tennis_stats_tracker/assets/photo3.png" width="800"/><br/>
-  <sub>Table complète des matchs</sub>
+  <sub>Matchs du joueur sélectionné</sub>
 </p>
 
 Pipeline ETL et application interactive pour l’analyse de **performances de tennis**.
