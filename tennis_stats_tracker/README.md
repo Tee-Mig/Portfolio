@@ -1,4 +1,4 @@
-# Tennis Stats Tracker 🎾
+# Tennis Stats Tracker
 
 Application Streamlit pour visualiser des statistiques de matchs de tennis à partir de données ATP.  
 Le projet inclut un pipeline ETL pour extraire, nettoyer, transformer et charger les données dans une base PostgreSQL,  
