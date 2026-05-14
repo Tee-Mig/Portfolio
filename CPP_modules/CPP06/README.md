@@ -1,12 +1,12 @@
 # C++ - Module 06
 
-## 🎯 Objectifs
+## Objectives
 
-Maîtriser les **castings en C++** (static_cast, reinterpret_cast, const_cast, dynamic_cast)  
-Appliquer la gestion fine des conversions de types, la sérialisation et l’identification dynamique de types sans RTTI.
+Master **C++ casts** (static_cast, reinterpret_cast, const_cast, dynamic_cast)
+Apply fine-grained type conversion, serialization, and dynamic type identification without RTTI
 
 ---
 
-## ⚙️ Compilation
+## Compilation
 
 c++ -Wall -Wextra -Werror -std=c++98 \*.cpp

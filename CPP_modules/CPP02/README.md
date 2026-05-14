@@ -1,18 +1,18 @@
 # C++ - Module 02
 
-## 📚 Description
+## Description
 
-Ce module approfondit la programmation orientée objet en C++ avec l’introduction à la forme canonique, à la surcharge d’opérateurs et au polymorphisme ad-hoc.
+This module deepens object-oriented programming in C++ with an introduction to the canonical form, operator overloading, and ad-hoc polymorphism
 
-## 🎯 Objectifs
+## Objectives
 
-- Comprendre et implémenter la forme canonique de Coplien.
-- Manipuler les opérateurs arithmétiques, de comparaison et d’incrémentation.
-- Créer une classe de nombres à virgule fixe.
-- Implémenter une fonction BSP (Binary Space Partitioning) pour déterminer l’appartenance d’un point à un triangle.
+- Understand and implement the Coplien canonical form
+- Work with arithmetic, comparison, and increment operators
+- Create a fixed-point number class
+- Implement a BSP (Binary Space Partitioning) function to determine whether a point belongs to a triangle
 
-## ⚙️ Compilation
+## Compilation
 
-Compiler avec :
+Compile with:
 
 c++ -Wall -Wextra -Werror -std=c++98 main.cpp

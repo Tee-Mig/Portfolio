@@ -1,9 +1,9 @@
 # C++ - Module 04
 
-## 🎯 Objectifs
+## Objectives
 
-Approfondir l’**héritage polymorphe**, la **programmation orientée objet**, et introduire les **classes abstraites** et **interfaces** (via classes purement virtuelles).
+Deepen **polymorphic inheritance** and **object-oriented programming**, and introduce **abstract classes** and **interfaces** (via pure virtual classes)
 
-## ⚙️ Compilation
+## Compilation
 
 c++ -Wall -Wextra -Werror -std=c++98 main.cpp

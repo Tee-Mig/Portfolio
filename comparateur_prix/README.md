@@ -1,54 +1,54 @@
-# Comparateur de Prix
+# Price Comparator
 
-Outil en ligne de commande pour comparer les prix d'un produit en interrogeant plusieurs sources hétérogènes (API JSON, XML, SerpAPI).  
-Les résultats sont affichés, exportés (CSV + SQLite) et visualisés avec matplotlib.
+A command-line tool to compare product prices by querying multiple heterogeneous sources (JSON API, XML, SerpAPI)
+Results are displayed, exported (CSV + SQLite), and visualized with matplotlib
 
 ---
 
-## Fonctionnalités
+## Features
 
-- Interrogation de 3 sources de données distinctes :
-  - **DummyJSON** — API REST JSON
-  - **FakeStoreAPI** — données XML locales
-  - **SerpAPI** — résultats de recherche web (clé API requise)
-- Normalisation des données multi-format (JSON, XML) vers un DataFrame unifié
-- Affichage tabulaire dans le terminal (via `tabulate`)
-- Export des résultats en **CSV** et en base **SQLite**
-- Génération d'une **visualisation matplotlib** de la distribution des prix
+- Queries 3 distinct data sources:
+  - **DummyJSON** — REST JSON API
+  - **FakeStoreAPI** — local XML data
+  - **SerpAPI** — web search results (API key required)
+- Multi-format data normalization (JSON, XML) into a unified DataFrame
+- Tabular display in the terminal (via `tabulate`)
+- Export results to **CSV** and **SQLite** database
+- Generation of a **matplotlib visualization** of the price distribution
 
 ---
 
 ## Stack
 
-- **Langage** : Python
-- **Données** : pandas, XML (ElementTree), JSON
-- **Stockage** : SQLite (via sqlite3 + SQLAlchemy), CSV
-- **Visualisation** : matplotlib
-- **APIs** : DummyJSON, FakeStoreAPI (XML local), SerpAPI
-- **Utilitaires** : tabulate, python-dotenv, requests
+- **Language**: Python
+- **Data**: pandas, XML (ElementTree), JSON
+- **Storage**: SQLite (via sqlite3 + SQLAlchemy), CSV
+- **Visualization**: matplotlib
+- **APIs**: DummyJSON, FakeStoreAPI (local XML), SerpAPI
+- **Utilities**: tabulate, python-dotenv, requests
 
 ---
 
-## Structure du projet
+## Project Structure
 
 ```
 comparateur_prix/
-├── main.py                  # Point d'entrée — orchestration principale
-├── db.py                    # Sauvegarde CSV et SQLite
-├── visualisation.py         # Distribution des prix (matplotlib)
+├── main.py                  # Entry point — main orchestration
+├── db.py                    # CSV and SQLite saving
+├── visualisation.py         # Price distribution (matplotlib)
 ├── api_clients/
-│   ├── supplier1.py         # Client DummyJSON (JSON)
-│   ├── supplier2.py         # Client FakeStoreAPI (XML)
-│   └── supplier3.py         # Client SerpAPI (JSON + clé API)
+│   ├── supplier1.py         # DummyJSON client (JSON)
+│   ├── supplier2.py         # FakeStoreAPI client (XML)
+│   └── supplier3.py         # SerpAPI client (JSON + API key)
 ├── utils/
-│   ├── api_utils.py         # Utilitaires HTTP
-│   └── file_utils.py        # Chargement JSON/XML depuis fichier local
+│   ├── api_utils.py         # HTTP utilities
+│   └── file_utils.py        # Load JSON/XML from local file
 ├── data/
-│   ├── dummyjson.json        # Cache source 1
-│   ├── fakestoreapi.xml      # Cache source 2
-│   ├── serpapi.json          # Cache source 3
-│   ├── result.csv            # Résultats exportés
-│   └── products.db           # Base SQLite
+│   ├── dummyjson.json        # Source 1 cache
+│   ├── fakestoreapi.xml      # Source 2 cache
+│   ├── serpapi.json          # Source 3 cache
+│   ├── result.csv            # Exported results
+│   └── products.db           # SQLite database
 └── requirements.txt
 ```
 
@@ -62,28 +62,28 @@ cd comparateur_prix
 pip install -r requirements.txt
 ```
 
-### Configuration du `.env`
+### `.env` Configuration
 
 ```bash
-API_KEY_SERPAPI=ta_cle_serpapi
+API_KEY_SERPAPI=your_serpapi_key
 ```
 
-> Si les fichiers de cache (`data/*.json`, `data/*.xml`) sont présents, les APIs ne sont pas appelées.
+> If cache files (`data/*.json`, `data/*.xml`) are present, the APIs are not called
 
 ---
 
-## Utilisation
+## Usage
 
 ```bash
 python main.py
 ```
 
-L'outil demande le produit à rechercher (ex: `iPhone`, `laptop`).  
-Taper `see` pour lister tous les produits disponibles dans les sources.
+The tool prompts for the product to search (e.g. `iPhone`, `laptop`)
+Type `see` to list all available products across all sources
 
 ---
 
-## Dépendances principales
+## Main Dependencies
 
 - pandas
 - matplotlib

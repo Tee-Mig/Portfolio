@@ -2,28 +2,28 @@
 
 ## Description
 
-Introduction à la programmation orientée objet en C++98. Ce module couvre les bases : namespaces, classes, fonctions membres, streams stdio, listes d’initialisation, static, const, etc.
+Introduction to object-oriented programming in C++98. This module covers the basics: namespaces, classes, member functions, stdio streams, initialization lists, static, const, etc...
 
-## Objectifs
+## Objectives
 
-- Compiler le code avec `-Wall -Wextra -Werror -std=c++98`
-- Appliquer les bonnes pratiques C++ (pas de C, pas de mémoire non libérée)
-- Implémenter trois exercices :
-  - **ex00 : Mégaphone** — afficher les arguments en majuscules
-  - **ex01 : PhoneBook** — gérer un répertoire limité à 8 contacts sans allocation dynamique
-  - **ex02 : Account** — recréer un fichier manquant basé sur un journal de tests (facultatif)
-- Respecter les interdictions : pas de `printf`, pas d’`alloc()`, pas de `using namespace`, pas de STL (vector, list, map...)
+- Compile code with `-Wall -Wextra -Werror -std=c++98`
+- Apply C++ best practices (no C, no memory leaks)
+- Implement three exercises:
+  - **ex00: Megaphone** — print arguments in uppercase
+  - **ex01: PhoneBook** — manage a phonebook limited to 8 contacts without dynamic allocation
+  - **ex02: Account** — recreate a missing file based on a test log (optional)
+- Follow restrictions: no `printf`, no `alloc()`, no `using namespace`, no STL (vector, list, map...)
 
-## Consignes générales
+## General Guidelines
 
-- Nommer dossiers ex00, ex01, ex02
-- Fichiers et classes selon le format UpperCamelCase
-- Code propre et lisible
-- Gérer la mémoire correctement
-- Soumettre uniquement les fichiers demandés
+- Name folders ex00, ex01, ex02
+- Files and classes in UpperCamelCase format
+- Clean and readable code
+- Manage memory correctly
+- Submit only the requested files
 
-## 🛠️ Compilation
+## Compilation
 
-Utiliser :
+Use:
 
 c++ -Wall -Wextra -Werror -std=c++98 main.cpp

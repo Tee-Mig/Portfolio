@@ -1,18 +1,18 @@
 # C++ - Module 03
 
-## 📚 Description
+## Description
 
-Ce module introduit l’héritage en C++ en construisant une hiérarchie de classes de robots (`ClapTrap`, `ScavTrap`, `FragTrap`, `DiamondTrap`) avec gestion des constructeurs, surcharge de fonctions et héritage multiple.
+This module introduces inheritance in C++ by building a robot class hierarchy (`ClapTrap`, `ScavTrap`, `FragTrap`, `DiamondTrap`) with constructor management, function overloading, and multiple inheritance
 
-## 🎯 Objectifs
+## Objectives
 
-- Implémenter des classes dérivées avec héritage simple et multiple.
-- Gérer les appels de constructeurs/détruteurs dans une hiérarchie.
-- Comprendre la construction en diamant.
-- Pratiquer les notions de surcharge, encapsulation et réutilisation de code.
+- Implement derived classes with single and multiple inheritance
+- Manage constructor/destructor calls within a hierarchy
+- Understand the diamond problem
+- Practice overloading, encapsulation, and code reuse
 
-## ⚙️ Compilation
+## Compilation
 
-Compiler avec :
+Compile with:
 
 c++ -Wall -Wextra -Werror -std=c++98 main.cpp

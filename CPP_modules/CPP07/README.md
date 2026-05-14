@@ -1,12 +1,12 @@
 # C++ - Module 07
 
-## 🎯 Objectifs
+## Objectives
 
-Apprendre et maîtriser les **templates en C++** (fonction et classe).  
-Découvrir la généricité pour écrire des fonctions et classes indépendantes du type.
+Learn and master **C++ templates** (function and class)
+Explore genericity to write type-independent functions and classes
 
 ---
 
-## ⚙️ Compilation
+## Compilation
 
 c++ -Wall -Wextra -Werror -std=c++98 \*.cpp

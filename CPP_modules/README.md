@@ -1,21 +1,21 @@
-# Résumé des Modules C++ (CPP00 à CPP08)
+# C++ Modules Summary (CPP00 to CPP08)
 
-Ce dépôt contient les exercices et projets des modules C++ de CPP00 à CPP08, couvrant les bases jusqu’aux concepts avancés.
+This repository contains the exercises and projects from C++ modules CPP00 to CPP08, covering fundamentals through advanced concepts
 
 ## Modules
 
-- **CPP00** : Introduction au C++ — syntaxe, compilation, premiers programmes.
-- **CPP01** : Classes et objets — définition, constructeurs, destructeurs.
-- **CPP02** : Héritage et polymorphisme — classes dérivées, méthodes virtuelles.
-- **CPP03** : Gestion de la mémoire — pointeurs, références, gestion dynamique.
-- **CPP04** : Opérateurs — surcharge des opérateurs, opérateurs membres et non-membres.
-- **CPP05** : Templates — fonctions et classes templates, programmation générique.
-- **CPP06** : Exceptions — gestion des erreurs, try/catch, classes d’exceptions.
-- **CPP07** : Bibliothèque standard — utilisation des conteneurs (vector, map...), itérateurs.
-- **CPP08** : Projet final — mise en pratique de tous les concepts appris.
+- **CPP00**: Introduction to C++ — syntax, compilation, first programs
+- **CPP01**: Classes and objects — definition, constructors, destructors
+- **CPP02**: Inheritance and polymorphism — derived classes, virtual methods
+- **CPP03**: Memory management — pointers, references, dynamic allocation
+- **CPP04**: Operators — operator overloading, member and non-member operators
+- **CPP05**: Templates — function and class templates, generic programming
+- **CPP06**: Exceptions — error handling, try/catch, exception classes
+- **CPP07**: Standard library — using containers (vector, map...), iterators
+- **CPP08**: Final project — applying all learned concepts
 
-## Objectifs
+## Objectives
 
-- Maîtriser la programmation orientée objet en C++.
-- Comprendre et appliquer les principes de conception et les bonnes pratiques C++.
-- Développer des projets complets intégrant gestion mémoire, exceptions et templates.
+- Master object-oriented programming in C++
+- Understand and apply C++ design principles and best practices
+- Develop complete projects integrating memory management, exceptions, and templates

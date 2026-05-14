@@ -2,25 +2,25 @@
 
 ## Description
 
-Projet d’administration système visant à découvrir la virtualisation et à configurer un serveur sécurisé sur machine virtuelle (VirtualBox ou UTM). Installation d’un système Linux stable (Debian ou Rocky) avec règles strictes de sécurité et configuration minimale.
+System administration project aimed at discovering virtualization and setting up a secure server on a virtual machine (VirtualBox or UTM). Installation of a stable Linux system (Debian or Rocky) with strict security rules and minimal configuration
 
-## Objectifs principaux
+## Main Objectives
 
-- Créer une VM avec Debian stable (conseillé) ou Rocky stable.
-- Pas d’interface graphique installée.
-- Configuration de partitions chiffrées avec LVM.
-- Activation de SSH sur le port 4242, connexion root interdite.
-- Mise en place d’un pare-feu (UFW ou firewalld) n’autorisant que le port 4242.
-- Hostname au format `<login>42`.
-- Politique stricte de mots de passe (complexité, expiration, avertissement).
-- Configuration stricte de sudo (limitation des essais, journalisation, chemins restreints).
-- Script bash `monitoring.sh` diffusant régulièrement des informations système.
+- Create a VM with stable Debian (recommended) or stable Rocky
+- No graphical interface installed
+- Configuration of encrypted partitions with LVM
+- SSH enabled on port 4242, root login forbidden
+- Firewall setup (UFW or firewalld) allowing only port 4242
+- Hostname in the format `<login>42`
+- Strict password policy (complexity, expiration, warning)
+- Strict sudo configuration (limited attempts, logging, restricted paths)
+- Bash script `monitoring.sh` regularly broadcasting system information
 
-## Rendu
+## Submission
 
-Un seul fichier `signature.txt` contenant la signature SHA1 du disque virtuel (.vdi ou .qcow2) est à déposer sur le dépôt Git.  
-La machine virtuelle elle-même ne doit pas être rendue.
+A single `signature.txt` file containing the SHA1 signature of the virtual disk (.vdi or .qcow2) must be submitted to the Git repository
+The virtual machine itself must not be submitted
 
 ---
 
-Ce projet permet d’appréhender les bases de la virtualisation, la sécurisation d’un serveur Linux, et la gestion des services essentiels.
+This project provides an introduction to the fundamentals of virtualization, Linux server hardening, and essential service management

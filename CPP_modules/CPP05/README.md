@@ -1,9 +1,9 @@
 # C++ - Module 05
 
-## 🎯 Objectifs
+## Objectives
 
-Approfondir la **gestion des exceptions**, l’**héritage**, la **forme canonique**, et la **programmation orientée objet** avec des classes abstraites et dérivées.
+Deepen **exception handling**, **inheritance**, the **canonical form**, and **object-oriented programming** with abstract and derived classes
 
-## ⚙️ Compilation
+## Compilation
 
 c++ -Wall -Wextra -Werror -std=c++98 main.cpp
