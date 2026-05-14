@@ -1,0 +1,12 @@
+crypto_market_pulse:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('POSTGRES_HOST', 'postgres') }}"
+      user: "{{ env_var('POSTGRES_USER', 'admin') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD', 'admin') }}"
+      port: 5432
+      dbname: crypto_pulse
+      schema: public
+      threads: 4

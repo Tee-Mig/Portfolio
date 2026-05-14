@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: silver
+    schema: silver
+    description: Tables written by PySpark jobs from Bronze Parquet files
+    tables:
+      - name: prices
+        description: Cleaned hourly price data per coin from CoinGecko
+        columns:
+          - name: coin_id
+            tests: [not_null]
+          - name: current_price
+            tests: [not_null, { dbt_utils.accepted_range: { min_value: 0 } }]
+          - name: ingestion_timestamp
+            tests: [not_null]
+
+      - name: sentiment
+        description: Aggregated Reddit sentiment scores per coin per hour
+        columns:
+          - name: coin_id
+            tests: [not_null]
+          - name: avg_sentiment_score
+            tests: [not_null]

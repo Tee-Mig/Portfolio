@@ -1,0 +1,34 @@
+# Environment
+.env
+
+# Data (Bronze layer Parquet files — can be large)
+data/
+
+# Airflow logs and temp files
+airflow/logs/
+airflow/__pycache__/
+
+# dbt artifacts
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# Docker volumes
+postgres-data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+
+# JDBC jar (downloaded via scripts/download-jars.sh)
+spark/jars/*.jar
+.claude
+
+# OS
+.DS_Store
+Thumbs.db
+
+GUIDE.md

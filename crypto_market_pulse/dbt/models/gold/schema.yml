@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: kpi_daily_summary
+    description: Daily KPIs per coin — price stats, volatility, RSI and Reddit sentiment
+    columns:
+      - name: coin_id
+        tests: [not_null]
+      - name: date
+        tests: [not_null]
+      - name: dominant_sentiment
+        tests:
+          - accepted_values:
+              values: ['bullish', 'bearish', 'neutral']
+
+  - name: kpi_correlation
+    description: Rolling 7-day Pearson correlation between D-1 sentiment and D price change
+    columns:
+      - name: coin_id
+        tests: [not_null]
+      - name: correlation_strength
+        tests:
+          - accepted_values:
+              values: ['strong', 'moderate', 'weak', 'none']
+
+  - name: kpi_top_movers
+    description: All coins ranked by daily gain, loss and Reddit buzz
+    columns:
+      - name: coin_id
+        tests: [not_null]
+      - name: mover_category
+        tests:
+          - accepted_values:
+              values: ['top_gainer', 'top_loser', 'neutral']
