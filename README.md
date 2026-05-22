@@ -49,11 +49,11 @@
 
 ## Projets mis en avant
 
-### Crypto Market Pulse — Pipeline Data Temps Réel
+### Crypto Market Pulse - Pipeline Data Temps Réel
 
 <p align="center">
   <img src="crypto_market_pulse/assets/1.png" width="800"/><br/>
-  <sub>Dashboard interactif — Prix et indicateurs techniques</sub>
+  <sub>Dashboard interactif</sub>
 </p>
 
 <br/>
@@ -70,7 +70,7 @@
   <sub>Corrélations et indicateurs clés (RSI, volatilité)</sub>
 </p>
 
-Pipeline complet pour collecter, transformer et visualiser des **données crypto en quasi temps réel** — en cherchant à répondre à la question : le sentiment de marché prédit-il les mouvements de prix ?
+Pipeline complet pour collecter, transformer et visualiser des **données crypto en quasi temps réel**, en cherchant à répondre à une question clé : le sentiment de marché prédit-il les mouvements de prix ?
 
 - Collecte automatique toutes les heures des prix **BTC, ETH, BNB, SOL** (CoinGecko)
 - Orchestration des tâches avec **Apache Airflow**
@@ -83,11 +83,11 @@ Dossier : `crypto_market_pulse/`
 
 ---
 
-### GCP Weather Pulse — Pipeline Serverless Cloud
+### GCP Weather Pulse - Pipeline Serverless Cloud
 
 <p align="center">
   <img src="gcp_weather_pulse/assets/tableau_de_bord1.png" width="800"/><br/>
-  <sub>Dashboard météo — Températures et précipitations</sub>
+  <sub>Dashboard météo</sub>
 </p>
 
 <br/>
@@ -97,7 +97,7 @@ Dossier : `crypto_market_pulse/`
   <sub>Analyse des tendances météo par ville</sub>
 </p>
 
-Pipeline cloud automatisé pour collecter, transformer et analyser des **données météo** — entièrement hébergé sur Google Cloud, sans serveur à gérer.
+Pipeline cloud automatisé pour collecter, transformer et analyser des **données météo**, entièrement hébergé sur Google Cloud, sans serveur à gérer.
 
 - Collecte automatique des données météo via **Cloud Run**
 - Planification des exécutions avec **Cloud Scheduler**
@@ -110,7 +110,7 @@ Dossier : `gcp_weather_pulse/`
 
 ---
 
-### Game Price Predictor — Machine Learning
+### Game Price Predictor - Machine Learning
 
 Modèle de Machine Learning pour **prédire le prix de vente de jeux vidéo** à partir de leurs caractéristiques (plateforme, genre, année de sortie, etc.).
 
@@ -123,11 +123,11 @@ Dossier : `price_sale_prediction/`
 
 ---
 
-### Product Sales Dashboard — Power BI
+### Product Sales Dashboard - Power BI
 
 <p align="center">
   <img src="powerbi_product_dashboard/assets/dashboard_img.png" width="800"/><br/>
-  <sub>Dashboard Power BI — Performance commerciale</sub>
+  <sub>Dashboard Power BI</sub>
 </p>
 
 Dashboard **Power BI** orienté pilotage de la performance commerciale, conçu comme un cas réaliste d’entreprise.
@@ -144,7 +144,7 @@ Dossier : `powerbi_product_dashboard/`
 
 ## Autres projets
 
-### Tennis Stats Tracker — Data Pipeline & Dashboard
+### Tennis Stats Tracker - Data Pipeline & Dashboard
 
 <p align="center">
   <img src="tennis_stats_tracker/assets/photo2.png" width="800"/><br/>
@@ -178,7 +178,7 @@ Dossier : `tennis_stats_tracker/`
 
 ---
 
-### Snake Agent RL — Reinforcement Learning Analysis
+### Snake Agent RL - Reinforcement Learning Analysis
 
 <p align="center">
   <img src="snake_agent_rl/assets/demo_snake.gif" width="500"/>
@@ -201,7 +201,7 @@ Dossier : `snake_rl_agent/`
 
 ---
 
-### Mini Data Lake — Pollution de l’air
+### Mini Data Lake - Pollution de l’air
 
 `mini_data_lake/`
 
@@ -212,7 +212,7 @@ Dossier : `snake_rl_agent/`
 
 ---
 
-### Food Nutrition Pipeline — ETL & API
+### Food Nutrition Pipeline - ETL & API
 
 `food_nutrition_pipeline/`
 
@@ -225,7 +225,7 @@ Dossier : `snake_rl_agent/`
 
 ---
 
-### NPS Prediction — Data Analysis & ML
+### NPS Prediction - Data Analysis & ML
 
 `nps_prediction/`
 
