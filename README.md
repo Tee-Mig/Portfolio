@@ -144,14 +144,21 @@ Dossier : `powerbi_product_dashboard/`
 
 ## Autres projets
 
+### Anti-gaspi Shopify - Étude de Cas Data
+
+Étude de cas technique réalisée en 2h pour un poste **Data / Tech** : transformer des données opérationnelles en décisions concrètes d’affichage produit sur Shopify.
+
+- Analyse des données produit (stock, dates de péremption, ventes)
+- Calcul d’un **score de priorité anti-gaspi** pour classer les produits
+- Génération d’un payload **Shopify GraphQL** pour réordonner une collection
+- Stockage des données avec **Supabase** et analyses via **BigQuery**
+- Maquette d’un outil interne Ops / Marketing avec KPI et prévisualisation
+
+Dossier : `cas_pratique_willy_anti_gaspi/`
+
+---
+
 ### Tennis Stats Tracker - Data Pipeline & Dashboard
-
-<p align="center">
-  <img src="tennis_stats_tracker/assets/photo2.png" width="800"/><br/>
-  <sub>Table complète des matchs</sub>
-</p>
-
-<br/>
 
 <p align="center">
   <img src="tennis_stats_tracker/assets/photo1.png" width="800"/><br/>
@@ -161,15 +168,21 @@ Dossier : `powerbi_product_dashboard/`
 <br/>
 
 <p align="center">
+  <img src="tennis_stats_tracker/assets/photo2.png" width="800"/><br/>
+  <sub>Table complète des matchs</sub>
+</p>
+
+<br/>
+
+<p align="center">
   <img src="tennis_stats_tracker/assets/photo3.png" width="800"/><br/>
   <sub>Matchs du joueur sélectionné</sub>
 </p>
 
-Pipeline ETL et application interactive pour l’analyse de **performances de tennis**.
+Pipeline ETL et application interactive pour l’analyse de **statistiques de tennis ATP**.
 
 - Collecte et nettoyage de données sportives (ATP)
-- Modélisation relationnelle
-- Stockage **PostgreSQL**
+- Modélisation relationnelle et stockage **PostgreSQL**
 - Requêtes SQL analytiques
 - Dashboard interactif avec **Streamlit**
 - Environnement **Dockerisé**
@@ -178,61 +191,101 @@ Dossier : `tennis_stats_tracker/`
 
 ---
 
-### Snake Agent RL - Reinforcement Learning Analysis
+### Rune OCR Analyzer - Analyse d’Images par ML
 
 <p align="center">
-  <img src="snake_agent_rl/assets/demo_snake.gif" width="500"/>
+  <img src="rune_ocr_analyzer/assets/ui1.png" width="800"/><br/>
+  <sub>Interface web</sub>
 </p>
 
-▶️ **Vidéo complète** : [`snake_agent_rl/assets/demo_snake.mp4`](snake_agent_rl/assets/demo_snake.mp4)
+<br/>
 
-![Dashboard snake agent 1](snake_agent_rl/assets/photo1.png)
-![Dashboard snake agent 2](snake_agent_rl/assets/photo2.png)
-![Dashboard snake agent 3](snake_agent_rl/assets/photo3.png)
+<p align="center">
+  <img src="rune_ocr_analyzer/assets/ui2.png" width="800"/><br/>
+  <sub>Résultats d’analyse</sub>
+</p>
 
-Analyse des données d’apprentissage d’un agent de **reinforcement learning**.
+<br/>
 
-- Environnement personnalisé basé sur **OpenAI Gym**
-- Collecte et analyse des métriques d’entraînement
-- Étude de la convergence et de l’exploration/exploitation
-- Visualisation et interprétation des performances
+<p align="center">
+  <img src="rune_ocr_analyzer/assets/analyse1.png" width="800"/><br/>
+  <sub>Exemple d’analyse de rune</sub>
+</p>
 
-Dossier : `snake_rl_agent/`
+Application web pour **analyser automatiquement des images de runes** par OCR et règles métier.
 
----
+- Reconnaissance de texte sur images avec **OCR**
+- Calcul automatique d’équivalences et scores
+- Interface web interactive avec **Flask**
+- Journalisation et historique des analyses
 
-### Mini Data Lake - Pollution de l’air
-
-`mini_data_lake/`
-
-- Nettoyage et transformation de données CSV
-- Conversion en **Parquet optimisé**
-- Interrogation avec **DuckDB**
-- Analyse locale type Data Lake
+Dossier : `rune_ocr_analyzer/`
 
 ---
 
 ### Food Nutrition Pipeline - ETL & API
 
-`food_nutrition_pipeline/`
+Pipeline de données automatisé pour extraire et analyser des **informations nutritionnelles** de produits alimentaires.
 
 - Extraction de données via l’API **Open Food Facts**
 - Orchestration ETL avec **Luigi**
-- Transformation de données **XML**
-- Stockage **Parquet + SQLite**
-- Exposition des résultats via **API Flask**
+- Transformation de données XML et stockage **Parquet + SQLite**
+- Exposition des résultats via une **API Flask**
 - Déploiement **Docker**
+
+Dossier : `food_nutrition_pipeline/`
 
 ---
 
-### NPS Prediction - Data Analysis & ML
+### NPS Prediction - Machine Learning & Text Mining
 
-`nps_prediction/`
+Analyse des retours clients pour **prédire le Net Promoter Score** et identifier les leviers d’amélioration.
 
-- Analyse de données clients
-- Text mining
-- Modélisation prédictive
-- Visualisation avec **RMarkdown / Shiny**
+- Analyse de données clients quantitatives et textuelles
+- **Text mining** et traitement du langage naturel
+- Modélisation prédictive avec **Random Forest**
+- Dashboard interactif avec **Shiny** (R)
+
+Dossier : `nps_prediction/`
+
+---
+
+### RL Agents - Reinforcement Learning
+
+Plusieurs agents de **reinforcement learning** appliqués à des environnements classiques, jusqu’à un agent DQN jouant à Snake en temps réel.
+
+- **Q-Learning** sur CartPole, FrozenLake, MountainCar (Gymnasium)
+- Agent **DQN** avec réseau convolutionnel (CNN) inspiré de DeepMind Atari
+- Capture d’écran en temps réel + **OCR** pour lire le score
+- Suivi des métriques d’entraînement avec **Pandas / Matplotlib**
+
+Dossier : `rl_agents/`
+
+---
+
+### Comparateur de Prix - Agrégation Multi-Sources
+
+Outil pour **comparer des prix produits** en agrégeant plusieurs sources de données hétérogènes.
+
+- Interrogation de 3 sources distinctes : **API REST JSON**, **XML**, **SerpAPI**
+- Normalisation multi-format (JSON, XML) en un DataFrame unifié avec **Pandas**
+- Export des résultats en **CSV** et base **SQLite**
+- Visualisation de la distribution des prix avec **Matplotlib**
+
+Dossier : `comparateur_prix/`
+
+---
+
+### Mini Data Lake - Pollution de l’air
+
+Démonstration d’une architecture **Data Lake** pour analyser des données de pollution atmosphérique.
+
+- Nettoyage et transformation de données CSV
+- Conversion en **Parquet optimisé**
+- Interrogation locale et distante avec **DuckDB**
+- Visualisation avec **Matplotlib**
+
+Dossier : `mini_data_lake/`
 
 ---
 
