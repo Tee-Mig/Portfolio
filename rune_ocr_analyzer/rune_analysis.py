@@ -709,6 +709,10 @@ def chart_borderline(fig, df, kept, page=0,
                     transform=ax.transAxes, fontsize=11, color=C_LABEL)
             return
         slice_rows = all_rows[page * _BORDERLINE_RPP : (page + 1) * _BORDERLINE_RPP]
+        if not slice_rows:
+            ax.text(0.5, 0.5, "–", ha="center", va="center",
+                    transform=ax.transAxes, fontsize=14, color=C_LABEL)
+            return
         cols = ["date", "set", "slot", "rarity", "level", "main",
                 "profile", "req", "eff_current", "margin", "subs"]
         tbl = ax.table(cellText=slice_rows, colLabels=cols, bbox=[0, 0, 1, 1], cellLoc="center")
