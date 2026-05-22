@@ -25,7 +25,6 @@ __pycache__/
 
 # JDBC jar (downloaded via scripts/download-jars.sh)
 spark/jars/*.jar
-.claude
 
 # OS
 .DS_Store
