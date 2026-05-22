@@ -47,25 +47,102 @@
 
 ---
 
-## Projets
+## Projets mis en avant
 
-### GCP Weather Pulse — Serverless Data Pipeline
+### Crypto Market Pulse — Pipeline Data Temps Réel
 
-![Dashboard météo 1](gcp_weather_pulse/assets/tableau_de_bord1.png)
-![Dashboard météo 2](gcp_weather_pulse/assets/tableau_de_bord2.png)
+<p align="center">
+  <img src="crypto_market_pulse/assets/1.png" width="800"/><br/>
+  <sub>Dashboard interactif — Prix et indicateurs techniques</sub>
+</p>
 
-Pipeline cloud automatisé pour collecter, transformer et analyser des **données météo**.
+<br/>
 
-- Ingestion de données externes via **Cloud Run**
-- Planification avec **Cloud Scheduler**
+<p align="center">
+  <img src="crypto_market_pulse/assets/2.png" width="800"/><br/>
+  <sub>Suivi du sentiment de marché (Fear & Greed Index)</sub>
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="crypto_market_pulse/assets/3.png" width="800"/><br/>
+  <sub>Corrélations et indicateurs clés (RSI, volatilité)</sub>
+</p>
+
+Pipeline complet pour collecter, transformer et visualiser des **données crypto en quasi temps réel** — en cherchant à répondre à la question : le sentiment de marché prédit-il les mouvements de prix ?
+
+- Collecte automatique toutes les heures des prix **BTC, ETH, BNB, SOL** (CoinGecko)
+- Orchestration des tâches avec **Apache Airflow**
+- Traitement et calcul d’indicateurs techniques (**RSI, volatilité**) avec **PySpark**
+- Modélisation en couches **Bronze → Silver → Gold** avec **dbt**
+- Stockage dans **PostgreSQL**, visualisation avec **Streamlit**
+- Environnement entièrement **Dockerisé**
+
+Dossier : `crypto_market_pulse/`
+
+---
+
+### GCP Weather Pulse — Pipeline Serverless Cloud
+
+<p align="center">
+  <img src="gcp_weather_pulse/assets/tableau_de_bord1.png" width="800"/><br/>
+  <sub>Dashboard météo — Températures et précipitations</sub>
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="gcp_weather_pulse/assets/tableau_de_bord2.png" width="800"/><br/>
+  <sub>Analyse des tendances météo par ville</sub>
+</p>
+
+Pipeline cloud automatisé pour collecter, transformer et analyser des **données météo** — entièrement hébergé sur Google Cloud, sans serveur à gérer.
+
+- Collecte automatique des données météo via **Cloud Run**
+- Planification des exécutions avec **Cloud Scheduler**
 - Stockage des données brutes dans **GCS (Bronze)**
 - Transformation et chargement dans **BigQuery (Silver)**
 - Vues analytiques prêtes à l’analyse (**Gold**)
 - Architecture **serverless**, automatisée et reproductible
 
-Dossier : `gcp-weather-pulse/`
+Dossier : `gcp_weather_pulse/`
 
 ---
+
+### Game Price Predictor — Machine Learning
+
+Modèle de Machine Learning pour **prédire le prix de vente de jeux vidéo** à partir de leurs caractéristiques (plateforme, genre, année de sortie, etc.).
+
+- Préparation et nettoyage des données
+- Modélisation avec **TensorFlow / Keras** (Deep Learning)
+- Résultats : **R² = 0.90**, MAE = 4.70 €
+- Évaluation des performances (MAE, RMSE, R²)
+
+Dossier : `price_sale_prediction/`
+
+---
+
+### Product Sales Dashboard — Power BI
+
+<p align="center">
+  <img src="powerbi_product_dashboard/assets/dashboard_img.png" width="800"/><br/>
+  <sub>Dashboard Power BI — Performance commerciale</sub>
+</p>
+
+Dashboard **Power BI** orienté pilotage de la performance commerciale, conçu comme un cas réaliste d’entreprise.
+
+- Modélisation des données en **schéma en étoile**
+- Indicateurs clés (**KPI, ratios, marges**) calculés avec **DAX**
+- Analyse des tendances **semaine / mois / trimestre**
+- Performance par vendeur, équipe et catégorie de produit
+- Design orienté **lecture exécutive & décisionnelle**
+
+Dossier : `powerbi_product_dashboard/`
+
+---
+
+## Autres projets
 
 ### Tennis Stats Tracker — Data Pipeline & Dashboard
 
@@ -124,25 +201,6 @@ Dossier : `snake_rl_agent/`
 
 ---
 
-### Product Sales Dashboard — Power BI
-
-<p align="center">
-  <img src="powerbi_product_dashboard/assets/dashboard_img.png" width="800"/><br/>
-  <sub>Dashboard Power BI — Performance commerciale</sub>
-</p>
-
-Dashboard **Power BI** orienté pilotage de la performance commerciale.
-
-- Modélisation BI en **schéma en étoile**
-- Mesures **DAX** (KPI, ratios, Time Intelligence)
-- Analyse **WOW / MOM / QOQ** via table
-- Performance par **SalesPerson, Team et Product Category**
-- Design orienté **lecture exécutive & décisionnelle**
-
-Dossier : `powerbi_product_dashboard/`
-
----
-
 ### Mini Data Lake — Pollution de l’air
 
 `mini_data_lake/`
@@ -175,17 +233,6 @@ Dossier : `powerbi_product_dashboard/`
 - Text mining
 - Modélisation prédictive
 - Visualisation avec **RMarkdown / Shiny**
-
----
-
-### Game Price / Sales Prediction
-
-`price_sale_prediction/`
-
-- Feature engineering
-- Modélisation avec **TensorFlow / Keras**
-- Prédiction de prix de vente de jeux vidéo
-- Évaluation des performances
 
 ---
 
