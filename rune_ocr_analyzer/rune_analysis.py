@@ -922,7 +922,7 @@ def chart_volume_week(fig, df, kept):
     _volume_chart(ax, vol_df, "week", "Volume runes traitées — par semaine")
 
 
-_ALL_KEEPS_RPP = 30  # rows per page
+_ALL_KEEPS_RPP = 20  # rows per page
 
 
 def chart_all_keeps(
