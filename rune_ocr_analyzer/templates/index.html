@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upgrade Rune Settings</title>
+<style>
+  :root {
+    --bg:    #1c1a32;
+    --bg2:   #242042;
+    --bg3:   #2e2852;
+    --ent:   #16132e;
+    --fg:    #ede8ff;
+    --fg-d:  #a094cc;
+    --fg-h:  #d0b4ff;
+    --fg-l:  #8878a8;
+    --acc:   #7c4dff;
+    --acc-h: #9c6fff;
+    --sep:   #38326a;
+    --rad:   12px;
+    --rad-s: 8px;
+    --rad-x: 5px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+    padding: 24px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-wrap {
+    width: fit-content;
+  }
+
+  h1 { color: var(--fg-h); font-size: 20px; font-weight: 700; margin-bottom: 20px; letter-spacing: .3px; }
+
+  /* ── tabs ── */
+  .tabs { display: flex; gap: 4px; }
+  .tab-btn {
+    padding: 9px 28px;
+    background: var(--bg3); color: var(--fg-l);
+    border: none; border-radius: var(--rad) var(--rad) 0 0;
+    cursor: pointer; font-size: 14px; font-weight: 600;
+    transition: background .15s, color .15s;
+  }
+  .tab-btn.active { background: var(--bg2); color: var(--fg-h); }
+  .tab-btn:hover:not(.active) { color: var(--fg); background: #1e1a34; }
+
+  /* ── panel ── */
+  .panel {
+    background: var(--bg2);
+    border-radius: 0 var(--rad) var(--rad) var(--rad);
+    padding: 24px;
+    border: 1px solid var(--sep);
+  }
+
+  /* ── category bar ── */
+  .cat-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .cat-bar label { color: var(--fg-l); white-space: nowrap; }
+  .styled-select { position: relative; display: inline-block; }
+  .styled-select select {
+    appearance: none;
+    background: var(--ent); color: var(--fg);
+    border: 1px solid var(--sep); border-radius: var(--rad-s);
+    padding: 7px 36px 7px 14px;
+    font-size: 14px; font-family: inherit;
+    outline: none; cursor: pointer; min-width: 230px;
+    transition: border-color .15s;
+  }
+  .styled-select select:focus { border-color: var(--acc); }
+  .styled-select::after {
+    content: ''; position: absolute; right: 13px; top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent; border-top-color: var(--fg-l);
+    pointer-events: none;
+  }
+
+  /* ── sets row ── */
+  .sets-row {
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: 10px; margin: 0 20px 24px; min-height: 36px;
+    padding: 10px 24px; background: var(--bg3);
+    border-radius: var(--rad-s); border: 1px solid var(--sep);
+  }
+  .sets-label { color: var(--fg-l); font-size: 12px; white-space: nowrap; margin-right: 2px; }
+  #sets-pills { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .set-pill {
+    background: rgba(124,77,255,.15);
+    color: var(--fg-h);
+    border: 1px solid rgba(124,77,255,.35);
+    border-radius: 20px; padding: 3px 11px;
+    font-size: 12px; font-weight: 500; white-space: nowrap;
+    cursor: pointer; user-select: none;
+    transition: background .15s, border-color .15s;
+  }
+  .set-pill:hover { background: rgba(124,77,255,.30); border-color: var(--acc); }
+
+  /* ── set move popup ── */
+  .set-popup {
+    position: fixed;
+    background: var(--bg3);
+    border: 1px solid var(--sep);
+    border-radius: var(--rad-s);
+    padding: 10px 12px;
+    z-index: 500;
+    box-shadow: 0 6px 28px rgba(0,0,0,.65);
+    min-width: 200px;
+  }
+  .set-popup.hidden { display: none; }
+  .set-popup-title {
+    font-size: 11px; color: var(--fg-l);
+    text-transform: uppercase; letter-spacing: .5px;
+    margin-bottom: 8px;
+  }
+  .set-popup-cats { display: flex; flex-direction: column; gap: 3px; }
+  .set-popup-cat-btn {
+    background: transparent;
+    border: 1px solid var(--sep); color: var(--fg);
+    border-radius: var(--rad-x); padding: 5px 10px;
+    cursor: pointer; font-size: 12px; font-family: inherit;
+    text-align: left; transition: background .1s, border-color .1s;
+  }
+  .set-popup-cat-btn:hover { background: rgba(124,77,255,.2); border-color: var(--acc); }
+  .set-popup-cat-btn.current {
+    color: var(--fg-h); border-color: rgba(124,77,255,.45);
+    background: rgba(124,77,255,.12);
+    cursor: default; pointer-events: none;
+  }
+
+  /* ── section ── */
+  .section { margin-bottom: 28px; }
+  #section-defaults .cat-sections { width: fit-content; margin: 0 auto; }
+  .section-title {
+    background: var(--bg3); color: var(--fg-h);
+    font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: .8px;
+    padding: 7px 14px; border-radius: var(--rad-s);
+    margin-bottom: 16px; border: 1px solid var(--sep);
+    text-align: center;
+  }
+
+  /* ── unified eff + big_proc rows (defaults & overrides) ── */
+  .eff-bp-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .eff-bp-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 10px; border-radius: var(--rad-x);
+    border-left: 3px solid transparent;
+  }
+  .eff-row-support { background: rgba(124,77,255,.10); border-left-color: var(--acc); }
+  .eff-row-dps     { background: rgba(192,160,255,.07); border-left-color: var(--fg-h); }
+  .eff-bp-sep  { width: 1px; background: var(--sep); align-self: stretch; margin: 0 14px; flex-shrink: 0; }
+  .eff-lbl     { width: 130px; color: var(--fg-l); font-size: 13px; text-align: right; padding-right: 6px; flex-shrink: 0; }
+  .eff-chk     { min-width: 126px; flex-shrink: 0; }
+  input.eff-inp     { width: 76px !important; padding: 6px 4px !important; flex-shrink: 0; }
+  .bp-chk-cell { min-width: 82px; flex-shrink: 0; }
+  .bp-inline-lbl { flex: 1; text-align: right; padding-right: 5px; color: var(--fg-l); font-size: 12px; white-space: nowrap; }
+  input.bp-inline-inp { width: 40px !important; padding: 6px 3px !important; flex-shrink: 0; }
+  .eff-col-hdrs { display: flex; align-items: center; gap: 8px; padding: 2px 10px 5px; }
+  .eff-hdr-spc  { flex-shrink: 0; }
+  .eff-col-hdr  { width: 116px; white-space: nowrap; text-align: center; color: var(--fg-d); font-size: 10px; letter-spacing: .3px; border: 1px solid rgba(124,77,255,.3); border-radius: 4px; padding: 2px 6px; flex-shrink: 0; }
+  .bp-stat-cell { display: flex; align-items: center; width: 82px; flex-shrink: 0; }
+  .eff-zone, .bp-zone, .bp-zone-ext { display: flex; align-items: center; gap: 8px; border-radius: var(--rad-x); transition: background .2s, box-shadow .2s; }
+  .eff-zone.ov-on { background: rgba(124,77,255,.58); box-shadow: 0 0 0 8px rgba(124,77,255,.55), 0 0 18px rgba(124,77,255,.4); }
+  .eff-zone.ov-on .ov-check span,
+  .eff-zone.ov-on .eff-lbl { color: #fff; }
+  .eff-ov-block { border-radius: var(--rad-x); transition: background .2s, box-shadow .2s; }
+  .eff-ov-block.ov-on { background: rgba(124,77,255,.50); box-shadow: 0 0 0 2px rgba(124,77,255,.85), 0 0 10px rgba(124,77,255,.35); }
+  .eff-ov-block.ov-on .ov-check span { color: #fff; }
+  .eff-ov-block.ov-on .eff-bp-row { background: transparent; border-left-color: transparent; }
+  .bp-zone.bp-on, .bp-zone-ext.bp-on { background: rgba(124,77,255,.58); box-shadow: 0 0 0 8px rgba(124,77,255,.55), 0 0 18px rgba(124,77,255,.4); }
+  .bp-zone.bp-on .ov-check span,
+  .bp-zone.bp-on .bp-inline-lbl { color: #fff; }
+  .bp-chk-spc { min-width: 82px; flex-shrink: 0; }
+  .bp-zone { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .cat-sections    { display: flex; align-items: flex-start; justify-content: flex-start; }
+  .cat-section-eff { flex: 0 0 auto; padding-right: 28px; }
+  .cat-section-bp  { flex: 0 0 auto; border-left: 1px solid var(--sep); padding-left: 28px; }
+  .sub-hdr { font-size: 10px; font-weight: 700; color: var(--fg-d); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .sub-hdr-btns { display: flex; gap: 4px; margin-left: auto; }
+  .sub-copy-btn, .sub-paste-btn {
+    background: transparent; color: var(--fg-l);
+    border: 1px solid var(--sep); border-radius: 3px;
+    width: 22px; height: 20px; padding: 0;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    transition: background .12s, color .12s, border-color .12s;
+    flex-shrink: 0;
+  }
+  .sub-copy-btn:hover { background: rgba(124,77,255,.15); color: var(--fg-h); border-color: var(--acc); }
+  .sub-paste-btn { color: var(--acc-h); border-color: rgba(124,77,255,.4); background: rgba(124,77,255,.1); }
+  .sub-paste-btn:hover { background: rgba(124,77,255,.3); color: #fff; border-color: var(--acc); }
+  .sub-paste-btn.flash { background: rgba(80,200,120,.3); color: #7eff9e; border-color: #7eff9e; }
+  .bp-wrap { display: flex; flex-direction: column; gap: 0; background: rgba(124,77,255,.08); border-left: 3px solid rgba(124,77,255,.25); border-radius: var(--rad-x); overflow: hidden; margin-top: 4px; }
+  .bp-row  { display: flex; align-items: center; gap: 8px; padding: 7px 10px; width: 100%; }
+  .bp-row + .bp-row { padding-top: 11px; }
+  .eff-chk-spc { min-width: 126px; flex-shrink: 0; }
+
+  /* ── override list ── */
+  .ov-list { display: flex; flex-direction: column; }
+  .ov-row {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 10px 0; border-bottom: 1px solid var(--sep);
+  }
+  .ov-row:last-child { border-bottom: none; }
+  .ov-rt-name {
+    width: 140px; flex-shrink: 0;
+    font-weight: 600; color: var(--fg); font-size: 13px; padding-top: 8px;
+  }
+  .ov-body { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+
+  /* ── inputs ── */
+  input[type="text"] {
+    width: 100%;
+    background: var(--ent); color: #f5f0ff;
+    border: 1px solid var(--sep); border-radius: var(--rad-x);
+    padding: 6px 8px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 13px; text-align: center; outline: none;
+    transition: border-color .15s, background .15s;
+  }
+  input[type="text"]:focus  { border-color: var(--acc); background: #1f1c3a; }
+  input[type="text"]:disabled { color: var(--fg-l); background: #121028; cursor: default; }
+
+  /* ── checkbox ── */
+  .ov-check { display: flex; align-items: center; gap: 7px; cursor: pointer; user-select: none; }
+  .ov-check input[type="checkbox"] {
+    accent-color: var(--acc); width: 15px; height: 15px; cursor: pointer; flex-shrink: 0;
+  }
+  .ov-check span { color: var(--fg-l); font-size: 12px; }
+
+  /* ── per-row formula toggle button ── */
+  .fml-toggle-btn {
+    background: transparent; color: var(--fg-l);
+    border: 1px solid var(--sep); border-radius: var(--rad-x);
+    padding: 2px 7px; font-size: 11px; font-family: 'Consolas', monospace;
+    cursor: pointer; flex-shrink: 0;
+    transition: background .1s, color .1s, border-color .1s;
+  }
+  .fml-toggle-btn:hover  { background: rgba(124,77,255,.15); color: var(--fg); border-color: var(--acc); }
+  .fml-toggle-btn.active { background: rgba(124,77,255,.28); color: var(--fg-h); border-color: var(--acc); }
+  .fml-frac-btn { display: none; background: transparent; color: var(--fg-l); border: 1px solid var(--sep); border-radius: var(--rad-x); padding: 2px 5px; font-size: 11px; cursor: pointer; flex-shrink: 0; transition: background .1s, color .1s, border-color .1s; }
+  .eff-col-hdrs.fml-active .fml-frac-btn { display: inline-flex; align-items: center; }
+  .fml-frac-btn:hover { background: rgba(124,77,255,.15); color: var(--fg); border-color: var(--acc); }
+  .fml-frac-btn.active { background: rgba(124,77,255,.28); color: var(--fg-h); border-color: var(--acc); }
+  .eff-bp-wrap:not(.fml-fracs-on) .fml-frac-preview { display: none !important; }
+  .eff-bp-wrap:not(.fml-fracs-on) .fml-eq-result   { display: none !important; }
+
+  /* ── formula rows ── */
+  .fml-group { display: flex; flex-direction: column; gap: 0; overflow: hidden; border-radius: var(--rad-x); }
+  .fml-group.hidden { display: none; }
+  .fml-group-s { background: rgba(124,77,255,.10); border-left: 3px solid var(--acc); }
+  .fml-group-d { background: rgba(192,160,255,.07); border-left: 3px solid var(--fg-h); }
+  .fml-group .eff-bp-row { background: transparent !important; border-left-color: transparent !important; border-radius: 0; }
+  .eff-ov-block:not(.ov-on):has(.rawrow-fml-inputs-hidden.eff-row-support) { background: rgba(124,77,255,.10); border-left: 3px solid var(--acc); overflow: hidden; }
+  .eff-ov-block:not(.ov-on):has(.rawrow-fml-inputs-hidden.eff-row-dps)     { background: rgba(192,160,255,.07); border-left: 3px solid var(--fg-h); overflow: hidden; }
+  .eff-ov-block:has(.rawrow-fml-inputs-hidden) .eff-bp-row { background: transparent !important; border-left-color: transparent !important; border-radius: 0; }
+  .eff-ov-block:has(.rawrow-fml-inputs-hidden) .fml-group  { background: transparent; border-left: none; overflow: visible; border-radius: 0; }
+  .fml-row { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: var(--rad-x); border-left: 3px solid transparent; }
+  .fml-lbl { width: 185px; color: var(--fg-l); font-size: 12px; text-align: right; padding-right: 6px; flex-shrink: 0; }
+  input.fml-inp { flex: 1; min-width: 220px; padding: 5px 8px !important; font-size: 12px; }
+  .fml-eq     { color: var(--fg-l); font-size: 12px; flex-shrink: 0; margin: 0 2px; }
+  .fml-result { color: var(--fg-h); font-size: 12px; font-family: 'Consolas', monospace; min-width: 52px; flex-shrink: 0; }
+  .fml-result.err { color: #ff7a8a; }
+  .fml-cell { display: flex; align-items: center; gap: 4px; flex: 1; min-width: 0; }
+  .fml-cell input.fml-inp { min-width: 0; }
+  .fml-blbl { color: var(--fg-l); font-size: 12px; white-space: nowrap; flex-shrink: 0; }
+  .eff-col-hdrs.fml-active .eff-col-hdr { visibility: hidden; }
+  .rawrow-fml-inputs-hidden .eff-inp { display: none; }
+  .rawrow-fml-inputs-hidden .eff-inp-wrap { display: none; }
+  .rawrow-fml-inputs-hidden .paste-equiv-btn { display: none !important; }
+  .rawrow-fml-inputs-hidden .sub-copy-btn  { display: none; }
+  .rawrow-fml-inputs-hidden .sub-paste-btn { display: none !important; }
+
+  /* ── proc-max steppers ── */
+  .eff-inp-wrap { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
+  input.eff-inp { width: 76px !important; flex-shrink: 0; }
+  .proc-btn {
+    background: rgba(124,77,255,.22); color: var(--fg-h);
+    border: 1px solid rgba(124,77,255,.55); border-radius: 3px;
+    width: 18px; height: 26px; padding: 0;
+    font-size: 15px; line-height: 1; cursor: pointer; flex-shrink: 0;
+    transition: background .1s, color .1s, border-color .1s;
+  }
+  .proc-btn:hover { background: rgba(124,77,255,.40); color: #fff; border-color: var(--acc); }
+  .eff-inp-wrap:has(input:disabled) .proc-btn { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+
+  /* ── sub-stat inputs (formula mode) ── */
+  .sub-inputs { display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
+  .sub-inp-grp { display: flex; align-items: center; gap: 2px; padding: 0 6px; }
+  .sub-inp-grp + .sub-inp-grp { border-left: 2px solid rgba(124,77,255,.75); }
+  .eff-ov-block .sub-inp-grp + .sub-inp-grp { border-left: 2px solid rgba(200,160,255,.95); }
+  .sub-lbl { font-size: 10px; color: var(--fg-l); font-family: 'Consolas', monospace; white-space: nowrap; flex-shrink: 0; }
+  input.sub-inp { width: 36px !important; padding: 3px 5px !important; font-size: 11px; text-align: center; }
+  .sub-btn { background: rgba(124,77,255,.22); color: var(--fg-h); border: 1px solid rgba(124,77,255,.55); border-radius: 3px; width: 16px; height: 22px; padding: 0; font-size: 13px; line-height: 1; cursor: pointer; flex-shrink: 0; transition: background .1s, color .1s, border-color .1s; }
+  .sub-btn:hover { background: rgba(124,77,255,.40); color: #fff; border-color: var(--acc); }
+  .eff-zone .proc-btn { background: rgba(124,77,255,.50); color: #fff; border: 1px solid var(--acc-h); }
+  .eff-zone .proc-btn:hover { background: rgba(124,77,255,.70); color: #fff; border-color: #fff; }
+  .eff-ov-block .sub-btn { background: rgba(124,77,255,.55); color: #fff; border-color: var(--acc-h); }
+  .eff-ov-block .sub-btn:hover { background: rgba(124,77,255,.75); color: #fff; border-color: var(--acc-h); }
+  .sub-inp-grp:has(input:disabled) .sub-btn { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+
+  /* ── fraction preview ── */
+  .fml-frac-preview { display: inline-flex; align-items: center; min-width: 0; }
+  .fml-frac { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.2; gap: 0; }
+  .fml-frac-num,
+  .fml-frac-den { font-size: 10px; color: var(--fg-h); font-family: 'Consolas', monospace; padding: 0 6px; text-align: center; max-width: 300px; word-break: break-all; white-space: normal; }
+  .fml-frac-num  { border-bottom: 1px solid rgba(192,160,255,.55); padding-bottom: 2px; }
+  .fml-frac-den  { padding-top: 2px; }
+  .fml-frac-plain { font-size: 10px; color: var(--fg-l); font-family: 'Consolas', monospace; }
+
+  /* ── fml-first visibility (doit venir après sub-inputs et fml-frac-preview pour les surcharger) ── */
+  .fml-first { display: none; }
+  .rawrow-fml-inputs-hidden .fml-first              { display: block; }
+  .rawrow-fml-inputs-hidden .sub-inputs.fml-first   { display: flex; }
+  .rawrow-fml-inputs-hidden .fml-frac-preview.fml-first { display: inline-flex; }
+
+  /* ── sticky bottom bar ── */
+  .sticky-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    display: flex; gap: 12px; align-items: center;
+    padding: 10px 24px;
+    background: rgba(28,26,50,.72); backdrop-filter: blur(10px);
+    border-top: 1px solid var(--sep);
+    z-index: 700;
+  }
+
+  /* ── save button ── */
+  .save-btn {
+    margin-left: auto; padding: 9px 28px;
+    background: var(--acc); color: #fff;
+    border: none; border-radius: var(--rad);
+    font-size: 14px; font-weight: 600; font-family: inherit;
+    cursor: pointer; transition: background .15s, box-shadow .15s;
+    box-shadow: 0 2px 16px rgba(124,77,255,.25);
+  }
+  .save-btn:hover  { background: var(--acc-h); box-shadow: 0 4px 24px rgba(124,77,255,.45); }
+  .save-btn:active { background: #6a3fe0; }
+
+  /* ── toast ── */
+  .toast {
+    position: fixed; bottom: 72px; right: 28px;
+    background: var(--bg3); color: var(--fg);
+    border: 1px solid var(--acc); border-radius: var(--rad);
+    padding: 13px 22px; font-size: 14px; font-weight: 500;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    box-shadow: 0 4px 32px rgba(124,77,255,.3); z-index: 999;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast.err  { border-color: #ff4d6a; color: #ff7a8a; }
+
+  /* ── equivalence button ── */
+  .equiv-open-btn {
+    flex: 0 0 auto; padding: 10px 20px;
+    background: transparent; color: var(--acc-h);
+    border: 1px solid rgba(124,77,255,.45); border-radius: var(--rad-s);
+    cursor: pointer; font-size: 13px; font-family: inherit; font-weight: 600;
+    letter-spacing: .3px; transition: background .15s, border-color .15s; white-space: nowrap;
+  }
+  .equiv-open-btn:hover { background: rgba(124,77,255,.15); border-color: var(--acc); }
+
+  /* ── equivalence modal ── */
+  .equiv-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.55); z-index: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .equiv-overlay.hidden { display: none; }
+  .equiv-modal {
+    background: var(--bg2); border: 1px solid var(--sep);
+    border-radius: var(--rad); padding: 24px 28px; min-width: 340px;
+    box-shadow: 0 8px 48px rgba(0,0,0,.7);
+  }
+  .equiv-modal h3 {
+    color: var(--fg-h); font-size: 14px; font-weight: 700;
+    letter-spacing: .5px; margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .equiv-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .equiv-row label { color: var(--fg-l); font-size: 12px; white-space: nowrap; }
+  .equiv-modal select, .equiv-modal input[type=text] {
+    background: var(--ent); color: var(--fg);
+    border: 1px solid var(--sep); border-radius: var(--rad-x);
+    padding: 6px 10px; font-size: 13px; font-family: inherit;
+    outline: none;
+  }
+  .equiv-modal select:focus, .equiv-modal input[type=text]:focus { border-color: var(--acc); }
+  #equiv-val { width: 80px; }
+  .equiv-calc-btn {
+    display: block; margin: 18px auto 14px; padding: 8px 28px;
+    background: var(--acc); color: #fff;
+    border: none; border-radius: var(--rad-x);
+    cursor: pointer; font-size: 13px; font-family: inherit; font-weight: 600;
+    transition: background .15s;
+  }
+  .equiv-calc-btn:hover { background: var(--acc-h); }
+  .equiv-result {
+    margin-top: 16px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .equiv-result-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; border-radius: var(--rad-x);
+    background: var(--bg3); border: 1px solid var(--sep);
+  }
+  .equiv-result-row.source { border-color: rgba(124,77,255,.55); background: rgba(124,77,255,.12); }
+  .equiv-result-lbl { color: var(--fg-l); font-size: 12px; min-width: 90px; }
+  .equiv-result-val {
+    color: var(--fg-h); font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums;
+    cursor: pointer; border-radius: 4px; padding: 2px 6px;
+    transition: background .12s, color .12s;
+  }
+  .equiv-result-val:hover { background: rgba(124,77,255,.25); color: #fff; }
+  .equiv-result-val.copied { background: rgba(80,200,120,.3); color: #7eff9e; }
+  .equiv-result-pct { color: var(--fg-d); font-size: 11px; margin-left: auto; }
+  .equiv-footer { margin-top: 16px; display: flex; justify-content: flex-end; }
+  .equiv-close-btn {
+    background: transparent; color: var(--fg-l);
+    border: 1px solid var(--sep); border-radius: var(--rad-x);
+    padding: 6px 16px; cursor: pointer; font-size: 12px; font-family: inherit;
+    transition: background .15s, color .15s;
+  }
+  .equiv-close-btn:hover { background: rgba(255,255,255,.06); color: var(--fg); }
+  .equiv-spinner { color: var(--fg-l); font-size: 12px; margin-top: 12px; }
+
+  /* ── paste button on eff rows ── */
+  .paste-equiv-btn {
+    background: rgba(124,77,255,.1); color: var(--acc-h);
+    border: 1px solid rgba(124,77,255,.40); border-radius: 3px;
+    width: 22px; height: 20px; padding: 0; flex-shrink: 0;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    transition: background .12s, color .12s;
+  }
+  .paste-equiv-btn:hover { background: rgba(124,77,255,.40); color: #fff; }
+  .paste-equiv-btn.pasted { background: rgba(80,200,120,.3); color: #7eff9e; border-color: #7eff9e; }
+
+  /* ── copy-all button inside modal ── */
+  .equiv-copy-all-btn {
+    display: block; width: 100%; margin-top: 10px; padding: 7px 0;
+    background: rgba(124,77,255,.18); color: var(--acc-h);
+    border: 1px solid rgba(124,77,255,.40); border-radius: var(--rad-x);
+    cursor: pointer; font-size: 12px; font-family: inherit; font-weight: 600;
+    transition: background .12s, color .12s;
+  }
+  .equiv-copy-all-btn:hover { background: rgba(124,77,255,.35); color: #fff; }
+  .equiv-copy-all-btn.copied { background: rgba(80,200,120,.25); color: #7eff9e; border-color: #7eff9e; }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+<h1>Upgrade Rune Settings</h1>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('data1')">data1</button>
+  <button class="tab-btn"        onclick="switchTab('data2')">data2</button>
+</div>
+
+<div class="panel">
+
+  <!-- category selector -->
+  <div class="cat-bar">
+    <label>Catégorie :</label>
+    <div class="styled-select">
+      <select id="cat-select" onchange="switchCat(this.value)">
+        {% for cat in categories %}
+        <option value="{{ cat }}">{{ cat }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button class="sub-copy-btn cat-copy-btn" onclick="copyCat(this)" title="Copier toute la catégorie (defaults + overrides)"><svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg></button>
+    <button class="sub-paste-btn cat-paste-btn" id="cat-paste-btn" style="display:none" onclick="pasteCat(this)" title="Coller la catégorie"><svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M5.5 1.75C5.5 1.336 5.836 1 6.25 1h3.5c.414 0 .75.336.75.75v.5c0 .414-.336.75-.75.75h-3.5a.75.75 0 0 1-.75-.75v-.5ZM3 3.5c0-.69.56-1.25 1.25-1.25H5.25a.25.25 0 0 1 .25.25v.5c0 .414.336.75.75.75h3.5c.414 0 .75-.336.75-.75v-.5a.25.25 0 0 1 .25-.25h1c.69 0 1.25.56 1.25 1.25v9.75c0 .69-.56 1.25-1.25 1.25H4.25C3.56 14.5 3 13.94 3 13.25V3.5Z"/></svg></button>
+  </div>
+
+  <!-- sets de la catégorie (cliquables pour déplacer) -->
+  <div class="sets-row">
+    <span class="sets-label">Sets :</span>
+    <span id="sets-pills"></span>
+  </div>
+
+  <!-- defaults catégorie -->
+  <div class="section" id="section-defaults">
+    <div class="section-title">Défauts catégorie</div>
+    <div class="cat-sections">
+      <div class="cat-section cat-section-eff">
+        <div class="sub-hdr">CONDITIONS EFFICIENCE</div>
+        <div class="eff-bp-wrap" id="eff-bp-wrap-default">
+          <div class="eff-col-hdrs" id="eff-col-hdrs-default">
+            <div class="eff-hdr-spc" style="width:130px; display:flex; align-items:center; gap:4px;">
+              <button class="fml-toggle-btn" id="fmltbtn_default"
+                      onclick="toggleEffGroup('default')" title="Mode formule">f(x)</button>
+              <button class="fml-frac-btn" id="fracbtn_default"
+                      onclick="toggleFracs('default')" title="Afficher / cacher la formule">≡</button>
+            </div>
+            <span class="eff-col-hdr">2 good subs</span>
+            <span class="eff-col-hdr">3 good subs</span>
+            <span class="eff-col-hdr">4 good subs</span>
+          </div>
+          {% for key in ['eff_support', 'eff_dps'] %}
+          <div class="eff-bp-row {{ 'eff-row-support' if key == 'eff_support' else 'eff-row-dps' }}"
+               id="rawrow_default_{{ key }}">
+            <div class="eff-lbl">{{ key }} :</div>
+            {% for b in buckets %}
+            <div class="eff-inp-wrap">
+              <button class="proc-btn" onclick="adjProc('eff_{{ key }}_{{ b }}',-1)">−</button>
+              <input type="text" id="eff_{{ key }}_{{ b }}" class="eff-inp">
+              <button class="proc-btn" onclick="adjProc('eff_{{ key }}_{{ b }}',1)">+</button>
+            </div>
+            {% endfor %}
+            <button class="sub-copy-btn" onclick="copyEffRow('default','{{ key }}',null,this)" title="Copier {{ key }}"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg></button>
+            <button class="paste-equiv-btn" style="display:none" title="Coller équivalences"
+                    onclick="pasteEquiv(this,'default','{{ key }}',null)"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M5.5 1.75C5.5 1.336 5.836 1 6.25 1h3.5c.414 0 .75.336.75.75v.5c0 .414-.336.75-.75.75h-3.5a.75.75 0 0 1-.75-.75v-.5ZM3 3.5c0-.69.56-1.25 1.25-1.25H5.25a.25.25 0 0 1 .25.25v.5c0 .414.336.75.75.75h3.5c.414 0 .75-.336.75-.75v-.5a.25.25 0 0 1 .25-.25h1c.69 0 1.25.56 1.25 1.25v9.75c0 .69-.56 1.25-1.25 1.25H4.25C3.56 14.5 3 13.94 3 13.25V3.5Z"/></svg></button>
+            <button class="sub-paste-btn row-paste-eff" data-key="{{ key }}" style="display:none" onclick="pasteEffRow('default','{{ key }}',null,this)" title="Coller {{ key }}"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M5.5 1.75C5.5 1.336 5.836 1 6.25 1h3.5c.414 0 .75.336.75.75v.5c0 .414-.336.75-.75.75h-3.5a.75.75 0 0 1-.75-.75v-.5ZM3 3.5c0-.69.56-1.25 1.25-1.25H5.25a.25.25 0 0 1 .25.25v.5c0 .414.336.75.75.75h3.5c.414 0 .75-.336.75-.75v-.5a.25.25 0 0 1 .25-.25h1c.69 0 1.25.56 1.25 1.25v9.75c0 .69-.56 1.25-1.25 1.25H4.25C3.56 14.5 3 13.94 3 13.25V3.5Z"/></svg></button>
+          </div>
+          <div class="fml-group hidden {{ 'fml-group-s' if key == 'eff_support' else 'fml-group-d' }}" id="fmlg_default_{{ key }}">
+            {% for b in buckets %}
+            <div class="eff-bp-row {{ 'eff-row-support' if key == 'eff_support' else 'eff-row-dps' }}">
+              <div class="eff-lbl">{% if loop.first %}{{ key }} :{% endif %}</div>
+              <span class="fml-blbl">{{ b }} subs :</span>
+              <div class="sub-inputs">
+                {% for sub_name, sub_max in eff_templates[key] %}
+                <div class="sub-inp-grp">
+                  <button class="sub-btn" onclick="adjSub('sub_default_{{ key }}_{{ b }}_{{ loop.index0 }}','default','{{ key }}',null,{{ b }},-1)">−</button>
+                  <input type="text" id="sub_default_{{ key }}_{{ b }}_{{ loop.index0 }}"
+                         class="sub-inp" value="0"
+                         oninput="onSubInput('default','{{ key }}',null,{{ b }})">
+                  <button class="sub-btn" onclick="adjSub('sub_default_{{ key }}_{{ b }}_{{ loop.index0 }}','default','{{ key }}',null,{{ b }},1)">+</button>
+                  <span class="sub-lbl">{{ sub_name }}</span>
+                </div>
+                {% endfor %}
+              </div>
+              <span class="fml-eq">=</span>
+              <span class="fml-frac-preview" id="fmlp_default_{{ key }}_{{ b }}"></span>
+              <span class="fml-eq fml-eq-result">=</span>
+              <span class="fml-result" id="fmlr_default_{{ key }}_{{ b }}">—</span>
+            </div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="cat-section cat-section-bp">
+        <div class="sub-hdr">CONDITIONS BIG PROC
+          <span class="sub-hdr-btns">
+            <button class="sub-copy-btn" onclick="copyBpRow('default',null,this)" title="Copier big proc"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg></button>
+            <button class="sub-paste-btn row-paste-bp" onclick="pasteBpRow('default',null,this)" title="Coller big proc" style="display:none"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M5.5 1.75C5.5 1.336 5.836 1 6.25 1h3.5c.414 0 .75.336.75.75v.5c0 .414-.336.75-.75.75h-3.5a.75.75 0 0 1-.75-.75v-.5ZM3 3.5c0-.69.56-1.25 1.25-1.25H5.25a.25.25 0 0 1 .25.25v.5c0 .414.336.75.75.75h3.5c.414 0 .75-.336.75-.75v-.5a.25.25 0 0 1 .25-.25h1c.69 0 1.25.56 1.25 1.25v9.75c0 .69-.56 1.25-1.25 1.25H4.25C3.56 14.5 3 13.94 3 13.25V3.5Z"/></svg></button>
+          </span>
+        </div>
+        <div class="eff-col-hdrs">
+          <span class="eff-col-hdr">seuil</span>
+        </div>
+        <div class="bp-wrap">
+          <div class="bp-row">
+            {% for stat in big_proc_stats[:4] %}
+            <div class="bp-stat-cell">
+              <span class="bp-inline-lbl">{{ stat }} :</span>
+              <input type="text" id="bp_{{ stat }}" class="bp-inline-inp">
+            </div>
+            {% endfor %}
+          </div>
+          <div class="bp-row">
+            {% for stat in big_proc_stats[4:] %}
+            <div class="bp-stat-cell">
+              <span class="bp-inline-lbl">{{ stat }} :</span>
+              <input type="text" id="bp_{{ stat }}" class="bp-inline-inp">
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- overrides par type de rune -->
+  <div class="section">
+    <div class="section-title">Overrides par type de rune</div>
+    <div class="ov-list">
+      {% for rt in rune_types %}
+      <div class="ov-row">
+        <div class="ov-rt-name">{{ rune_type_labels.get(rt, rt) }}</div>
+        <div class="ov-body">
+          <div class="cat-sections">
+            <div class="cat-section cat-section-eff">
+              <div class="sub-hdr">CONDITIONS EFFICIENCE</div>
+              <div class="eff-bp-wrap" id="eff-bp-wrap-ov-{{ rt }}">
+                <div class="eff-col-hdrs" id="eff-col-hdrs-ov-{{ rt }}">
+                  <div class="eff-hdr-spc" style="width:126px; flex-shrink:0; display:flex; align-items:center; gap:4px;">
+                    <button class="fml-toggle-btn" id="fmltbtn_ov_{{ rt }}"
+                            onclick="toggleEffGroup('ov','{{ rt }}')" title="Mode formule">f(x)</button>
+                    <button class="fml-frac-btn" id="fracbtn_ov_{{ rt }}"
+                            onclick="toggleFracs('ov','{{ rt }}')" title="Afficher / cacher la formule">≡</button>
+                  </div>
+                  <span class="eff-col-hdr">2 good subs</span>
+                  <span class="eff-col-hdr">3 good subs</span>
+                  <span class="eff-col-hdr">4 good subs</span>
+                </div>
+                {% for ek in ['eff_support', 'eff_dps'] %}
+                <div class="eff-ov-block" id="eob_{{ rt }}_{{ ek }}">
+                  <div class="eff-bp-row {{ 'eff-row-support' if ek == 'eff_support' else 'eff-row-dps' }}"
+                       id="rawrow_ov_{{ rt }}_{{ ek }}">
+                    <div class="eff-zone" id="ez_{{ rt }}_{{ ek }}">
+                      <label class="ov-check eff-chk">
+                        <input type="checkbox" id="ov_{{ rt }}_{{ ek }}_en"
+                               onchange="toggleOv('{{ rt }}','{{ ek }}')">
+                        <span>{{ ek }}</span>
+                      </label>
+                      {% for b in buckets %}
+                      <div class="eff-inp-wrap">
+                        <button class="proc-btn" onclick="adjProc('ov_{{ rt }}_{{ ek }}_{{ b }}',-1)">−</button>
+                        <input type="text" id="ov_{{ rt }}_{{ ek }}_{{ b }}" disabled class="eff-inp">
+                        <button class="proc-btn" onclick="adjProc('ov_{{ rt }}_{{ ek }}_{{ b }}',1)">+</button>
+                      </div>
+                      {% endfor %}
+                      <button class="sub-copy-btn" onclick="copyEffRow('ov','{{ ek }}','{{ rt }}',this)" title="Copier {{ ek }}"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg></button>
+                      <button class="paste-equiv-btn" style="display:none" title="Coller équivalences"
+                              onclick="pasteEquiv(this,'ov','{{ ek }}','{{ rt }}')"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M5.5 1.75C5.5 1.336 5.836 1 6.25 1h3.5c.414 0 .75.336.75.75v.5c0 .414-.336.75-.75.75h-3.5a.75.75 0 0 1-.75-.75v-.5ZM3 3.5c0-.69.56-1.25 1.25-1.25H5.25a.25.25 0 0 1 .25.25v.5c0 .414.336.75.75.75h3.5c.414 0 .75-.336.75-.75v-.5a.25.25 0 0 1 .25-.25h1c.69 0 1.25.56 1.25 1.25v9.75c0 .69-.56 1.25-1.25 1.25H4.25C3.56 14.5 3 13.94 3 13.25V3.5Z"/></svg></button>
+                      <button class="sub-paste-btn row-paste-eff" data-key="{{ ek }}" style="display:none" onclick="pasteEffRow('ov','{{ ek }}','{{ rt }}',this)" title="Coller {{ ek }}"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M5.5 1.75C5.5 1.336 5.836 1 6.25 1h3.5c.414 0 .75.336.75.75v.5c0 .414-.336.75-.75.75h-3.5a.75.75 0 0 1-.75-.75v-.5ZM3 3.5c0-.69.56-1.25 1.25-1.25H5.25a.25.25 0 0 1 .25.25v.5c0 .414.336.75.75.75h3.5c.414 0 .75-.336.75-.75v-.5a.25.25 0 0 1 .25-.25h1c.69 0 1.25.56 1.25 1.25v9.75c0 .69-.56 1.25-1.25 1.25H4.25C3.56 14.5 3 13.94 3 13.25V3.5Z"/></svg></button>
+                    </div>
+                    <span class="fml-blbl fml-first">{{ buckets[0] }} subs :</span>
+                    <div class="sub-inputs fml-first">
+                      {% for sub_name, sub_max in eff_templates[ek] %}
+                      <div class="sub-inp-grp">
+                        <button class="sub-btn" onclick="adjSub('sub_ov_{{ rt }}_{{ ek }}_{{ buckets[0] }}_{{ loop.index0 }}','ov','{{ ek }}','{{ rt }}',{{ buckets[0] }},-1)">−</button>
+                        <input type="text" id="sub_ov_{{ rt }}_{{ ek }}_{{ buckets[0] }}_{{ loop.index0 }}"
+                               class="sub-inp" disabled value="0"
+                               oninput="onSubInput('ov','{{ ek }}','{{ rt }}',{{ buckets[0] }})">
+                        <button class="sub-btn" onclick="adjSub('sub_ov_{{ rt }}_{{ ek }}_{{ buckets[0] }}_{{ loop.index0 }}','ov','{{ ek }}','{{ rt }}',{{ buckets[0] }},1)">+</button>
+                        <span class="sub-lbl">{{ sub_name }}</span>
+                      </div>
+                      {% endfor %}
+                    </div>
+                    <span class="fml-eq fml-first">=</span>
+                    <span class="fml-frac-preview fml-first" id="fmlp_ov_{{ rt }}_{{ ek }}_{{ buckets[0] }}"></span>
+                    <span class="fml-eq fml-eq-result fml-first">=</span>
+                    <span class="fml-result fml-first" id="fmlr_ov_{{ rt }}_{{ ek }}_{{ buckets[0] }}">—</span>
+                  </div>
+                  <div class="fml-group hidden" id="fmlg_ov_{{ rt }}_{{ ek }}">
+                    {% for b in buckets[1:] %}
+                    <div class="eff-bp-row {{ 'eff-row-support' if ek == 'eff_support' else 'eff-row-dps' }}">
+                      <div style="min-width:126px; flex-shrink:0;"></div>
+                      <span class="fml-blbl">{{ b }} subs :</span>
+                      <div class="sub-inputs">
+                        {% for sub_name, sub_max in eff_templates[ek] %}
+                        <div class="sub-inp-grp">
+                          <button class="sub-btn" onclick="adjSub('sub_ov_{{ rt }}_{{ ek }}_{{ b }}_{{ loop.index0 }}','ov','{{ ek }}','{{ rt }}',{{ b }},-1)">−</button>
+                          <input type="text" id="sub_ov_{{ rt }}_{{ ek }}_{{ b }}_{{ loop.index0 }}"
+                                 class="sub-inp" disabled value="0"
+                                 oninput="onSubInput('ov','{{ ek }}','{{ rt }}',{{ b }})">
+                          <button class="sub-btn" onclick="adjSub('sub_ov_{{ rt }}_{{ ek }}_{{ b }}_{{ loop.index0 }}','ov','{{ ek }}','{{ rt }}',{{ b }},1)">+</button>
+                          <span class="sub-lbl">{{ sub_name }}</span>
+                        </div>
+                        {% endfor %}
+                      </div>
+                      <span class="fml-eq">=</span>
+                      <span class="fml-frac-preview" id="fmlp_ov_{{ rt }}_{{ ek }}_{{ b }}"></span>
+                      <span class="fml-eq fml-eq-result">=</span>
+                      <span class="fml-result" id="fmlr_ov_{{ rt }}_{{ ek }}_{{ b }}">—</span>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="cat-section cat-section-bp">
+              <div class="sub-hdr">CONDITIONS BIG PROC
+                <span class="sub-hdr-btns">
+                  <button class="sub-copy-btn" onclick="copyBpRow('ov','{{ rt }}',this)" title="Copier big proc"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg></button>
+                  <button class="sub-paste-btn row-paste-bp" style="display:none" onclick="pasteBpRow('ov','{{ rt }}',this)" title="Coller big proc"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M5.5 1.75C5.5 1.336 5.836 1 6.25 1h3.5c.414 0 .75.336.75.75v.5c0 .414-.336.75-.75.75h-3.5a.75.75 0 0 1-.75-.75v-.5ZM3 3.5c0-.69.56-1.25 1.25-1.25H5.25a.25.25 0 0 1 .25.25v.5c0 .414.336.75.75.75h3.5c.414 0 .75-.336.75-.75v-.5a.25.25 0 0 1 .25-.25h1c.69 0 1.25.56 1.25 1.25v9.75c0 .69-.56 1.25-1.25 1.25H4.25C3.56 14.5 3 13.94 3 13.25V3.5Z"/></svg></button>
+                </span>
+              </div>
+              <div class="eff-col-hdrs" style="visibility:hidden;pointer-events:none">
+                <span class="eff-col-hdr">&nbsp;</span>
+              </div>
+              <div class="bp-zone bp-wrap" id="bz_{{ rt }}">
+                <div class="bp-row">
+                  <label class="ov-check eff-chk">
+                    <input type="checkbox" id="ov_{{ rt }}_bp_en" onchange="toggleBpOv('{{ rt }}')">
+                    <span>big proc</span>
+                  </label>
+                  {% for stat in big_proc_stats[:4] %}
+                  <div class="bp-stat-cell">
+                    <span class="bp-inline-lbl">{{ stat }} :</span>
+                    <input type="text" id="ov_{{ rt }}_bp_{{ stat }}" disabled class="bp-inline-inp">
+                  </div>
+                  {% endfor %}
+                </div>
+                <div class="bp-row">
+                  <div class="eff-chk-spc"></div>
+                  {% for stat in big_proc_stats[4:] %}
+                  <div class="bp-stat-cell">
+                    <span class="bp-inline-lbl">{{ stat }} :</span>
+                    <input type="text" id="ov_{{ rt }}_bp_{{ stat }}" disabled class="bp-inline-inp">
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- sticky bottom bar -->
+<div class="sticky-bar">
+  <button class="equiv-open-btn" onclick="openEquiv()">⇄ Équivalences d'efficience</button>
+  <button class="save-btn" onclick="save()">Sauvegarder dans datas.py</button>
+</div>
+
+<!-- popup de déplacement de set (hors panel pour z-index propre) -->
+<div id="set-popup" class="set-popup hidden">
+  <div class="set-popup-title">Déplacer <strong id="set-popup-name"></strong> vers :</div>
+  <div class="set-popup-cats" id="set-popup-cats"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Equivalence calculator modal -->
+<div class="equiv-overlay hidden" id="equiv-overlay" onclick="if(event.target===this)closeEquiv()">
+  <div class="equiv-modal">
+    <h3>Équivalences d'efficience</h3>
+    <div class="equiv-row">
+      <label>Type</label>
+      <select id="equiv-key">
+        <option value="eff_support">eff_support</option>
+        <option value="eff_dps">eff_dps</option>
+      </select>
+    </div>
+    <div class="equiv-row">
+      <label>Valeur eff</label>
+      <input type="text" id="equiv-val" placeholder="ex: 0.890">
+      <label>pour</label>
+      <select id="equiv-bucket">
+        <option value="4">4 good subs</option>
+        <option value="3">3 good subs</option>
+        <option value="2">2 good subs</option>
+      </select>
+    </div>
+    <button class="equiv-calc-btn" onclick="calcEquiv()">Calculer</button>
+    <div id="equiv-result"></div>
+    <div class="equiv-footer">
+      <button class="equiv-close-btn" onclick="closeEquiv()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CATEGORIES     = {{ categories | tojson }};
+const RUNE_TYPES     = {{ rune_types | tojson }};
+const BIG_PROC_STATS = {{ big_proc_stats | tojson }};
+const BUCKETS        = {{ buckets | tojson }};
+const ALL_SETS       = {{ all_sets | tojson }};
+const EFF_TEMPLATES  = {{ eff_templates | tojson }};
+const EFF_DIVISOR    = {{ eff_divisor }};
+const PROC_STEP      = 1.0 / (6 * 5 * EFF_DIVISOR);  // +1 sub minimum (SPD) = 1/84
+
+let criteria     = {};
+let setsData     = {};
+let activeTab    = 'data1';
+let activeCat    = CATEGORIES[0];
+let activeSet    = null; // { name, cat }
+
+// ── eff mode per-row (brut / formula) ────────────────────────────────────────
+let effRowModes  = {};   // rk → 'formula' (absent = brut)
+let formulaStore = {};   // [tab][cat].default[key_b] / [tab][cat][rt][ek_b]
+
+function evalFormula(expr) {
+  if (!expr || !expr.trim()) return null;
+  try {
+    const v = Function('"use strict"; return (' + expr + ')')();
+    return (typeof v === 'number' && isFinite(v)) ? +v.toFixed(3) : null;
+  } catch { return null; }
+}
+
+function _escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function _splitTopDiv(expr) {
+  let d = 0;
+  for (let i = 0; i < expr.length; i++) {
+    if      (expr[i] === '(') d++;
+    else if (expr[i] === ')') d--;
+    else if (expr[i] === '/' && d === 0) return [expr.slice(0,i).trim(), expr.slice(i+1).trim()];
+  }
+  return null;
+}
+function _renderFracHtml(expr) {
+  if (!expr) return '';
+  const p = _splitTopDiv(expr);
+  if (!p) return `<span class="fml-frac-plain">${_escHtml(expr)}</span>`;
+  return `<span class="fml-frac"><span class="fml-frac-num">${_escHtml(p[0])}</span><span class="fml-frac-den">${_escHtml(p[1])}</span></span>`;
+}
+
+function _subInpId(section, key, rt, b, idx) {
+  return section === 'default' ? `sub_default_${key}_${b}_${idx}` : `sub_ov_${rt}_${key}_${b}_${idx}`;
+}
+function _buildFormula(section, key, rt, b) {
+  const tpl = EFF_TEMPLATES[key] || [];
+  const parts = tpl.map((sub, i) => {
+    const v = parseFloat(document.getElementById(_subInpId(section, key, rt, b, i))?.value) || 0;
+    return `(${v}/(${sub[1]}*5))`;
+  });
+  return `(1+(${parts.join('+')}))/${EFF_DIVISOR}`;
+}
+function _buildFracDisplay(section, key, rt, b) {
+  const tpl = EFF_TEMPLATES[key] || [];
+  const parts = tpl.map((sub, i) => {
+    const v = document.getElementById(_subInpId(section, key, rt, b, i))?.value.trim() || '0';
+    return `${v}(${sub[0]})/${sub[1]*5}`;
+  });
+  return `(1+(${parts.join('+')}))/${EFF_DIVISOR}`;
+}
+function onSubInput(section, key, rt, b) {
+  const formula = _buildFormula(section, key, rt, b);
+  const display = _buildFracDisplay(section, key, rt, b);
+  const resId   = _fmlResId(section, key, rt, b);
+  const prevEl  = document.getElementById('fmlp_' + resId.slice(5));
+  const el      = document.getElementById(resId);
+  if (prevEl) prevEl.innerHTML = _renderFracHtml(display);
+  const v = evalFormula(formula);
+  if (!el) return;
+  if (v === null) { el.textContent = '✗'; el.classList.add('err'); }
+  else            { el.textContent = v.toFixed(3); el.classList.remove('err'); }
+}
+
+function _fmlStore() {
+  if (!formulaStore[activeTab])            formulaStore[activeTab] = {};
+  if (!formulaStore[activeTab][activeCat]) formulaStore[activeTab][activeCat] = {};
+  return formulaStore[activeTab][activeCat];
+}
+
+// group-key helpers (one key per section+rt, covers both eff_support & eff_dps)
+function _parseGk(gk) {
+  if (gk === 'default') return ['default', null];
+  return ['ov', gk.slice(3)];  // 'ov_Thunder' → ['ov', 'Thunder']
+}
+function _rawInpId(section, key, rt, b) {
+  return section === 'default' ? `eff_${key}_${b}` : `ov_${rt}_${key}_${b}`;
+}
+function _fmlInpId(section, key, rt, b) {
+  return section === 'default' ? `fml_default_${key}_${b}` : `fml_ov_${rt}_${key}_${b}`;
+}
+function _fmlResId(section, key, rt, b) {
+  return section === 'default' ? `fmlr_default_${key}_${b}` : `fmlr_ov_${rt}_${key}_${b}`;
+}
+
+function _saveFmlRow(section, key, rt) {
+  const s = _fmlStore();
+  const tpl = EFF_TEMPLATES[key] || [];
+  if (section === 'default') {
+    if (!s.default) s.default = {};
+    for (const b of BUCKETS)
+      s.default[`${key}_${b}`] = tpl.map((_, i) =>
+        document.getElementById(_subInpId('default', key, null, b, i))?.value.trim() || '0');
+  } else {
+    if (!s[rt]) s[rt] = {};
+    for (const b of BUCKETS)
+      s[rt][`${key}_${b}`] = tpl.map((_, i) =>
+        document.getElementById(_subInpId('ov', key, rt, b, i))?.value.trim() || '0');
+  }
+}
+
+function _applyFmlRow(section, key, rt) {
+  const tpl = EFF_TEMPLATES[key] || [];
+  for (const b of BUCKETS) {
+    const parts = tpl.map((sub, i) => {
+      const v = parseFloat(document.getElementById(_subInpId(section, key, rt, b, i))?.value) || 0;
+      return v / (sub[1] * 5);
+    });
+    if (parts.every(p => p === 0)) continue;
+    const result = (1 + parts.reduce((a,x) => a+x, 0)) / EFF_DIVISOR;
+    if (isFinite(result)) {
+      const el = document.getElementById(_rawInpId(section, key, rt, b));
+      if (el && (section === 'default' || !el.disabled)) el.value = result.toFixed(3);
+    }
+  }
+}
+
+function _reverseEngineerSubs(val, key, b) {
+  const tpl = EFF_TEMPLATES[key] || [];
+  const n   = Math.min(b, tpl.length);
+  const T   = Math.max(0, val * EFF_DIVISOR - 1);
+  const out = new Array(tpl.length).fill(0);
+  if (n === 0 || T <= 0) return out;
+
+  const share = T / n;                                        // part normalisée égale par sub active
+  const dens  = tpl.slice(0, n).map(([, m]) => m * 5);
+  const vs    = dens.map(d => Math.max(0, Math.round(share * d)));
+
+  // correction de gauche à droite du reste d'arrondi
+  let rem = T - vs.reduce((s, v, i) => s + v / dens[i], 0);
+  for (let i = 0; i < n && Math.abs(rem) > 1e-9; i++) {
+    const adj = Math.round(rem * dens[i]);
+    if (adj !== 0) { vs[i] = Math.max(0, vs[i] + adj); rem -= adj / dens[i]; }
+  }
+
+  vs.forEach((v, i) => { out[i] = v; });
+  return out;
+}
+
+function adjSub(id, section, key, rt, b, dir) {
+  const el = document.getElementById(id);
+  if (!el || el.disabled) return;
+  el.value = Math.max(0, (parseInt(el.value) || 0) + dir);
+  onSubInput(section, key, rt, b);
+}
+
+function _loadFmlRow(section, key, rt) {
+  const s = _fmlStore();
+  const tpl = EFF_TEMPLATES[key] || [];
+  for (const b of BUCKETS) {
+    const stored  = (section === 'default' ? s.default : s[rt])?.[`${key}_${b}`] || [];
+    const checked = section === 'ov' ? document.getElementById(`ov_${rt}_${key}_en`)?.checked : true;
+    const rawEl   = document.getElementById(_rawInpId(section, key, rt, b));
+    const rawVal  = rawEl ? parseFloat(rawEl.value) : 0;
+    let values;
+    if (stored.length > 0) {
+      // re-dérive si la valeur brute a changé depuis le dernier stockage
+      const storedEff = (1 + tpl.reduce((a, [, m], i) => a + (parseFloat(stored[i]) || 0) / (m * 5), 0)) / EFF_DIVISOR;
+      if (Math.abs(storedEff - rawVal) < 5e-4) {
+        values = tpl.map((_, i) => stored[i] !== undefined ? stored[i] : '0');
+      } else {
+        values = (rawVal > 0 ? _reverseEngineerSubs(rawVal, key, b) : tpl.map(() => 0)).map(String);
+      }
+    } else {
+      values = (rawVal > 0 ? _reverseEngineerSubs(rawVal, key, b) : tpl.map(() => 0)).map(String);
+    }
+    tpl.forEach((_, i) => {
+      const el = document.getElementById(_subInpId(section, key, rt, b, i));
+      if (!el) return;
+      el.value = values[i] || '0';
+      if (section === 'ov') el.disabled = !checked;
+    });
+    onSubInput(section, key, rt, b);
+  }
+}
+
+function _prefillFml(section, key, rt) {
+  for (const b of BUCKETS) onSubInput(section, key, rt, b);
+}
+
+function _calibratePageWidth() {
+  const pw = document.querySelector('.page-wrap');
+  if (!pw) return;
+  const hidden = [...document.querySelectorAll('.fml-group.hidden')];
+  hidden.forEach(g => g.classList.remove('hidden'));
+  pw.style.minWidth = pw.offsetWidth + 'px';
+  const dcs = document.querySelector('#section-defaults .cat-sections');
+  if (dcs) dcs.style.minWidth = dcs.offsetWidth + 'px';
+  hidden.forEach(g => g.classList.add('hidden'));
+}
+
+function toggleEffGroup(section, rt) {
+  const _pw = document.querySelector('.page-wrap');
+  if (_pw) _pw.style.minWidth = _pw.offsetWidth + 'px';
+  const gk = section === 'default' ? 'default' : `ov_${rt}`;
+  const isFormula = effRowModes[gk] === 'formula';
+  if (isFormula) {
+    for (const key of ['eff_support', 'eff_dps']) {
+      _saveFmlRow(section, key, rt);
+      _applyFmlRow(section, key, rt);
+    }
+    effRowModes[gk] = 'brut';
+  } else {
+    effRowModes[gk] = 'formula';
+  }
+  const nowFormula = effRowModes[gk] === 'formula';
+  const hdrsId = section === 'default' ? 'eff-col-hdrs-default' : `eff-col-hdrs-ov-${rt}`;
+  const btnId  = section === 'default' ? 'fmltbtn_default' : `fmltbtn_ov_${rt}`;
+  for (const key of ['eff_support', 'eff_dps']) {
+    const rawRowId = section === 'default' ? `rawrow_default_${key}` : `rawrow_ov_${rt}_${key}`;
+    const fmlGrpId = section === 'default' ? `fmlg_default_${key}` : `fmlg_ov_${rt}_${key}`;
+    const rawRow = document.getElementById(rawRowId);
+    if (rawRow) {
+      if (section === 'default') rawRow.style.display = nowFormula ? 'none' : '';
+      else rawRow.classList.toggle('rawrow-fml-inputs-hidden', nowFormula);
+    }
+    document.getElementById(fmlGrpId)?.classList.toggle('hidden', !nowFormula);
+    if (nowFormula) {
+      _prefillFml(section, key, rt);
+      _loadFmlRow(section, key, rt);
+    }
+  }
+  document.getElementById(hdrsId)?.classList.toggle('fml-active', nowFormula);
+  document.getElementById(btnId)?.classList.toggle('active', nowFormula);
+  const wrapId  = section === 'default' ? 'eff-bp-wrap-default' : `eff-bp-wrap-ov-${rt}`;
+  const fracBtn = section === 'default' ? 'fracbtn_default' : `fracbtn_ov_${rt}`;
+  if (!nowFormula) {
+    document.getElementById(wrapId)?.classList.remove('fml-fracs-on');
+    document.getElementById(fracBtn)?.classList.remove('active');
+  }
+}
+
+function toggleFracs(section, rt) {
+  const wrapId  = section === 'default' ? 'eff-bp-wrap-default' : `eff-bp-wrap-ov-${rt}`;
+  const fracBtn = section === 'default' ? 'fracbtn_default' : `fracbtn_ov_${rt}`;
+  const wrap = document.getElementById(wrapId);
+  if (!wrap) return;
+  const on = wrap.classList.toggle('fml-fracs-on');
+  document.getElementById(fracBtn)?.classList.toggle('active', on);
+}
+
+function saveFmlToStore() {
+  for (const [gk, mode] of Object.entries(effRowModes)) {
+    if (mode !== 'formula') continue;
+    const [section, rt] = _parseGk(gk);
+    for (const key of ['eff_support', 'eff_dps']) _saveFmlRow(section, key, rt);
+  }
+}
+
+function applyFmlToRaw() {
+  for (const [gk, mode] of Object.entries(effRowModes)) {
+    if (mode !== 'formula') continue;
+    const [section, rt] = _parseGk(gk);
+    for (const key of ['eff_support', 'eff_dps']) _applyFmlRow(section, key, rt);
+  }
+}
+
+function loadFmlInputs() {
+  for (const [gk, mode] of Object.entries(effRowModes)) {
+    if (mode !== 'formula') continue;
+    const [section, rt] = _parseGk(gk);
+    for (const key of ['eff_support', 'eff_dps']) _loadFmlRow(section, key, rt);
+  }
+}
+
+// ── init ──────────────────────────────────────────────────────────────────────
+async function init() {
+  const r    = await fetch('/api/load');
+  const json = await r.json();
+  criteria = { data1: json.data1, data2: json.data2 };
+  setsData = json.sets || {};
+  loadCat(activeCat);
+  requestAnimationFrame(() => requestAnimationFrame(_calibratePageWidth));
+}
+
+// ── tab / category switching ──────────────────────────────────────────────────
+function switchTab(tab) {
+  flushCat();
+  activeTab = tab;
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['data1','data2'][i] === tab);
+  });
+  loadCat(activeCat);
+}
+
+function switchCat(cat) {
+  flushCat();
+  activeCat = cat;
+  loadCat(cat);
+}
+
+// ── sets helpers ──────────────────────────────────────────────────────────────
+function getSetsForCat(tab, cat) {
+  if (cat === 'other') {
+    const assigned = new Set(Object.values(setsData[tab] || {}).flat());
+    return ALL_SETS.filter(s => !assigned.has(s));
+  }
+  return (setsData[tab] || {})[cat] || [];
+}
+
+function refreshSetsRow(cat) {
+  const sets = getSetsForCat(activeTab, cat);
+  let html = '';
+  if (sets.length > 0) {
+    sets.forEach(s => {
+      html += `<span class="set-pill" onclick="openSetPopup('${s}','${cat}',event)">${s} ▾</span>`;
+    });
+  } else {
+    html += '<span style="color:var(--fg-l);font-size:12px">—</span>';
+  }
+  document.getElementById('sets-pills').innerHTML = html;
+}
+
+function openSetPopup(setName, fromCat, event) {
+  event.stopPropagation();
+  activeSet = { name: setName, cat: fromCat };
+  document.getElementById('set-popup-name').textContent = setName;
+
+  const catsDiv = document.getElementById('set-popup-cats');
+  catsDiv.innerHTML = '';
+  CATEGORIES.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'set-popup-cat-btn' + (cat === fromCat ? ' current' : '');
+    btn.textContent = cat;
+    if (cat !== fromCat) btn.onclick = e => { e.stopPropagation(); applySetMove(cat); };
+    catsDiv.appendChild(btn);
+  });
+
+  const popup = document.getElementById('set-popup');
+  popup.classList.remove('hidden');
+  const r = event.target.getBoundingClientRect();
+  popup.style.top  = (r.bottom + 6) + 'px';
+  popup.style.left = Math.min(r.left, window.innerWidth - 220) + 'px';
+}
+
+function applySetMove(toCat) {
+  const { name: setName, cat: fromCat } = activeSet;
+  const tab = activeTab;
+
+  if (fromCat !== 'other' && setsData[tab]?.[fromCat]) {
+    setsData[tab][fromCat] = setsData[tab][fromCat].filter(s => s !== setName);
+  }
+  if (toCat !== 'other') {
+    if (!setsData[tab]) setsData[tab] = {};
+    if (!setsData[tab][toCat]) setsData[tab][toCat] = [];
+    if (!setsData[tab][toCat].includes(setName)) {
+      setsData[tab][toCat].push(setName);
+      setsData[tab][toCat].sort();
+    }
+  }
+
+  closeSetPopup();
+  refreshSetsRow(activeCat);
+}
+
+function closeSetPopup() {
+  document.getElementById('set-popup').classList.add('hidden');
+  activeSet = null;
+}
+
+document.addEventListener('click', closeSetPopup);
+
+// ── load category into UI ─────────────────────────────────────────────────────
+function loadCat(cat) {
+  const d = ((criteria[activeTab] || {})[cat]) || {};
+
+  refreshSetsRow(cat);
+
+  for (const key of ['eff_support', 'eff_dps']) {
+    const vals = d[key] || {};
+    for (const b of BUCKETS) {
+      const el = document.getElementById(`eff_${key}_${b}`);
+      el.value = vals[b] !== undefined ? Number(vals[b]).toFixed(3) : '';
+    }
+  }
+
+  const bp = d.big_proc || {};
+  for (const stat of BIG_PROC_STATS) {
+    document.getElementById(`bp_${stat}`).value = bp[stat] !== undefined ? bp[stat] : '';
+  }
+
+  for (const rt of RUNE_TYPES) {
+    const ov = d[rt] || {};
+    for (const ek of ['eff_support', 'eff_dps']) {
+      const has = ek in ov;
+      document.getElementById(`ov_${rt}_${ek}_en`).checked = has;
+      const vals = ov[ek] || {};
+      for (const b of BUCKETS) {
+        const el    = document.getElementById(`ov_${rt}_${ek}_${b}`);
+        el.disabled = !has;
+        el.value    = vals[b] !== undefined ? Number(vals[b]).toFixed(3) : '';
+      }
+      document.getElementById(`eob_${rt}_${ek}`)?.classList.toggle('ov-on', has);
+    }
+    const hasBp = 'big_proc' in ov;
+    document.getElementById(`ov_${rt}_bp_en`).checked = hasBp;
+    const bpOv = ov.big_proc || {};
+    for (const stat of BIG_PROC_STATS) {
+      const el    = document.getElementById(`ov_${rt}_bp_${stat}`);
+      el.disabled = !hasBp;
+      el.value    = bpOv[stat] !== undefined ? bpOv[stat] : '';
+    }
+    document.getElementById(`bz_${rt}`)?.classList.toggle('bp-on', hasBp);
+  }
+  loadFmlInputs();
+}
+
+// ── flush UI → criteria object ────────────────────────────────────────────────
+function flushCat() {
+  saveFmlToStore(); applyFmlToRaw();
+  if (!criteria[activeTab]) criteria[activeTab] = {};
+  const cat = {};
+
+  for (const key of ['eff_support', 'eff_dps']) {
+    const d = {};
+    for (const b of BUCKETS) {
+      const raw = document.getElementById(`eff_${key}_${b}`).value.trim();
+      if (raw !== '') d[b] = parseFloat(raw);
+    }
+    cat[key] = d;
+  }
+
+  const bp = {};
+  for (const stat of BIG_PROC_STATS) {
+    const raw = document.getElementById(`bp_${stat}`).value.trim();
+    if (raw !== '') bp[stat] = parseInt(raw, 10);
+  }
+  cat.big_proc = bp;
+
+  for (const rt of RUNE_TYPES) {
+    const ov = {};
+    for (const ek of ['eff_support', 'eff_dps']) {
+      if (document.getElementById(`ov_${rt}_${ek}_en`).checked) {
+        const d = {};
+        for (const b of BUCKETS) {
+          const raw = document.getElementById(`ov_${rt}_${ek}_${b}`).value.trim();
+          if (raw !== '') d[b] = parseFloat(raw);
+        }
+        if (Object.keys(d).length > 0) ov[ek] = d;
+      }
+    }
+    if (document.getElementById(`ov_${rt}_bp_en`).checked) {
+      const bpOv = {};
+      for (const stat of BIG_PROC_STATS) {
+        const raw = document.getElementById(`ov_${rt}_bp_${stat}`).value.trim();
+        if (raw !== '') bpOv[stat] = parseInt(raw, 10);
+      }
+      if (Object.keys(bpOv).length > 0) ov.big_proc = bpOv;
+    }
+    if (Object.keys(ov).length > 0) cat[rt] = ov;
+  }
+
+  criteria[activeTab][activeCat] = cat;
+}
+
+// ── toggle overrides ──────────────────────────────────────────────────────────
+function toggleOv(rt, ek) {
+  const has = document.getElementById(`ov_${rt}_${ek}_en`).checked;
+  const tpl = EFF_TEMPLATES[ek] || [];
+  for (const b of BUCKETS) {
+    document.getElementById(`ov_${rt}_${ek}_${b}`).disabled = !has;
+    tpl.forEach((_, i) => {
+      const el = document.getElementById(_subInpId('ov', ek, rt, b, i));
+      if (el) el.disabled = !has;
+    });
+  }
+  document.getElementById(`eob_${rt}_${ek}`)?.classList.toggle('ov-on', has);
+}
+
+function adjProc(inpId, dir) {
+  const el = document.getElementById(inpId);
+  if (!el || el.disabled) return;
+  const cur = parseFloat(el.value) || 0;
+  el.value = (cur + dir * PROC_STEP).toFixed(3);
+}
+
+function toggleBpOv(rt) {
+  const has = document.getElementById(`ov_${rt}_bp_en`).checked;
+  for (const stat of BIG_PROC_STATS) document.getElementById(`ov_${rt}_bp_${stat}`).disabled = !has;
+  document.getElementById(`bz_${rt}`)?.classList.toggle('bp-on', has);
+}
+
+// ── save ──────────────────────────────────────────────────────────────────────
+async function save() {
+  flushCat();
+  try {
+    const r = await fetch('/api/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        data1: criteria.data1,
+        data2: criteria.data2,
+        sets:  { data1: setsData.data1, data2: setsData.data2 },
+      }),
+    });
+    const data = await r.json();
+    if (data.ok) showToast('datas.py mis à jour ✓');
+    else         showToast('Erreur : ' + (data.error || '?'), true);
+  } catch (e) {
+    showToast('Erreur réseau : ' + e.message, true);
+  }
+}
+
+// ── toast ─────────────────────────────────────────────────────────────────────
+function showToast(msg, isErr = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isErr ? ' err' : '');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.className = 'toast'; }, 2800);
+}
+
+// ── per-row copy/paste for eff & big proc ────────────────────────────────────
+const rowClipboard = { eff: null, bp: null };
+
+function _flashBtn(btn) {
+  if (!btn) return;
+  const prev = btn.innerHTML;
+  btn.classList.add('flash');
+  btn.innerHTML = '✓';
+  setTimeout(() => { btn.classList.remove('flash'); btn.innerHTML = prev; }, 900);
+}
+
+function _clearAllPaste() {
+  document.querySelectorAll('.row-paste-eff, .row-paste-bp, .paste-equiv-btn').forEach(b => b.style.display = 'none');
+  const cp = document.getElementById('cat-paste-btn');
+  if (cp) cp.style.display = 'none';
+}
+
+function copyEffRow(section, key, rt, btn) {
+  const cb = {};
+  for (const b of BUCKETS) {
+    const id = section === 'default' ? `eff_${key}_${b}` : `ov_${rt}_${key}_${b}`;
+    const el = document.getElementById(id);
+    cb[b] = el ? el.value : '';
+  }
+  rowClipboard.eff = cb;
+  rowClipboard.bp = null;
+  catClipboard = null; equivClipboard = null;
+  _clearAllPaste();
+  document.querySelectorAll('.row-paste-eff').forEach(b => b.style.display = '');
+  _flashBtn(btn);
+}
+
+function pasteEffRow(section, key, rt, btn) {
+  if (!rowClipboard.eff) return;
+  if (section === 'ov') {
+    const chk = document.getElementById(`ov_${rt}_${key}_en`);
+    if (chk && !chk.checked) { chk.checked = true; toggleOv(rt, key); }
+  }
+  for (const b of BUCKETS) {
+    const id = section === 'default' ? `eff_${key}_${b}` : `ov_${rt}_${key}_${b}`;
+    const el = document.getElementById(id);
+    if (el) el.value = rowClipboard.eff[b] || '';
+  }
+  _flashBtn(btn);
+}
+
+function copyBpRow(section, rt, btn) {
+  const cb = {};
+  for (const stat of BIG_PROC_STATS) {
+    const id = section === 'default' ? `bp_${stat}` : `ov_${rt}_bp_${stat}`;
+    const el = document.getElementById(id);
+    cb[stat] = el ? el.value : '';
+  }
+  rowClipboard.bp = cb;
+  rowClipboard.eff = null;
+  catClipboard = null; equivClipboard = null;
+  _clearAllPaste();
+  document.querySelectorAll('.row-paste-bp').forEach(b => b.style.display = '');
+  _flashBtn(btn);
+}
+
+function pasteBpRow(section, rt, btn) {
+  if (!rowClipboard.bp) return;
+  if (section === 'ov') {
+    const chk = document.getElementById(`ov_${rt}_bp_en`);
+    if (chk && !chk.checked) { chk.checked = true; toggleBpOv(rt); }
+  }
+  for (const stat of BIG_PROC_STATS) {
+    const id = section === 'default' ? `bp_${stat}` : `ov_${rt}_bp_${stat}`;
+    const el = document.getElementById(id);
+    if (el) el.value = rowClipboard.bp[stat] || '';
+  }
+  _flashBtn(btn);
+}
+
+init();
+
+// ── category copy/paste (across dataX) ───────────────────────────────────────
+let catClipboard = null;
+
+function copyCat(btn) {
+  const cb = { defaults: { eff: {}, bp: {} }, overrides: {} };
+  for (const key of ['eff_support', 'eff_dps']) {
+    cb.defaults.eff[key] = {};
+    for (const b of BUCKETS) {
+      const el = document.getElementById(`eff_${key}_${b}`);
+      cb.defaults.eff[key][b] = el ? el.value : '';
+    }
+  }
+  for (const stat of BIG_PROC_STATS) {
+    const el = document.getElementById(`bp_${stat}`);
+    cb.defaults.bp[stat] = el ? el.value : '';
+  }
+  for (const rt of RUNE_TYPES) {
+    cb.overrides[rt] = {};
+    for (const key of ['eff_support', 'eff_dps']) {
+      const en = document.getElementById(`ov_${rt}_${key}_en`);
+      cb.overrides[rt][key] = { enabled: en ? en.checked : false, values: {} };
+      for (const b of BUCKETS) {
+        const el = document.getElementById(`ov_${rt}_${key}_${b}`);
+        cb.overrides[rt][key].values[b] = el ? el.value : '';
+      }
+    }
+    const bpEn = document.getElementById(`ov_${rt}_bp_en`);
+    cb.overrides[rt].bp = { enabled: bpEn ? bpEn.checked : false, values: {} };
+    for (const stat of BIG_PROC_STATS) {
+      const el = document.getElementById(`ov_${rt}_bp_${stat}`);
+      cb.overrides[rt].bp.values[stat] = el ? el.value : '';
+    }
+  }
+  catClipboard = cb;
+  rowClipboard.eff = null;
+  rowClipboard.bp = null; equivClipboard = null;
+  _clearAllPaste();
+  document.getElementById('cat-paste-btn').style.display = '';
+  _flashBtn(btn);
+}
+
+function pasteCat(btn) {
+  if (!catClipboard) return;
+  for (const key of ['eff_support', 'eff_dps']) {
+    for (const b of BUCKETS) {
+      const el = document.getElementById(`eff_${key}_${b}`);
+      if (el) el.value = catClipboard.defaults.eff[key]?.[b] || '';
+    }
+  }
+  for (const stat of BIG_PROC_STATS) {
+    const el = document.getElementById(`bp_${stat}`);
+    if (el) el.value = catClipboard.defaults.bp[stat] || '';
+  }
+  for (const rt of RUNE_TYPES) {
+    for (const key of ['eff_support', 'eff_dps']) {
+      const ovData = catClipboard.overrides[rt]?.[key];
+      if (!ovData) continue;
+      const chk = document.getElementById(`ov_${rt}_${key}_en`);
+      if (chk) { chk.checked = ovData.enabled; toggleOv(rt, key); }
+      for (const b of BUCKETS) {
+        const el = document.getElementById(`ov_${rt}_${key}_${b}`);
+        if (el) el.value = ovData.values[b] || '';
+      }
+    }
+    const bpData = catClipboard.overrides[rt]?.bp;
+    if (bpData) {
+      const chk = document.getElementById(`ov_${rt}_bp_en`);
+      if (chk) { chk.checked = bpData.enabled; toggleBpOv(rt); }
+      for (const stat of BIG_PROC_STATS) {
+        const el = document.getElementById(`ov_${rt}_bp_${stat}`);
+        if (el) el.value = bpData.values[stat] || '';
+      }
+    }
+  }
+  _flashBtn(btn);
+}
+
+// ── equivalence calculator ────────────────────────────────────────────────────
+let equivClipboard = null;
+
+function openEquiv() {
+  document.getElementById('equiv-overlay').classList.remove('hidden');
+  document.getElementById('equiv-result').innerHTML = '';
+  document.getElementById('equiv-val').focus();
+}
+
+function closeEquiv() {
+  document.getElementById('equiv-overlay').classList.add('hidden');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeEquiv();
+});
+
+function copyEquivAll() {
+  if (!equivClipboard) return;
+  const vals = [2, 3, 4].map(b => Number(equivClipboard[String(b)]).toFixed(3));
+  navigator.clipboard.writeText(vals.join('\t'));
+  rowClipboard.eff = null; rowClipboard.bp = null; catClipboard = null;
+  _clearAllPaste(); // hides all paste buttons including paste-equiv-btn
+  document.querySelectorAll('.paste-equiv-btn').forEach(b => b.style.display = '');
+  const btn = document.querySelector('.equiv-copy-all-btn');
+  if (btn) {
+    btn.classList.add('copied');
+    const prev = btn.innerHTML;
+    btn.innerHTML = '✓ Copié — cliquez sur une ligne pour coller';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = prev; }, 2000);
+  }
+}
+
+function pasteEquiv(btn, section, key, rt) {
+  if (!equivClipboard) return;
+  if (section === 'ov') {
+    const chk = document.getElementById(`ov_${rt}_${key}_en`);
+    if (chk && !chk.checked) { chk.checked = true; toggleOv(rt, key); }
+  }
+  for (const b of [2, 3, 4]) {
+    const id = section === 'default' ? `eff_${key}_${b}` : `ov_${rt}_${key}_${b}`;
+    const el = document.getElementById(id);
+    if (el) el.value = Number(equivClipboard[String(b)]).toFixed(3);
+  }
+  btn.classList.add('pasted');
+  const prev = btn.innerHTML;
+  btn.innerHTML = '✓';
+  setTimeout(() => { btn.classList.remove('pasted'); btn.innerHTML = prev; }, 900);
+}
+
+async function calcEquiv() {
+  const eff_key = document.getElementById('equiv-key').value;
+  const bucket  = parseInt(document.getElementById('equiv-bucket').value);
+  const raw     = document.getElementById('equiv-val').value.trim().replace(',', '.');
+  const value   = parseFloat(raw);
+  const resDiv  = document.getElementById('equiv-result');
+
+  if (isNaN(value) || value <= 0) {
+    resDiv.innerHTML = '<div class="equiv-spinner">Valeur invalide.</div>';
+    return;
+  }
+
+  resDiv.innerHTML = '<div class="equiv-spinner">Calcul en cours…</div>';
+
+  try {
+    const r    = await fetch('/api/eff_equiv', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ eff_key, bucket, value }),
+    });
+    const data = await r.json();
+    if (!data.ok) { resDiv.innerHTML = `<div class="equiv-spinner" style="color:#ff7a8a">${data.error}</div>`; return; }
+
+    const labels = { 2: '2 good subs', 3: '3 good subs', 4: '4 good subs' };
+    const copyIcon = `<svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-.15em"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg>`;
+    resDiv.innerHTML = [2, 3, 4].map(b => {
+      const isSource = (b === bucket);
+      const val      = data.result[String(b)];
+      return `<div class="equiv-result-row${isSource ? ' source' : ''}">
+        <span class="equiv-result-lbl">${labels[b]}</span>
+        <span class="equiv-result-val">${val.toFixed(3)}</span>
+        ${isSource ? '<span class="equiv-result-pct">← référence</span>' : ''}
+      </div>`;
+    }).join('') + `<button class="equiv-copy-all-btn" onclick="copyEquivAll()">${copyIcon} Copier les 3 valeurs</button>`;
+    equivClipboard = data.result;
+  } catch (e) {
+    resDiv.innerHTML = `<div class="equiv-spinner" style="color:#ff7a8a">Erreur réseau : ${e.message}</div>`;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# Core analysis (rune_analysis.py)
+pandas>=2.0
+matplotlib>=3.7
+numpy>=1.24
+
+# OCR & screen capture (src/up_runes.py, src/runes.py, src/debug_runes.py)
+pytesseract>=0.3.10
+opencv-python>=4.8
+Pillow>=10.0
+mss>=9.0
+pyautogui>=0.9.54
+
+# Config UI (src/flask_app.py)
+flask>=3.0
+
+# External: Tesseract-OCR binary
+# Windows: https://github.com/UB-Mannheim/tesseract/wiki
+# macOS:   brew install tesseract
+# Ubuntu:  sudo apt install tesseract-ocr
