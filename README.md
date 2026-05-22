@@ -14,32 +14,31 @@
 
 ### Langages
 
-- Python · SQL · Bash · R · C/C++
+- Python · SQL · R · Bash · C/C++
 
-### Data Engineering & Architecture
+### Data Engineering & Orchestration
 
-- ETL / ELT
-- Ingestion de données
-- APIs
-- Modélisation relationnelle
-- Pipelines analytiques
+- Apache Airflow · Luigi · dbt · PySpark
+- ETL / ELT · Ingestion · APIs
+- Modélisation relationnelle · Architecture Medallion (Bronze / Silver / Gold)
 
 ### Bases de données & stockage
 
-- PostgreSQL · BigQuery · DuckDB · SQLite · Parquet
+- PostgreSQL · BigQuery · DuckDB · SQLite · Supabase · Parquet
 
 ### Cloud & DevOps
 
-- GCP (BigQuery, GCS, Cloud Run, Pub/Sub)
+- GCP (BigQuery, GCS, Cloud Run, Pub/Sub, Cloud Scheduler)
 - Docker · Docker Compose · CI/CD
 
-### Machine Learning
+### Machine Learning & Computer Vision
 
-- scikit-learn · TensorFlow · Keras · OpenAI Gym
+- scikit-learn · TensorFlow · Keras · OpenCV
+- Reinforcement Learning (Q-Learning, DQN) · Gymnasium
 
 ### Visualisation & BI
 
-- Streamlit · Matplotlib · Seaborn · Power BI · Excel
+- Streamlit · Flask · Power BI · Shiny · Matplotlib · Seaborn
 
 ### Systèmes & collaboration
 
@@ -207,10 +206,28 @@ Dossier : `tennis_stats_tracker/`
 
 <br/>
 
-<p align="center">
-  <img src="rune_ocr_analyzer/assets/analyse1.png" width="800"/><br/>
-  <sub>Exemple d’analyse de rune</sub>
-</p>
+<table align="center">
+  <tr>
+    <td><img src="rune_ocr_analyzer/assets/analyse1.png" width="240"/></td>
+    <td><img src="rune_ocr_analyzer/assets/analyse2.png" width="240"/></td>
+    <td><img src="rune_ocr_analyzer/assets/analyse3.png" width="240"/></td>
+  </tr>
+  <tr>
+    <td><img src="rune_ocr_analyzer/assets/analyse4.png" width="240"/></td>
+    <td><img src="rune_ocr_analyzer/assets/analyse5.png" width="240"/></td>
+    <td><img src="rune_ocr_analyzer/assets/analyse6.png" width="240"/></td>
+  </tr>
+  <tr>
+    <td><img src="rune_ocr_analyzer/assets/analyse7.png" width="240"/></td>
+    <td><img src="rune_ocr_analyzer/assets/analyse8.png" width="240"/></td>
+    <td><img src="rune_ocr_analyzer/assets/analyse9.png" width="240"/></td>
+  </tr>
+  <tr>
+    <td><img src="rune_ocr_analyzer/assets/analyse10.png" width="240"/></td>
+    <td><img src="rune_ocr_analyzer/assets/analyse11.png" width="240"/></td>
+    <td></td>
+  </tr>
+</table>
 
 Application web pour **analyser automatiquement des images de runes** par OCR et règles métier.
 
