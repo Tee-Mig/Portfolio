@@ -280,6 +280,45 @@ Dossier : `rl_agents/`
 
 ---
 
+### Snake Agent RL - Analyse de Données d'Entraînement
+
+<p align="center">
+  <img src="snake_agent_rl/assets/demo_snake.gif" width="500"/><br/>
+  <sub>Agent en action</sub>
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="snake_agent_rl/assets/photo1.png" width="800"/><br/>
+  <sub>Métriques d'entraînement</sub>
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="snake_agent_rl/assets/photo2.png" width="800"/><br/>
+  <sub>Courbe de convergence</sub>
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="snake_agent_rl/assets/photo3.png" width="800"/><br/>
+  <sub>Analyse exploration / exploitation</sub>
+</p>
+
+Analyse des données d'apprentissage d'un **agent Snake entraîné par reinforcement learning**.
+
+- Environnement personnalisé basé sur **OpenAI Gym**
+- Collecte et analyse des **métriques d'entraînement**
+- Étude de la **convergence** et du compromis exploration / exploitation
+- Visualisation et interprétation des performances de l'agent
+
+Dossier : `snake_agent_rl/`
+
+---
+
 ### Comparateur de Prix - Agrégation Multi-Sources
 
 Outil pour **comparer des prix produits** en agrégeant plusieurs sources de données hétérogènes.
