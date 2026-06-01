@@ -1,51 +1,499 @@
-title,platform,release_year,genre,metacritic_score,player_count,target,predicted_price
-Game 15,PC,2015,Strategy,65,2,31.78,37.11984
-Game G,Switch,2016,Platformer,52,1,15.86,25.958717
-Game O,Switch,2015,Racing,62,8,42.4,44.160507
-Game 12,PS5,2015,Shooter,94,8,76.8,77.176315
-Game J,PS4,2020,RPG,55,8,32.92,40.272446
-Game W,Switch,2019,Action,96,8,82.71,82.730804
-Game Y,PC,2023,Strategy,90,4,69.54,70.4429
-Game 20,PC,2015,Adventure,68,1,47.1,40.431324
-Game G,Xbox,2019,Simulation,90,4,61.24,61.439648
-Game W,PS4,2019,RPG,88,2,62.67,62.820244
-Game P,PS4,2022,Platformer,67,2,44.68,46.32961
-Game 24,PC,2018,Action,70,8,51.34,55.7338
-Game N,Switch,2020,Adventure,91,8,74.9,75.419876
-Game 16,Xbox,2017,Strategy,58,2,36.89,27.711512
-Game 9,PS5,2021,Platformer,73,2,56.94,47.111897
-Game I,Switch,2022,RPG,53,1,18.05,27.811832
-Game K,Xbox,2016,Platformer,74,8,60.57,54.536896
-Game 10,PC,2016,Racing,67,4,37.22,37.911674
-Game 2,PS4,2022,Action,96,4,83.43,83.91551
-Game 23,PS4,2023,RPG,90,4,74.82,72.49434
-Game 7,Switch,2018,Shooter,73,2,47.78,41.924953
-Game 24,Switch,2015,Sports,81,1,45.23,45.46318
-Game X,PS5,2018,Action,65,1,28.7,37.83114
-Game 6,PC,2023,Shooter,58,8,52.93,48.81174
-Game K,PS5,2023,Platformer,63,2,41.25,42.658104
-Game Z,PS5,2022,Racing,78,1,44.95,51.433598
-Game E,PS5,2015,Racing,64,2,28.13,34.378883
-Game 20,PC,2018,RPG,52,4,21.41,25.721083
-Game P,PS5,2022,Adventure,84,2,62.46,60.64472
-Game 11,Switch,2022,Adventure,80,8,59.8,65.5031
-Game G,Xbox,2020,Platformer,76,8,69.27,57.524307
-Game D,PC,2015,Platformer,96,4,80.0,72.13181
-Game G,PS4,2018,Adventure,84,8,62.79,69.924194
-Game L,PS5,2022,Adventure,54,8,46.15,44.789185
-Game 10,PC,2015,Racing,50,1,30.52,26.041359
-Game P,PS4,2021,Simulation,80,2,61.28,54.786514
-Game D,PS4,2021,Action,74,4,60.52,57.69735
-Game 4,PS5,2021,Racing,92,8,71.09,76.87777
-Game S,PS4,2015,Racing,53,4,22.13,30.19391
-Game 12,Xbox,2023,Racing,60,1,41.21,34.992123
-Game F,PS4,2016,RPG,93,2,65.07,67.3595
-Game 11,PS4,2015,RPG,76,4,62.68,50.71129
-Game N,PS5,2018,Strategy,75,2,52.42,45.3674
-Game T,Xbox,2020,RPG,50,8,38.41,35.55951
-Game 11,PC,2016,Racing,63,4,33.64,34.092236
-Game W,PC,2018,Sports,68,2,40.75,34.867325
-Game 9,PS5,2023,Action,92,4,78.63,77.99805
-Game G,PS4,2019,RPG,56,2,25.44,29.127338
-Game 13,PS4,2020,Adventure,93,4,71.1,74.2528
-Game Q,PC,2016,Platformer,67,1,29.06,37.79486
+title,platform,genre,developer_size,user_score,log_review_count,game_duration_hours,has_online,target,predicted_price
+Tom Clancy's Rainbow Six Siege,PC,Action,AAA,8.39,14.151,10.0,1,19.99,42.44498
+Garry's Mod,PC,Simulation,indie,9.68,13.9637,10.0,1,9.99,28.18378
+Terraria,PC,Action,indie,9.75,14.1587,10.0,1,9.99,28.450457
+Black Myth: Wukong,PC,Action,AA,9.67,13.9554,10.0,0,59.99,36.11031
+Rust,PC,Action,indie,8.72,14.0207,10.0,1,39.99,31.694761
+ELDEN RING,PC,Action,AA,9.29,13.8706,10.0,1,59.99,37.863773
+Left 4 Dead 2,PC,Action,AA,9.75,13.7788,10.0,1,9.99,35.452347
+Stardew Valley,PC,RPG,indie,9.84,13.6947,10.0,1,14.99,24.054808
+Euro Truck Simulator 2,PC,Simulation,indie,9.74,13.6733,10.0,1,19.99,26.078955
+The Witcher 3: Wild Hunt,PC,RPG,AA,9.61,13.6356,10.0,0,39.99,32.642017
+HELLDIVERS 2,PC,Action,AA,7.62,13.833,10.0,1,39.99,45.66534
+Baldur's Gate 3,PC,Adventure,AA,9.68,13.5419,10.0,1,59.99,35.862915
+Phasmophobia,PC,Action,indie,9.58,13.5526,10.0,1,19.99,25.00703
+Cyberpunk 2077,PC,RPG,AA,8.44,13.647,10.0,0,59.99,37.62169
+Red Dead Redemption 2,PC,Action,AAA,9.22,13.5056,10.0,1,59.99,35.10153
+Dead by Daylight,PC,Action,AA,7.91,13.5889,10.0,1,19.99,42.86565
+ARK: Survival Evolved,PC,Action,indie,8.38,13.501,10.0,1,9.89,29.985346
+The Forest,PC,Action,indie,9.55,13.35,10.0,0,19.99,23.679485
+PAYDAY 2,PC,Action,AA,8.96,13.4047,10.0,1,9.99,36.908825
+Don't Starve Together,PC,Action,indie,9.53,13.1205,10.0,1,14.99,22.638075
+Lethal Company,PC,Action,indie,9.72,13.0963,10.0,1,9.99,21.756958
+Valheim,PC,Action,indie,9.43,13.122,10.0,1,19.99,23.045607
+Dying Light,PC,Action,AA,9.52,13.0338,10.0,1,24.99,32.547283
+Monster Hunter: World,PC,Action,AA,8.8,13.1091,10.0,1,29.99,36.21039
+Call of Duty: Modern Warfare II,PC,Action,AAA,5.88,13.4788,10.0,1,38.49,53.220364
+Hollow Knight,PC,Action,indie,9.7,12.9383,10.0,0,14.99,20.868517
+Geometry Dash,PC,Action,indie,9.33,12.9714,10.0,0,4.99,22.207535
+Portal 2,PC,Action,AA,9.87,12.9797,10.0,1,9.99,30.694159
+DARK SOULS III,PC,Action,AA,9.43,12.9331,10.0,1,59.99,32.474052
+Palworld,PC,Action,indie,9.41,12.8498,10.0,1,22.49,21.708437
+Project Zomboid,PC,RPG,indie,9.42,12.8402,10.0,1,19.99,20.320383
+The Binding of Isaac: Rebirth,PC,Action,AA,9.73,12.7467,10.0,1,14.99,30.21868
+Deep Rock Galactic,PC,Action,AA,9.73,12.7455,10.0,1,29.99,30.213251
+Bloons TD 6,PC,Strategy,AA,9.73,12.7769,10.0,1,13.99,31.562529
+DayZ,PC,Action,AA,7.68,12.9721,10.0,1,49.99,40.854965
+7 Days to Die,PC,Action,indie,8.86,12.8214,10.0,1,44.99,24.073763
+Fallout 4,PC,RPG,AAA,8.31,12.8798,10.0,0,19.99,32.464535
+Raft,PC,Adventure,indie,9.33,12.7552,10.0,1,19.99,22.523436
+Sea of Thieves: 2026 Edition,PC,Action,AA,8.93,12.7805,10.0,1,39.99,34.094067
+BeamNG.drive,PC,Racing,AA,9.74,12.6832,10.0,1,24.99,27.049719
+Sekiro: Shadows Die Twice - GOTY Edition,PC,Action,AA,9.53,12.683,10.0,0,59.99,29.445887
+The Elder Scrolls V: Skyrim Special Edition,PC,RPG,AAA,9.2,12.728,10.0,0,9.99,27.81433
+Hearts of Iron IV,PC,Simulation,AA,8.92,12.743,10.0,1,49.99,35.005405
+Subnautica,PC,Adventure,indie,9.7,12.6562,10.0,1,29.99,20.606339
+Sid Meier’s Civilization VI,PC,Strategy,AA,8.69,12.7655,10.0,1,59.99,36.11375
+The Elder Scrolls V: Skyrim,PC,RPG,AAA,9.48,12.6675,10.0,0,19.99,26.432322
+No Man's Sky,PC,Action,AA,8.31,12.7738,10.0,1,59.99,36.951237
+Risk of Rain 2,PC,Action,indie,9.35,12.6558,10.0,1,8.24,21.000898
+Hogwarts Legacy,PC,Action,AA,9.02,12.6804,10.0,0,8.99,31.649363
+People Playground,PC,Action,indie,9.86,12.5488,10.0,0,9.99,18.538969
+Hades,PC,Action,indie,9.82,12.5416,10.0,0,24.99,18.602816
+Borderlands 2,PC,Action,AA,9.24,12.5955,10.0,1,19.99,31.81423
+Undertale,PC,RPG,indie,9.68,12.517,10.0,0,9.99,16.327765
+Cities: Skylines,PC,Simulation,AA,9.3,12.5273,10.0,0,29.99,30.340284
+Arma 3,PC,Action,AA,9.04,12.5541,10.0,1,29.99,32.557423
+Vampire Survivors,PC,Action,indie,9.85,12.4306,10.0,0,4.99,17.99409
+Titanfall 2,PC,Action,AAA,9.54,12.4537,10.0,1,29.99,28.895597
+Counter-Strike,PC,Action,AA,9.74,12.4302,10.0,1,9.99,28.785097
+Half-Life 2,PC,Action,AA,9.76,12.4116,10.0,1,9.99,28.638893
+Tomb Raider Game of the Year,PC,Action,AA,9.61,12.4209,10.0,1,2.99,29.30229
+Mount & Blade II: Bannerlord,PC,Action,indie,8.79,12.4852,10.0,1,49.99,22.711946
+Satisfactory,PC,Adventure,indie,9.72,12.3548,10.0,1,39.99,18.91165
+Halo: The Master Chief Collection,PC,Action,AA,9.24,12.397,10.0,1,39.99,30.915709
+Sons Of The Forest,PC,Action,indie,8.78,12.4433,10.0,1,29.99,22.556211
+Fallout: New Vegas,PC,Action,AAA,9.61,12.3358,10.0,0,9.99,26.30379
+Ready or Not,PC,Action,indie,8.92,12.3724,10.0,1,24.99,21.560444
+Factorio,PC,Simulation,indie,9.7,12.2794,10.0,1,35.0,18.831148
+It Takes Two,PC,Action,AAA,9.53,12.294,10.0,1,39.99,28.260103
+Human Fall Flat,PC,Adventure,indie,9.47,12.2721,10.0,1,19.99,19.35713
+RimWorld,PC,Simulation,indie,9.8,12.2573,10.0,0,34.99,17.894371
+Schedule I,PC,Action,indie,9.84,12.2261,10.0,1,19.99,17.174524
+Forza Horizon 5,PC,Action,AA,8.86,12.3267,10.0,1,59.99,32.365623
+DOOM,PC,Action,AAA,9.55,12.2418,10.0,1,19.99,27.959108
+New World: Aeternum,PC,Action,AA,6.86,12.5668,10.0,1,59.99,43.342213
+Sid Meier's Civilization V,PC,Strategy,AA,9.58,12.2272,10.0,1,29.99,29.585026
+DOOM Eternal,PC,Action,AAA,9.12,12.2358,10.0,1,39.99,29.665564
+Divinity: Original Sin 2 - Definitive Edition,PC,Adventure,AA,9.58,12.1554,10.0,1,11.24,29.432018
+Hunt: Showdown 1896,PC,Action,AA,7.3,12.4221,10.0,1,29.99,40.34068
+Call of Duty: Black Ops III,PC,Action,AA,8.43,12.2785,10.0,1,59.99,34.06965
+Cuphead,PC,Action,indie,9.63,12.138,10.0,1,19.99,17.5414
+R.E.P.O.,PC,Action,AA,9.65,12.1316,10.0,1,9.99,28.154446
+Slay the Spire,PC,Strategy,indie,9.78,12.1133,10.0,0,24.99,16.631342
+Resident Evil 4,PC,Action,AA,9.77,12.1102,10.0,0,39.99,26.331995
+Battlefield V,PC,Action,AAA,7.09,12.4304,10.0,1,49.99,40.959858
+Counter-Strike: Source,PC,Action,AA,9.63,12.1131,10.0,1,9.99,28.169735
+Squad,PC,Action,indie,8.32,12.2575,10.0,1,49.99,23.999275
+Portal,PC,Action,AA,9.85,12.0881,10.0,0,9.99,26.065893
+American Truck Simulator,PC,Simulation,indie,9.68,12.0742,10.0,1,19.99,18.015907
+Resident Evil 2,PC,Action,AA,9.7,12.0602,10.0,1,39.99,27.750616
+Battlefield 1,PC,Action,AAA,8.65,12.1695,10.0,1,39.99,31.569227
+ULTRAKILL,PC,Action,indie,9.77,12.0421,10.0,0,29.99,16.61609
+Dead Cells,PC,Action,indie,9.71,12.0345,10.0,0,24.99,16.72526
+Mount & Blade: Warband,PC,Action,AA,9.77,12.0222,10.0,1,19.99,27.377794
+Detroit: Become Human,PC,Action,AA,9.58,12.0388,10.0,0,7.99,26.69538
+Stellaris,PC,Simulation,AA,8.6,12.1305,10.0,1,49.99,33.729992
+theHunter: Call of the Wild,PC,Adventure,AA,8.88,12.0874,10.0,1,19.99,32.003742
+Dying Light 2 Stay Human: Reloaded Edition,PC,Action,AA,7.91,12.1799,10.0,1,59.99,36.152462
+Age of Empires II: Definitive Edition,PC,Strategy,AA,9.48,11.9982,10.0,1,34.99,29.04764
+Assassin's Creed Odyssey,PC,Action,AAA,8.89,12.0564,10.0,1,59.99,30.013971
+Stray,PC,Adventure,indie,9.73,11.9615,10.0,0,14.99,16.860136
+Starbound,PC,Action,indie,9.23,12.0131,10.0,1,14.99,18.579325
+God of War,PC,Action,AA,9.6,11.9705,10.0,0,49.99,26.464912
+Balatro,PC,Strategy,indie,9.8,11.9419,10.0,0,14.99,16.061
+Grand Theft Auto IV: The Complete Edition,PC,Action,AAA,8.25,12.0736,10.0,1,5.99,33.064884
+Half-Life,PC,Action,AA,9.65,11.9065,10.0,1,7.49,27.454945
+STAR WARS Jedi: Fallen Order,PC,Action,AAA,8.86,11.974,10.0,0,39.99,28.61814
+Far Cry 5,PC,Action,AAA,8.09,12.0638,10.0,1,59.99,33.80232
+Devil May Cry 5,PC,Action,AA,9.6,11.8923,10.0,1,29.99,27.592772
+Assetto Corsa,PC,Racing,indie,9.26,11.9276,10.0,1,19.99,15.43189
+Battlefield 2042,PC,Action,AAA,4.67,12.6041,10.0,1,59.99,56.746426
+Content Warning,PC,Action,indie,9.48,11.8851,10.0,1,7.99,17.130007
+Darkest Dungeon,PC,RPG,indie,9.17,11.9148,10.0,0,3.74,15.924972
+Plants vs. Zombies GOTY Edition,PC,Strategy,AA,9.76,11.8489,10.0,0,4.99,25.36754
+Kingdom Come: Deliverance,PC,Action,AA,8.41,11.9966,10.0,0,5.99,31.538738
+Slime Rancher,PC,Action,indie,9.8,11.8357,10.0,0,4.99,16.161516
+"Warhammer 40,000: Space Marine 2",PC,Action,AA,8.29,11.999,10.0,1,17.99,33.472385
+Totally Accurate Battle Simulator,PC,Simulation,indie,9.78,11.82,10.0,0,19.99,16.244577
+Ori and the Will of the Wisps,PC,Action,AA,9.66,11.8255,10.0,0,29.99,25.97093
+BioShock Infinite,PC,Action,AAA,9.38,11.8543,10.0,0,7.49,25.969044
+Rise of the Tomb Raider,PC,Action,AA,9.41,11.8217,10.0,1,4.49,28.064802
+Monster Hunter Wilds,PC,Action,AA,5.83,12.2942,10.0,1,69.99,48.29497
+Inscryption,PC,Adventure,indie,9.69,11.7897,10.0,0,19.99,16.495523
+The Elder Scrolls Online,PC,Action,AAA,8.14,11.9454,10.0,1,4.99,33.094288
+DAVE THE DIVER,PC,Adventure,AA,9.7,11.7701,10.0,0,19.99,25.584486
+Borderlands 3,PC,Action,AAA,8.4,11.9121,10.0,1,59.99,31.763758
+Oxygen Not Included,PC,Simulation,indie,9.68,11.7628,10.0,1,24.99,16.822887
+Batman: Arkham Knight,PC,Action,AA,8.86,11.8497,10.0,0,19.99,28.829727
+NieR:Automata,PC,Action,AAA,8.71,11.8506,10.0,0,39.99,29.143175
+Black Mesa,PC,Action,indie,9.52,11.7574,10.0,1,19.99,16.725573
+Outlast,PC,Action,indie,9.65,11.7415,10.0,1,14.99,16.384077
+Kerbal Space Program,PC,Simulation,indie,9.52,11.7532,10.0,0,39.99,17.078403
+鬼谷八荒 Tale of Immortal,PC,Action,indie,5.33,12.3332,10.0,0,15.99,41.537193
+Castle Crashers,PC,Action,indie,9.61,11.7408,10.0,1,14.99,16.478052
+BattleBit Remastered,PC,Action,AA,8.42,11.8715,10.0,1,14.99,32.29142
+DARK SOULS: REMASTERED,PC,Action,AA,9.22,11.7699,10.0,1,39.99,28.579428
+ASTRONEER,PC,Adventure,indie,9.21,11.7672,10.0,1,29.99,18.338602
+Path of Exile 2,PC,Action,AA,7.01,12.0378,10.0,1,14.99,40.348755
+Celeste,PC,Action,indie,9.75,11.7003,10.0,0,19.99,16.204145
+Space Engineers,PC,Action,indie,8.86,11.7932,10.0,1,19.99,19.289774
+Europa Universalis IV,PC,Simulation,AA,8.66,11.8089,10.0,1,49.99,32.063625
+Total War: WARHAMMER II,PC,Action,AA,9.24,11.7301,10.0,1,14.99,28.379381
+Stick Fight: The Game,PC,Action,indie,9.35,11.7172,10.0,1,4.99,17.052671
+Insurgency,PC,Action,indie,9.18,11.735,10.0,1,14.99,17.686907
+Frostpunk,PC,Simulation,AA,9.25,11.7244,10.0,0,2.99,27.014479
+Crusader Kings III,PC,RPG,AA,9.0,11.7512,10.0,1,49.99,27.980711
+Resident Evil Village,PC,Action,AA,9.56,11.6898,10.0,1,39.99,27.13791
+Warhammer: Vermintide 2,PC,Action,indie,8.49,11.8035,10.0,1,1.49,21.121965
+Hell Let Loose,PC,Action,indie,8.24,11.8327,10.0,1,17.49,22.563444
+POSTAL 2,PC,Action,indie,9.69,11.6619,10.0,1,9.99,16.14054
+Need for Speed Heat,PC,Action,AAA,8.39,11.797,10.0,1,69.99,31.392488
+Killing Floor 2,PC,Action,AA,8.78,11.7509,10.0,1,29.99,30.144995
+Horizon Zero Dawn Complete Edition,PC,Action,AA,8.79,11.7377,10.0,0,49.99,28.80286
+Metro Exodus,PC,Action,AAA,8.98,11.7062,10.0,1,4.49,28.308222
+MiSide,PC,Adventure,indie,9.8,11.6181,10.0,0,14.99,15.720511
+Insurgency: Sandstorm,PC,Action,AA,8.5,11.7513,10.0,1,7.49,31.388693
+Muse Dash,PC,Action,indie,9.0,11.6905,10.0,0,2.99,18.817087
+Marvel’s Spider-Man Remastered,PC,Action,AA,9.59,11.6298,10.0,1,59.99,26.865633
+Clair Obscur: Expedition 33,PC,Action,AA,9.57,11.6176,10.0,0,49.99,25.871206
+V Rising,PC,Action,AA,8.89,11.6906,10.0,1,34.99,29.483347
+Teardown,PC,Action,indie,9.56,11.6033,10.0,1,29.99,16.335627
+Don't Starve,PC,Adventure,indie,9.66,11.6066,10.0,1,9.99,15.91109
+Scrap Mechanic,PC,Action,indie,9.23,11.6377,10.0,1,19.99,17.22086
+Little Nightmares,PC,Adventure,AA,9.48,11.61,10.0,0,19.99,25.699766
+FOR HONOR,PC,Action,AAA,6.95,11.9201,10.0,1,29.99,39.61521
+Disco Elysium - The Final Cut,PC,RPG,AA,9.31,11.6237,10.0,0,9.99,24.134642
+Hotline Miami,PC,Action,indie,9.71,11.5774,10.0,0,9.99,16.32638
+Just Cause 3,PC,Action,AAA,8.39,11.7131,10.0,1,2.99,31.097647
+Far Cry 3,PC,Action,AAA,8.94,11.6441,10.0,1,19.99,28.313745
+The Long Dark,PC,Adventure,indie,9.05,11.6314,10.0,1,19.99,18.589624
+Metro 2033 Redux,PC,Action,AAA,9.15,11.617,10.0,1,1.99,27.34331
+Persona 5 Royal,PC,RPG,AAA,9.66,11.5439,10.0,0,59.99,22.51256
+Cult of the Lamb,PC,Action,indie,9.56,11.5447,10.0,0,24.99,16.772982
+DARK SOULS II: Scholar of the First Sin,PC,Action,AA,8.4,11.6675,10.0,1,39.99,31.56005
+Assassin's Creed Origins,PC,Action,AAA,8.57,11.6395,10.0,1,59.99,29.998884
+Age of Empires II (Retired),PC,Strategy,AA,9.58,11.5264,10.0,1,19.99,27.041634
+Kingdom Come: Deliverance II,PC,Action,AAA,9.41,11.536,10.0,0,29.99,25.633102
+Days Gone,PC,Action,AA,9.28,11.5439,10.0,1,39.99,27.630573
+Half-Life: Alyx,PC,Action,AA,9.83,11.4848,10.0,0,59.99,24.773668
+Middle-earth: Shadow of War,PC,Action,AA,8.87,11.5826,10.0,1,4.99,29.214603
+Brotato,PC,Action,indie,9.67,11.4907,10.0,1,4.99,15.8982
+This War of Mine,PC,Adventure,indie,9.29,11.5302,10.0,0,19.99,17.394083
+Kenshi,PC,Action,indie,9.55,11.4941,10.0,0,8.39,16.820036
+Mortal Kombat 11,PC,Action,AA,8.81,11.5739,10.0,1,49.99,29.405596
+Starfield,PC,RPG,AAA,5.68,12.0169,10.0,0,49.99,45.14529
+Grim Dawn,PC,Action,indie,9.37,11.5102,10.0,1,4.99,16.64755
+Escape the Backrooms,PC,Action,indie,9.1,11.5379,10.0,1,7.99,17.412653
+Resident Evil 7 Biohazard,PC,Action,AA,9.53,11.4912,10.0,1,19.99,26.66033
+Gunfire Reborn,PC,Action,indie,9.34,11.5046,10.0,1,19.99,16.720272
+MONSTER HUNTER RISE,PC,Action,AA,8.22,11.6322,10.0,1,39.99,32.32633
+Buckshot Roulette,PC,Action,indie,9.6,11.4673,10.0,1,2.99,16.010353
+METAL GEAR SOLID V: THE PHANTOM PAIN,PC,Action,AA,9.17,11.5122,10.0,1,19.99,27.905813
+S.T.A.L.K.E.R. 2: Heart of Chornobyl,PC,Action,AA,8.05,11.6382,10.0,0,59.99,32.155865
+MORDHAU,PC,Action,indie,8.03,11.628,10.0,1,29.99,22.841406
+House Flipper,PC,Action,indie,9.42,11.4632,10.0,1,2.49,16.4527
+Fallout 76,PC,RPG,AAA,7.29,11.7163,10.0,1,39.99,36.354046
+Last Epoch,PC,Action,indie,7.96,11.6139,10.0,1,34.99,23.167126
+Subnautica: Below Zero,PC,Adventure,indie,9.06,11.479,10.0,1,29.99,18.041971
+Total War: WARHAMMER III,PC,Action,AA,7.27,11.6941,10.0,1,59.99,37.615314
+Company of Heroes 2,PC,Strategy,AA,7.9,11.6067,10.0,1,4.99,35.142254
+My Summer Car,PC,Racing,indie,9.46,11.4229,10.0,1,14.99,12.953795
+XCOM 2,PC,Strategy,AA,8.47,11.5298,10.0,0,19.99,30.254515
+Conan Exiles Enhanced,PC,Action,AA,7.87,11.5849,10.0,1,39.99,33.944828
+SCUM,PC,Action,indie,7.47,11.6273,10.0,1,17.99,25.917173
+Dyson Sphere Program,PC,Simulation,indie,9.77,11.3515,10.0,0,19.99,15.508084
+Firewatch,PC,Adventure,indie,9.04,11.4124,10.0,0,19.99,18.326569
+Enter the Gungeon,PC,Action,indie,9.55,11.357,10.0,1,14.99,15.972585
+Outer Wilds,PC,Action,AA,9.57,11.3444,10.0,0,12.49,25.356554
+NARUTO SHIPPUDEN: Ultimate Ninja STORM 4,PC,Action,AA,9.1,11.3908,10.0,1,19.99,27.790812
+Dishonored,PC,Action,AAA,9.76,11.319,10.0,0,9.99,24.190456
+Mirror,PC,Adventure,indie,9.69,11.3263,10.0,0,1.99,15.736802
+GRIS,PC,Adventure,indie,9.64,11.332,10.0,0,14.99,15.877355
+"Warhammer 40,000: Darktide",PC,Action,AA,7.11,11.6348,10.0,1,9.99,38.2635
+Planet Zoo,PC,Simulation,AA,9.11,11.3834,10.0,1,13.49,28.063156
+METAL GEAR RISING: REVENGEANCE,PC,Action,AA,9.6,11.3301,10.0,0,29.99,25.231451
+Mafia: Definitive Edition,PC,Action,AAA,8.68,11.4273,10.0,1,39.99,28.835978
+Split Fiction,PC,Action,AAA,9.75,11.3091,10.0,1,49.99,24.439617
+CarX Drift Racing Online,PC,Action,AA,9.53,11.3316,10.0,1,16.99,26.180323
+Farming Simulator 22,PC,Simulation,AA,9.24,11.3447,10.0,1,19.99,27.267439
+OMORI,PC,Adventure,indie,9.72,11.2928,10.0,0,19.99,15.653806
+The Witcher 2: Assassins of Kings Enhanced Edition,PC,RPG,AA,8.95,11.3744,10.0,0,19.99,24.939043
+Elite Dangerous,PC,Action,AA,7.74,11.5132,10.0,1,5.99,34.38198
+To the Moon,PC,Adventure,indie,9.62,11.2931,10.0,0,9.99,15.898516
+TEKKEN 7,PC,Action,AA,8.32,11.4383,10.0,1,13.49,31.18649
+Cookie Clicker,PC,Simulation,indie,9.67,11.2884,10.0,0,4.99,15.764408
+The Isle,PC,Action,indie,8.14,11.4596,10.0,1,19.99,21.652487
+Tom Clancy's Ghost Recon Wildlands,PC,Action,AAA,7.99,11.4781,10.0,1,49.99,32.299324
+Resident Evil 4 (2005),PC,Action,AAA,9.34,11.3198,10.0,0,19.99,25.909668
+Mad Max,PC,Action,AA,9.22,11.3225,10.0,1,19.99,27.191992
+Persona 4 Golden,PC,RPG,AAA,9.7,11.2689,10.0,0,19.99,21.970608
+Grounded,PC,Action,AA,8.93,11.3447,10.0,1,39.99,28.315218
+Total War: THREE KINGDOMS,PC,Action,AA,7.22,11.5497,10.0,1,39.99,37.347443
+Noita,PC,Action,indie,9.53,11.2706,10.0,0,19.99,17.022993
+Resident Evil 3,PC,Action,AA,8.17,11.4212,10.0,1,39.99,31.831713
+The Witcher: Enhanced Edition Director's Cut,PC,Action,AA,8.9,11.323,10.0,0,9.99,27.672792
+Total War: ROME II - Emperor Edition,PC,Strategy,AA,8.34,11.3871,10.0,1,59.99,32.059395
+The Crew 2,PC,Action,AAA,7.75,11.4496,10.0,1,29.99,33.406246
+A Way Out,PC,Action,AAA,8.77,11.3201,10.0,1,29.99,28.148285
+"Papers, Please",PC,Adventure,indie,9.73,11.2144,10.0,0,9.99,15.599782
+The Walking Dead,PC,Adventure,AA,9.73,11.2068,10.0,0,14.99,23.70552
+FTL: Faster Than Light,PC,Simulation,indie,9.53,11.2259,10.0,0,9.99,16.179323
+Ravenfield,PC,Action,indie,9.69,11.2065,10.0,0,17.99,16.62057
+Batman: Arkham Asylum Game of the Year Edition,PC,Action,AA,9.63,11.2071,10.0,0,19.99,24.886595
+Barotrauma,PC,Action,indie,9.38,11.2297,10.0,1,19.99,16.307407
+Farming Simulator 19,PC,Simulation,AA,9.44,11.2202,10.0,1,17.99,25.818933
+ARMORED CORE VI FIRES OF RUBICON,PC,Action,AA,9.14,11.2521,10.0,1,59.99,27.306494
+Yakuza 0,PC,Action,AAA,9.57,11.2048,10.0,0,10.99,24.978765
+FINAL FANTASY XIV Online,PC,RPG,AAA,8.78,11.2902,10.0,1,19.99,26.74997
+Katana ZERO,PC,Action,indie,9.8,11.1714,10.0,0,14.99,16.393364
+BattleBlock Theater,PC,Action,indie,9.72,11.1791,10.0,1,14.99,15.483843
+Age of Empires IV: Anniversary Edition,PC,Strategy,AA,8.6,11.3006,10.0,1,39.99,30.468412
+Green Hell,PC,Action,indie,8.6,11.2973,10.0,1,2.79,18.817606
+Watch_Dogs 2,PC,Action,AAA,8.28,11.3191,10.0,1,49.99,30.364134
+Saints Row IV: Re-Elected,PC,Action,AAA,8.78,11.2534,10.0,1,19.99,27.951445
+Enshrouded,PC,Action,indie,8.64,11.2655,10.0,1,29.99,18.605412
+Tabletop Simulator,PC,RPG,indie,9.44,11.1656,10.0,1,19.99,14.670689
+Shadow of the Tomb Raider: Definitive Edition,PC,Action,AA,8.39,11.2828,10.0,1,5.99,30.412577
+South Park: The Stick of Truth,PC,Action,AAA,9.76,11.1318,10.0,0,7.49,24.268457
+Hellblade: Senua's Sacrifice,PC,Action,indie,9.01,11.2047,10.0,0,29.99,18.963709
+Overcooked! 2,PC,Action,indie,9.06,11.1955,10.0,1,24.99,17.1845
+DRAGON BALL FighterZ,PC,Action,AA,9.04,11.1979,10.0,1,59.99,27.546093
+INSIDE,PC,Action,indie,9.69,11.128,10.0,0,24.99,16.724026
+Batman: Arkham City - Game of the Year Edition,PC,Action,AA,9.61,11.1366,10.0,0,19.99,24.860222
+Tom Clancy’s The Division,PC,Action,AAA,7.04,11.4425,10.0,1,29.99,37.2292
+Saints Row: The Third,PC,Action,AAA,9.57,11.1361,10.0,1,9.99,24.68593
+Pizza Tower,PC,Action,indie,9.84,11.1079,10.0,0,19.99,16.393541
+Dragon's Dogma 2,PC,Action,AA,6.09,11.58,10.0,1,69.99,43.777607
+Gorilla Tag,PC,Action,AA,9.13,11.1727,10.0,1,19.99,27.152351
+Sleeping Dogs: Definitive Edition,PC,Action,AA,9.36,11.1423,10.0,1,19.99,26.246523
+Prison Architect,PC,Simulation,indie,8.91,11.189,10.0,1,29.99,18.012619
+Planet Coaster,PC,Action,AA,9.13,11.1602,10.0,1,11.24,27.122705
+Black Desert,PC,Action,AA,7.41,11.3727,10.0,1,9.99,35.651127
+Supermarket Simulator,PC,Simulation,indie,9.38,11.1323,10.0,1,19.99,15.903548
+Killing Floor,PC,Action,AA,9.49,11.1195,10.0,1,19.99,25.723524
+Ori and the Blind Forest: Definitive Edition,PC,Action,AA,9.52,11.1121,10.0,0,19.99,25.141115
+The Last of Us Part I,PC,Action,AA,7.98,11.288,10.0,0,59.99,31.589972
+Metro: Last Light Redux,PC,Action,AAA,9.06,11.1576,10.0,1,1.99,26.616884
+Getting Over It with Bennett Foddy,PC,Action,AA,8.24,11.2516,10.0,0,7.99,30.259014
+EA SPORTS FC 24,PC,Simulation,AAA,5.78,11.6044,10.0,1,69.99,48.08929
+Assassin’s Creed IV Black Flag,PC,Action,AAA,8.86,11.1714,10.0,1,39.99,27.44092
+Hotline Miami 2: Wrong Number,PC,Action,indie,9.42,11.107,10.0,0,14.99,17.540697
+The Outlast Trials,PC,Action,indie,9.34,11.1118,10.0,1,39.99,16.321306
+STAR WARS Battlefront II,PC,Action,AAA,8.75,11.1734,10.0,1,39.99,27.894533
+Goat Simulator,PC,Simulation,indie,9.08,11.1358,10.0,1,9.99,17.082838
+Manor Lords,PC,Simulation,AA,8.63,11.1861,10.0,0,25.99,28.966879
+SPORE,PC,Action,AAA,9.24,11.0992,10.0,0,19.99,26.401495
+Ghost of Tsushima DIRECTOR'S CUT,PC,Action,AA,9.38,11.0839,10.0,1,59.99,26.034437
+Hades II,PC,Action,indie,9.49,11.0687,10.0,0,29.99,17.366133
+Battlefield 4,PC,Action,AAA,8.52,11.1725,10.0,1,39.99,28.872156
+Left 4 Dead,PC,Action,AA,9.63,11.0332,10.0,1,9.99,25.009142
+Golf With Your Friends,PC,Sports,indie,8.81,11.1137,10.0,1,14.99,14.469829
+A Plague Tale: Innocence,PC,Action,AA,9.34,11.0516,10.0,0,7.99,25.77994
+Total War: SHOGUN 2,PC,Strategy,AA,9.15,11.071,10.0,1,29.99,27.307243
+DRAGON BALL: Sparking! ZERO,PC,Action,AA,8.93,11.0849,10.0,1,69.99,27.737219
+Ghostrunner,PC,Action,AA,9.14,11.0533,10.0,0,29.99,26.550749
+Assassin's Creed Unity,PC,Action,AAA,7.82,11.2158,10.0,1,29.99,32.310642
+The Binding of Isaac,PC,Action,indie,9.49,11.0084,10.0,0,4.99,17.442015
+Broforce,PC,Action,indie,9.69,10.9833,10.0,1,14.99,15.51723
+Dishonored 2,PC,Action,AAA,8.94,11.0474,10.0,0,29.99,27.693844
+Five Nights at Freddy's: Security Breach,PC,Action,indie,8.65,11.08,10.0,0,39.99,20.397581
+Northgard: Definitive Edition,PC,Adventure,indie,8.63,11.0775,10.0,1,13.99,18.819662
+Blade and Sorcery,PC,Action,indie,9.67,10.9593,10.0,0,29.99,16.996078
+Red Dead Online,PC,Action,AAA,8.31,11.1092,10.0,1,19.99,29.677315
+Call of Duty: Modern Warfare 2 (2009),PC,Action,AAA,9.32,10.9702,10.0,1,19.99,25.261503
+Chivalry: Medieval Warfare,PC,Action,indie,8.25,11.089,10.0,1,24.99,19.938137
+Sniper Elite 4,PC,Action,AA,9.12,10.9879,10.0,1,59.99,26.788612
+OneShot,PC,Adventure,indie,9.83,10.8913,10.0,0,9.99,15.582418
+XCOM: Enemy Unknown,PC,Strategy,AA,9.34,10.9405,10.0,1,14.99,26.232885
+Alien: Isolation,PC,Action,AA,9.32,11.0159,10.0,0,39.99,25.839743
+GUILTY GEAR -STRIVE-,PC,Action,AA,8.82,10.9918,10.0,1,39.99,27.970469
+GTFO,PC,Action,AA,8.43,11.0365,10.0,1,12.39,29.658379
+Plague Inc: Evolved,PC,Simulation,indie,9.44,10.9271,10.0,1,2.99,15.385135
+The Planet Crafter,PC,Adventure,AA,9.6,10.9026,10.0,1,23.99,24.904139
+State of Decay 2: Juggernaut Edition,PC,Action,AA,8.29,11.0464,10.0,1,29.99,30.281668
+Mafia II (Classic),PC,Action,AAA,9.43,10.9151,10.0,1,29.99,24.813063
+LIMBO,PC,Action,indie,9.26,10.9558,10.0,0,12.49,18.277964
+Microsoft Flight Simulator (2020) 40th Anniversary Edition,PC,Simulation,AA,7.89,11.0924,10.0,1,59.99,33.448162
+Hitman: Absolution,PC,Action,AA,9.29,10.9278,10.0,1,19.99,25.996359
+Wolfenstein: The New Order,PC,Action,AAA,9.15,10.9415,10.0,0,19.99,26.832361
+Far Cry 4,PC,Action,AAA,8.43,11.023,10.0,1,29.99,28.90566
+Mass Effect Legendary Edition,PC,Action,AAA,9.11,10.939,10.0,0,59.99,27.001238
+Gang Beasts,PC,Action,indie,8.51,11.0066,10.0,1,4.99,18.669394
+Batman: Arkham Origins,PC,Action,AA,8.94,10.9554,10.0,1,19.99,27.423977
+Core Keeper,PC,Action,indie,9.28,10.9147,10.0,1,11.99,16.404858
+Skul: The Hero Slayer,PC,Action,indie,9.33,10.9133,10.0,1,19.99,16.28922
+DRAGON BALL Z: KAKAROT,PC,Action,AA,9.32,10.9093,10.0,1,19.99,25.839838
+The Hungry Lamb: Traveling in the Late Ming Dynasty,PC,Adventure,indie,9.64,10.8739,10.0,0,9.99,15.857503
+PowerWash Simulator,PC,Simulation,indie,9.69,10.8669,10.0,1,12.49,14.837495
+Outlast 2,PC,Action,indie,9.13,10.9242,10.0,1,19.99,16.773365
+A Hat in Time,PC,Adventure,indie,9.79,10.853,10.0,1,29.99,14.490954
+"STAR WARS Battlefront II (Classic, 2005)",PC,Action,AA,9.46,10.8835,10.0,1,9.99,25.268814
+REMNANT II,PC,Action,AA,8.32,11.0081,10.0,1,49.99,30.069187
+Party Animals,PC,Action,indie,7.84,11.0672,10.0,1,19.99,21.961233
+The Henry Stickmin Collection,PC,Adventure,indie,9.87,10.8337,10.0,0,14.99,15.591218
+Rising Storm 2: Vietnam,PC,Action,AA,8.68,10.9607,10.0,1,24.99,28.452314
+Max Payne 3,PC,Action,AAA,8.66,10.9522,10.0,1,5.99,27.7814
+ELDEN RING NIGHTREIGN,PC,Action,AA,7.45,11.0924,10.0,1,39.99,34.390408
+Five Nights at Freddy's,PC,Simulation,indie,9.35,10.8636,10.0,0,4.99,16.966341
+Assassin's Creed 2,PC,Action,AAA,8.93,10.9086,10.0,1,19.99,26.571465
+PC Building Simulator,PC,Simulation,indie,9.36,10.8524,10.0,0,19.99,16.951542
+Lies of P,PC,Action,AA,9.21,10.8683,10.0,0,59.99,26.198565
+CODE VEIN,PC,Action,AA,8.43,10.9564,10.0,1,59.99,29.483644
+The Elder Scrolls IV: Oblivion Game of the Year Edition (2009),PC,RPG,AAA,9.54,10.8329,10.0,0,3.74,22.411242
+Street Fighter 6,PC,Action,AA,8.52,10.9449,10.0,1,39.99,29.071756
+Chained Together,PC,Adventure,indie,9.07,10.8807,10.0,1,3.99,16.50124
+Mortal Kombat X,PC,Action,AA,8.55,10.9376,10.0,1,19.99,28.926897
+BioShock Remastered,PC,Action,AA,8.23,10.9727,10.0,0,4.99,29.94647
+Pummel Party,PC,Action,indie,8.88,10.8933,10.0,1,14.99,17.429617
+DRAGON BALL XENOVERSE 2,PC,Action,AA,9.04,10.8759,10.0,1,19.99,26.864496
+Stormworks: Build and Rescue,PC,Simulation,AA,9.0,10.877,10.0,1,24.99,26.642002
+Besiege,PC,Simulation,indie,9.55,10.8149,10.0,1,14.99,15.093095
+Brick Rigs,PC,Simulation,AA,9.46,10.8222,10.0,1,12.99,24.562632
+NARUTO TO BORUTO: SHINOBI STRIKER,PC,Action,AA,8.41,10.9337,10.0,1,4.99,29.520082
+Jurassic World Evolution,PC,Simulation,AA,8.73,10.8959,10.0,1,11.24,28.110876
+Car Mechanic Simulator 2018,PC,Racing,AA,9.14,10.8498,10.0,1,19.99,21.890017
+Back 4 Blood,PC,Action,AA,6.84,11.1337,10.0,1,59.99,37.826744
+Call of Duty: World at War,PC,Action,AAA,9.23,10.8307,10.0,1,19.99,25.335987
+Dead Space,PC,Action,AAA,9.07,10.8447,10.0,0,59.99,27.175562
+Blasphemous,PC,Action,indie,9.01,10.849,10.0,0,24.99,19.26756
+Prey,PC,Action,AAA,9.09,10.8402,10.0,0,29.99,27.093294
+Ultimate Chicken Horse,PC,Action,indie,9.59,10.7852,10.0,1,14.99,15.68695
+STAR WARS Jedi: Survivor,PC,Action,AAA,6.88,11.1133,10.0,1,69.99,37.10954
+Just Cause 2,PC,Action,AAA,9.07,10.8345,10.0,1,1.49,25.912958
+ARK: Survival Ascended,PC,Action,indie,5.91,11.2384,10.0,1,11.24,33.89316
+Remnant: From the Ashes,PC,Action,AA,8.47,10.8751,10.0,1,39.99,29.132427
+S.T.A.L.K.E.R.: Shadow of Chernobyl,PC,Action,AA,9.47,10.7641,10.0,0,19.99,25.307081
+NEEDY STREAMER OVERLOAD,PC,Adventure,indie,9.47,10.7623,10.0,0,15.99,16.394188
+FINAL FANTASY XV WINDOWS EDITION,PC,RPG,AAA,8.31,10.891,10.0,1,34.99,28.239016
+Alan Wake,PC,Action,AA,9.04,10.8029,10.0,0,14.99,26.781954
+Liar's Bar,PC,Simulation,indie,9.13,10.7904,10.0,1,6.99,16.12716
+Spiritfarer: Farewell Edition,PC,Adventure,indie,9.52,10.7454,10.0,1,29.99,14.988539
+CONTROL Ultimate Edition,PC,Action,AA,8.73,10.8287,10.0,0,39.99,27.931189
+SOMA,PC,Action,indie,9.6,10.7225,10.0,0,29.99,17.5026
+What Remains of Edith Finch,PC,Adventure,indie,9.57,10.7156,10.0,0,4.99,16.208893
+Granblue Fantasy: Relink,PC,Action,AA,8.98,10.779,10.0,1,39.99,26.894102
+Resident Evil 6,PC,Action,AAA,7.86,10.91,10.0,1,19.99,31.348764
+Resident Evil 5,PC,Action,AAA,8.72,10.802,10.0,1,19.99,27.223616
+The Long Drive,PC,Action,indie,9.02,10.767,10.0,1,15.99,16.966978
+Love Is All Around,PC,Adventure,indie,9.36,10.7236,10.0,1,9.99,15.388709
+The Scroll Of Taiwu,PC,Adventure,indie,6.98,11.0127,10.0,0,29.99,28.40035
+The Elder Scrolls IV: Oblivion Remastered,PC,RPG,AAA,8.05,10.8697,10.0,1,39.99,29.58673
+ACE COMBAT 7: SKIES UNKNOWN,PC,Action,AA,8.76,10.783,10.0,1,9.59,27.765081
+DREDGE,PC,Adventure,AA,9.58,10.6912,10.0,0,24.99,23.587965
+WorldBox - God Simulator,PC,Simulation,indie,9.5,10.6934,10.0,0,19.99,16.879358
+Age of History II,PC,Strategy,AA,8.98,10.745,10.0,1,5.99,27.122187
+The Stanley Parable,PC,Adventure,indie,9.24,10.714,10.0,0,14.99,17.091017
+They Are Billions,PC,Strategy,AA,8.51,10.7948,10.0,1,29.99,29.224798
+Dragon's Dogma: Dark Arisen,PC,Action,AAA,8.85,10.7512,10.0,1,29.99,26.619787
+Lobotomy Corporation | Monster Management Simulation,PC,Simulation,indie,9.38,10.6904,10.0,0,24.99,17.143854
+Gujian3(古剑奇谭三),PC,RPG,AA,8.61,10.7757,10.0,1,29.99,26.662312
+Torchlight II,PC,Action,indie,9.28,10.6997,10.0,1,19.99,16.342073
+Fallout 3: Game of the Year Edition,PC,RPG,AAA,8.12,10.8316,10.0,0,19.99,28.896006
+SILENT HILL 2,PC,Action,AA,9.53,10.6701,10.0,0,69.99,25.196201
+Medieval Dynasty,PC,Action,indie,9.08,10.7181,10.0,1,34.99,16.813753
+Total War: WARHAMMER,PC,Action,AA,7.8,10.8671,10.0,1,59.99,32.01157
+LEGO Star Wars: The Skywalker Saga,PC,Action,AA,9.07,10.7153,10.0,1,49.99,26.407187
+Marvel’s Spider-Man: Miles Morales,PC,Action,AA,9.32,10.6847,10.0,1,49.99,25.3829
+Call of Duty: Black Ops II,PC,Action,AAA,8.63,10.7583,10.0,1,59.99,27.517248
+Half-Life 2: Episode Two,PC,Action,AA,9.71,10.6402,10.0,1,19.99,23.980206
+Men of War: Assault Squad 2,PC,Action,AA,9.13,10.701,10.0,1,29.99,26.142197
+Little Nightmares II,PC,Adventure,AA,9.41,10.67,10.0,1,29.99,25.094477
+OUTRIDERS,PC,Action,AAA,6.66,11.0099,10.0,1,19.99,38.075203
+Volcano Princess,PC,RPG,indie,9.78,10.6257,10.0,0,10.99,15.255317
+Gray Zone Warfare,PC,Action,AA,6.78,10.9907,10.0,1,39.99,37.682674
+Persona 3 Reload,PC,Adventure,AAA,9.44,10.6589,10.0,0,59.99,25.077463
+Nioh 2 – The Complete Edition,PC,Action,AA,8.78,10.7254,10.0,1,49.99,27.572433
+Rain World,PC,Action,indie,9.41,10.652,10.0,0,11.24,18.185167
+My Time at Portia,PC,Adventure,indie,9.17,10.6752,10.0,0,5.99,17.33573
+No Rest for the Wicked,PC,Action,AA,7.83,10.8304,10.0,0,39.99,31.574106
+SnowRunner,PC,Adventure,AA,9.0,10.6893,10.0,1,29.99,26.813597
+HITMAN World of Assassination,PC,Action,AA,8.62,10.7317,10.0,1,29.99,28.22756
+DiRT Rally 2.0,PC,Racing,AA,8.83,10.7054,10.0,1,19.99,22.755728
+DARK SOULS II,PC,Action,AA,8.84,10.6993,10.0,1,39.99,27.277525
+Brothers - A Tale of Two Sons,PC,Action,indie,9.45,10.6212,10.0,1,14.99,15.976339
+Cities: Skylines II,PC,Simulation,AA,5.26,11.2054,10.0,1,49.99,49.53166
+Call of Juarez: Gunslinger,PC,Action,AA,9.5,10.6142,10.0,0,1.49,25.318281
+Grand Theft Auto V Enhanced,PC,Action,AAA,6.91,10.931,10.0,1,14.99,36.403942
+STAR WARS Empire at War - Gold Pack,PC,Strategy,AA,9.76,10.5824,10.0,1,19.99,23.990805
+TCG Card Shop Simulator,PC,Simulation,AA,9.72,10.5841,10.0,1,12.99,23.156645
+Banished,PC,Simulation,indie,9.04,10.6513,10.0,0,19.99,18.158802
+Wolcen: Lords of Mayhem,PC,Action,indie,5.59,11.1225,10.0,1,29.99,35.675648
+Graveyard Keeper,PC,Adventure,indie,8.64,10.6839,10.0,0,19.99,19.38533
+Chivalry 2,PC,Action,AA,8.02,10.7571,10.0,1,5.99,30.756748
+PAYDAY The Heist,PC,Action,AA,9.34,10.6022,10.0,1,3.29,25.178423
+EA SPORTS FC 25,PC,Simulation,AAA,4.98,11.2225,10.0,1,69.99,52.11069
+Duck Game,PC,Action,indie,9.66,10.5578,10.0,1,12.99,15.715733
+ENDER LILIES: Quietus of the Knights,PC,Action,indie,9.4,10.5849,10.0,0,24.99,18.29586
+Bloodstained: Ritual of the Night,PC,Action,AA,9.37,10.5837,10.0,0,39.99,25.747568
+Marvel's Guardians of the Galaxy,PC,Action,AA,9.41,10.5754,10.0,1,8.99,24.884737
+Inside the Backrooms,PC,Adventure,indie,8.18,10.7152,10.0,1,6.99,20.524654
+Forager,PC,Action,indie,8.99,10.6184,10.0,1,6.99,17.03302
+DEATH STRANDING DIRECTOR'S CUT,PC,Action,AA,9.29,10.5845,10.0,1,39.99,25.33101
+Foxhole,PC,Action,indie,8.36,10.6935,10.0,1,29.99,18.941278
+For The King,PC,Adventure,indie,8.82,10.6332,10.0,1,19.99,17.341423
+Call of Duty: Black Ops,PC,Action,AAA,9.08,10.6023,10.0,1,39.99,25.559341
+Phoenix Wright: Ace Attorney Trilogy,PC,Adventure,AA,9.76,10.5255,10.0,0,9.89,22.942797
+Wolfenstein II: The New Colossus,PC,Action,AAA,8.11,10.7032,10.0,1,39.99,29.72639
+Pacify,PC,Action,indie,8.65,10.6381,10.0,1,4.99,17.965279
+Assetto Corsa Competizione,PC,Racing,AA,9.25,10.5699,10.0,1,39.99,20.99189
+Watch_Dogs,PC,Action,AAA,7.82,10.7304,10.0,1,19.99,31.171247
+Bastion,PC,Action,indie,9.54,10.5292,10.0,0,14.99,17.92277
+Shadow Tactics: Blades of the Shogun,PC,Strategy,indie,9.61,10.5251,10.0,0,39.99,17.649773
+Bright Memory: Infinite,PC,Action,indie,9.2,10.5639,10.0,1,19.99,16.510586
+VA-11 Hall-A: Cyberpunk Bartender Action,PC,Adventure,indie,9.74,10.5041,10.0,0,14.99,16.310503
+Pavlov,PC,Action,indie,8.95,10.5884,10.0,1,24.99,17.13262
+Ryse: Son of Rome,PC,Action,AA,8.67,10.6171,10.0,1,9.99,27.791254
+SUPERHOT,PC,Action,indie,9.13,10.5656,10.0,0,24.99,19.186172
+Victoria 3,PC,Simulation,AA,6.66,10.8708,10.0,1,49.99,39.802895
+SANABI,PC,Action,indie,9.74,10.49,10.0,0,14.99,17.733614
+The Wolf Among Us,PC,Action,AA,9.79,10.4823,10.0,0,14.99,24.591597
+ROUNDS,PC,Action,indie,9.52,10.5094,10.0,1,5.99,15.948512
+Life is Strange: Before the Storm,PC,Action,AA,9.33,10.5266,10.0,0,16.99,25.935814
+Red Orchestra 2: Heroes of Stalingrad with Rising Storm,PC,Action,AA,9.24,10.5355,10.0,1,19.99,25.435013
+Potion Craft: Alchemist Simulator,PC,Simulation,indie,9.23,10.535,10.0,0,19.99,17.798986
+SpeedRunners,PC,Action,indie,9.4,10.5116,10.0,1,14.99,16.11658
+暖雪 Warm Snow,PC,Action,indie,9.31,10.5189,10.0,0,17.99,18.662365
+MudRunner,PC,Simulation,AA,9.11,10.5373,10.0,1,3.99,25.278082
+Game Dev Tycoon,PC,Simulation,indie,9.54,10.4853,10.0,0,9.99,17.337029
+Stranded Deep,PC,Adventure,indie,7.44,10.7327,10.0,1,19.99,24.775404
+ICARUS,PC,Action,AA,7.24,10.7595,10.0,1,34.99,34.40894
+Wreckfest,PC,Action,AAA,8.81,10.5615,10.0,1,29.99,26.561659
+Call of Duty: Modern Warfare 3 (2011),PC,Action,AAA,8.87,10.5441,10.0,1,39.99,26.30366
+Borderlands: The Pre-Sequel,PC,Action,AA,7.92,10.6544,10.0,1,39.99,30.940567
+FINAL FANTASY VII REMAKE INTERGRADE,PC,Action,AAA,8.87,10.527,10.0,0,39.99,28.060907
+TEKKEN 8,PC,Action,AA,5.41,11.0198,10.0,1,23.99,45.878006
+Mirror's Edge,PC,Action,AAA,8.76,10.5362,10.0,0,19.99,28.488111
+Diablo IV,PC,Action,AA,6.55,10.8258,10.0,1,49.99,38.453117
+BONEWORKS,PC,Action,indie,9.23,10.4823,10.0,0,29.99,18.962317
+Age of Mythology: Extended Edition,PC,Simulation,AA,9.32,10.4719,10.0,1,29.99,24.292044
+Unpacking,PC,Simulation,indie,9.32,10.4717,10.0,0,7.99,17.755117
+Jurassic World Evolution 2,PC,Simulation,AA,8.96,10.5089,10.0,1,17.99,25.888992
+Blood and Bacon,PC,Action,AA,9.53,10.4467,10.0,1,0.99,24.288952
+KovaaK's,PC,Action,indie,9.28,10.4718,10.0,1,9.99,16.381388
+Journey,PC,Adventure,indie,9.43,10.4491,10.0,1,3.74,15.418748
+ShellShock Live,PC,Action,indie,9.33,10.4601,10.0,1,9.99,16.279642
+Hi-Fi RUSH,PC,Action,AA,9.73,10.4145,10.0,0,29.99,24.852352
+Mafia III: Definitive Edition,PC,Action,AA,5.73,10.9422,10.0,1,29.99,43.653717
+Pathfinder: Wrath of the Righteous - Enhanced Edition,PC,Action,indie,8.39,10.5583,10.0,0,19.99,21.708403
+Titan Quest Anniversary Edition,PC,Action,AAA,9.09,10.4779,10.0,1,19.99,25.360022
+Amnesia: The Dark Descent,PC,Action,indie,9.46,10.4373,10.0,0,4.99,18.275827
+Loop Hero,PC,RPG,indie,9.29,10.4533,10.0,0,14.99,16.601868
+Library Of Ruina,PC,RPG,indie,9.41,10.449,10.0,0,29.99,16.338015
+Total War: EMPIRE – Definitive Edition,PC,Strategy,AA,9.08,10.4768,10.0,1,24.99,26.155558
+Verdun,PC,Action,indie,8.61,10.5272,10.0,1,3.99,18.032108
+Town of Salem,PC,Action,AA,8.82,10.5026,10.0,1,4.99,26.95933
+Clone Drone in the Danger Zone,PC,Action,indie,9.68,10.4063,10.0,1,6.99,15.801635
+Total War: MEDIEVAL II – Definitive Edition,PC,Strategy,AA,9.57,10.4147,10.0,1,24.99,24.33088
+Temtem,PC,Adventure,indie,8.17,10.5698,10.0,1,44.99,20.370733
+Slime Rancher 2,PC,Action,indie,9.43,10.4229,10.0,0,29.99,18.389101
+Deep Rock Galactic: Survivor,PC,Action,AA,8.67,10.5067,10.0,0,12.99,28.213476
+Metaphor: ReFantazio,PC,Action,AAA,9.08,10.4586,10.0,0,69.99,27.262968
+Life is Strange 2,PC,Adventure,AA,8.63,10.5088,10.0,0,31.96,27.52181
+Thief Simulator,PC,Action,indie,8.83,10.4859,10.0,1,1.99,17.431166
+LoveChoice,PC,Adventure,indie,9.28,10.4309,10.0,0,1.99,17.35446
+Yakuza: Like a Dragon,PC,Action,AAA,9.44,10.4122,10.0,0,19.99,25.89575
+嗜血印 Bloody Spell,PC,Action,indie,8.92,10.4665,10.0,1,24.99,17.205286
+Atomic Heart,PC,Action,AA,8.2,10.5452,10.0,0,14.99,29.963108
+Deus Ex: Mankind Divided,PC,Action,AA,7.6,10.6177,10.0,0,2.99,32.42825
+Plants vs. Zombies Garden Warfare 2: Deluxe Edition,PC,Action,AAA,9.03,10.4428,10.0,1,29.99,25.568483

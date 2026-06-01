@@ -1,3 +1,9 @@
+import os
+import logging
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+logging.getLogger('tensorflow').setLevel(logging.ERROR)
+
 import argparse
 import pandas as pd
 import tensorflow as tf
@@ -9,21 +15,22 @@ import os
 from tensorflow.keras.callbacks import EarlyStopping
 
 def main(args):
-    print("Chargement des données...")
+    print("Chargement des données")
     df = pd.read_csv(args.data)
 
     X = df.drop(columns=["title", "target"])
     y = df["target"]
 
-    categorical_features = ["platform", "genre"]
-    numerical_features = ["release_year", "metacritic_score", "player_count"]
+    categorical_features = ["platform", "genre", "developer_size"]
+    numerical_features   = ["user_score", "log_review_count",
+                            "game_duration_hours", "has_online"]
 
     preprocessor = ColumnTransformer([
         ("num", StandardScaler(), numerical_features),
         ("cat", OneHotEncoder(sparse_output=False, handle_unknown="ignore"), categorical_features)
     ])
 
-    print("Prétraitement des données...")
+    print("Prétraitement des données")
     X_processed = preprocessor.fit_transform(X)
 
     os.makedirs(os.path.dirname(args.model_output), exist_ok=True)
@@ -45,14 +52,14 @@ def main(args):
         restore_best_weights=True
     )
 
-    print("Entraînement du modèle...")
+    print("Entraînement du modèle")
     model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=150, batch_size=8, callbacks=[early_stop], verbose=1)
 
-    print("Évaluation du modèle sur le jeu de validation...")
+    print("Évaluation du modèle sur le jeu de validation")
     loss, mae = model.evaluate(X_val, y_val, verbose=1)
     print(f"MAE sur validation : {mae:.2f} €")
 
-    print(f"Sauvegarde du modèle dans {args.model_output} ...")
+    print(f"Sauvegarde du modèle dans {args.model_output} ")
     model.save(args.model_output)
     print("Modèle et préprocesseur sauvegardés.")
 

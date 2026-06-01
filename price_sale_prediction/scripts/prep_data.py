@@ -2,7 +2,7 @@ import argparse
 import pandas as pd
 
 def preprocess(input_path, output_path):
-    print(f"Chargement des données brutes depuis {input_path} ...")
+    print(f"Chargement des données brutes depuis {input_path} ")
     df = pd.read_csv(input_path)
     
     if 'date' in df.columns:
@@ -19,7 +19,7 @@ def preprocess(input_path, output_path):
     
     print(f"Données nettoyées : {df.shape[0]} lignes restantes.")
     
-    print(f"Sauvegarde des données traitées dans {output_path} ...")
+    print(f"Sauvegarde des données traitées dans {output_path} ")
     df.to_csv(output_path, index=False)
     print("Préparation terminée.")
 
