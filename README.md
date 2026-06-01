@@ -111,6 +111,11 @@ Dossier : `gcp_weather_pulse/`
 
 ### Game Price Predictor - Machine Learning
 
+<p align="center">
+  <img src="price_sale_prediction/assets/UI.png" width="800"/><br/>
+  <sub>Interface de prédiction</sub>
+</p>
+
 Modèle de Machine Learning pour **prédire le prix de vente de jeux vidéo** à partir de leurs caractéristiques (plateforme, genre, année de sortie, etc.).
 
 - Préparation et nettoyage des données
