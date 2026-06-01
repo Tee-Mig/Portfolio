@@ -1,18 +1,18 @@
 # Data Engineering & Analytics Portfolio
 
-## Profil
+## Profile
 
-Étudiant à **42 Paris**, avec un fort intérêt pour :
+Student at **42 Paris**, with a strong interest in:
 
-- la conception de **pipelines data**
-- la **structuration et modélisation** des données
-- l’**automatisation** des tâches
+- designing **data pipelines**
+- **structuring and modeling** data
+- **automating** workflows
 
 ---
 
-## Compétences clés
+## Key Skills
 
-### Langages
+### Languages
 
 - Python · SQL · R · Bash · C/C++
 
@@ -20,9 +20,9 @@
 
 - Apache Airflow · Luigi · dbt · PySpark
 - ETL / ELT · Ingestion · APIs
-- Modélisation relationnelle · Architecture Medallion (Bronze / Silver / Gold)
+- Relational modeling · Medallion Architecture (Bronze / Silver / Gold)
 
-### Bases de données & stockage
+### Databases & Storage
 
 - PostgreSQL · BigQuery · DuckDB · SQLite · Supabase · Parquet
 
@@ -40,72 +40,72 @@
 
 - Streamlit · Flask · Power BI · Shiny · Matplotlib · Seaborn
 
-### Systèmes & collaboration
+### Systems & Collaboration
 
-- Linux · Git (GitHub, GitLab) · automatisation Bash
+- Linux · Git (GitHub, GitLab) · Bash automation
 
 ---
 
-## Projets mis en avant
+## Featured Projects
 
-### Crypto Market Pulse - Pipeline Data Temps Réel
+### Crypto Market Pulse - Real-Time Data Pipeline
 
 <p align="center">
   <img src="crypto_market_pulse/assets/1.png" width="800"/><br/>
-  <sub>Dashboard interactif</sub>
+  <sub>Interactive dashboard</sub>
 </p>
 
 <br/>
 
 <p align="center">
   <img src="crypto_market_pulse/assets/2.png" width="800"/><br/>
-  <sub>Suivi du sentiment de marché (Fear & Greed Index)</sub>
+  <sub>Market sentiment tracking (Fear & Greed Index)</sub>
 </p>
 
 <br/>
 
 <p align="center">
   <img src="crypto_market_pulse/assets/3.png" width="800"/><br/>
-  <sub>Corrélations et indicateurs clés (RSI, volatilité)</sub>
+  <sub>Correlations and key indicators (RSI, volatility)</sub>
 </p>
 
-Pipeline complet pour collecter, transformer et visualiser des **données crypto en quasi temps réel**, en cherchant à répondre à une question clé : le sentiment de marché prédit-il les mouvements de prix ?
+End-to-end pipeline to collect, transform and visualize **crypto data in near real-time**, exploring a key question: does market sentiment predict price movements?
 
-- Collecte automatique toutes les heures des prix **BTC, ETH, BNB, SOL** (CoinGecko)
-- Orchestration des tâches avec **Apache Airflow**
-- Traitement et calcul d’indicateurs techniques (**RSI, volatilité**) avec **PySpark**
-- Modélisation en couches **Bronze → Silver → Gold** avec **dbt**
-- Stockage dans **PostgreSQL**, visualisation avec **Streamlit**
-- Environnement entièrement **Dockerisé**
+- Automatic hourly collection of **BTC, ETH, BNB, SOL** prices (CoinGecko)
+- Task orchestration with **Apache Airflow**
+- Processing and computation of technical indicators (**RSI, volatility**) with **PySpark**
+- **Bronze → Silver → Gold** layer modeling with **dbt**
+- Storage in **PostgreSQL**, visualization with **Streamlit**
+- Fully **Dockerized** environment
 
-Dossier : `crypto_market_pulse/`
+Folder: `crypto_market_pulse/`
 
 ---
 
-### GCP Weather Pulse - Pipeline Serverless Cloud
+### GCP Weather Pulse - Serverless Cloud Pipeline
 
 <p align="center">
   <img src="gcp_weather_pulse/assets/tableau_de_bord1.png" width="800"/><br/>
-  <sub>Dashboard météo</sub>
+  <sub>Weather dashboard</sub>
 </p>
 
 <br/>
 
 <p align="center">
   <img src="gcp_weather_pulse/assets/tableau_de_bord2.png" width="800"/><br/>
-  <sub>Analyse des tendances météo par ville</sub>
+  <sub>Weather trend analysis by city</sub>
 </p>
 
-Pipeline cloud automatisé pour collecter, transformer et analyser des **données météo**, entièrement hébergé sur Google Cloud, sans serveur à gérer.
+Automated cloud pipeline to collect, transform and analyze **weather data**, fully hosted on Google Cloud with no infrastructure to manage.
 
-- Collecte automatique des données météo via **Cloud Run**
-- Planification des exécutions avec **Cloud Scheduler**
-- Stockage des données brutes dans **GCS (Bronze)**
-- Transformation et chargement dans **BigQuery (Silver)**
-- Vues analytiques prêtes à l’analyse (**Gold**)
-- Architecture **serverless**, automatisée et reproductible
+- Automatic weather data collection via **Cloud Run**
+- Execution scheduling with **Cloud Scheduler**
+- Raw data storage in **GCS (Bronze)**
+- Transformation and loading into **BigQuery (Silver)**
+- Analytics-ready views (**Gold**)
+- **Serverless**, automated and reproducible architecture
 
-Dossier : `gcp_weather_pulse/`
+Folder: `gcp_weather_pulse/`
 
 ---
 
@@ -113,17 +113,17 @@ Dossier : `gcp_weather_pulse/`
 
 <p align="center">
   <img src="price_sale_prediction/assets/UI.png" width="800"/><br/>
-  <sub>Interface de prédiction</sub>
+  <sub>Prediction interface</sub>
 </p>
 
-Modèle de Machine Learning pour **prédire le prix de vente de jeux vidéo** à partir de leurs caractéristiques (plateforme, genre, année de sortie, etc.).
+Machine Learning model to **predict the sale price of video games** based on their characteristics (platform, genre, release year, etc.).
 
-- Préparation et nettoyage des données
-- Modélisation avec **TensorFlow / Keras** (Deep Learning)
-- Résultats : **R² = 0.90**, MAE = 4.70 €
-- Évaluation des performances (MAE, RMSE, R²)
+- Data preparation and cleaning
+- Modeling with **TensorFlow / Keras** (Deep Learning)
+- Results: **R² = 0.90**, MAE = 4.70 €
+- Performance evaluation (MAE, RMSE, R²)
 
-Dossier : `price_sale_prediction/`
+Folder: `price_sale_prediction/`
 
 ---
 
@@ -131,34 +131,34 @@ Dossier : `price_sale_prediction/`
 
 <p align="center">
   <img src="powerbi_product_dashboard/assets/dashboard_img.png" width="800"/><br/>
-  <sub>Dashboard Power BI</sub>
+  <sub>Power BI dashboard</sub>
 </p>
 
-Dashboard **Power BI** orienté pilotage de la performance commerciale, conçu comme un cas réaliste d’entreprise.
+**Power BI** dashboard focused on commercial performance monitoring, designed as a realistic business case.
 
-- Modélisation des données en **schéma en étoile**
-- Indicateurs clés (**KPI, ratios, marges**) calculés avec **DAX**
-- Analyse des tendances **semaine / mois / trimestre**
-- Performance par vendeur, équipe et catégorie de produit
-- Design orienté **lecture exécutive & décisionnelle**
+- Data modeling with a **star schema**
+- Key indicators (**KPIs, ratios, margins**) calculated with **DAX**
+- Trend analysis **week / month / quarter**
+- Performance by salesperson, team and product category
+- Design oriented towards **executive & decision-making reading**
 
-Dossier : `powerbi_product_dashboard/`
+Folder: `powerbi_product_dashboard/`
 
 ---
 
-## Autres projets
+## Other Projects
 
-### Anti-gaspi Shopify - Étude de Cas Data
+### Anti-waste Shopify - Data Case Study
 
-Étude de cas technique réalisée en 2h pour un poste **Data / Tech** : transformer des données opérationnelles en décisions concrètes d’affichage produit sur Shopify.
+Technical case study completed in 2 hours for a **Data / Tech** position: turning operational data into concrete product display decisions on Shopify.
 
-- Analyse des données produit (stock, dates de péremption, ventes)
-- Calcul d’un **score de priorité anti-gaspi** pour classer les produits
-- Génération d’un payload **Shopify GraphQL** pour réordonner une collection
-- Stockage des données avec **Supabase** et analyses via **BigQuery**
-- Maquette d’un outil interne Ops / Marketing avec KPI et prévisualisation
+- Product data analysis (stock, expiry dates, sales)
+- Calculation of an **anti-waste priority score** to rank products
+- Generation of a **Shopify GraphQL** payload to reorder a collection
+- Data storage with **Supabase** and analysis via **BigQuery**
+- Mockup of an internal Ops / Marketing tool with KPIs and preview
 
-Dossier : `cas_pratique_willy_anti_gaspi/`
+Folder: `cas_pratique_willy_anti_gaspi/`
 
 ---
 
@@ -166,47 +166,47 @@ Dossier : `cas_pratique_willy_anti_gaspi/`
 
 <p align="center">
   <img src="tennis_stats_tracker/assets/photo1.png" width="800"/><br/>
-  <sub>Liste des joueurs</sub>
+  <sub>Player list</sub>
 </p>
 
 <br/>
 
 <p align="center">
   <img src="tennis_stats_tracker/assets/photo2.png" width="800"/><br/>
-  <sub>Table complète des matchs</sub>
+  <sub>Full match table</sub>
 </p>
 
 <br/>
 
 <p align="center">
   <img src="tennis_stats_tracker/assets/photo3.png" width="800"/><br/>
-  <sub>Matchs du joueur sélectionné</sub>
+  <sub>Matches for the selected player</sub>
 </p>
 
-Pipeline ETL et application interactive pour l’analyse de **statistiques de tennis ATP**.
+ETL pipeline and interactive application for analyzing **ATP tennis statistics**.
 
-- Collecte et nettoyage de données sportives (ATP)
-- Modélisation relationnelle et stockage **PostgreSQL**
-- Requêtes SQL analytiques
-- Dashboard interactif avec **Streamlit**
-- Environnement **Dockerisé**
+- Collection and cleaning of sports data (ATP)
+- Relational modeling and **PostgreSQL** storage
+- Analytical SQL queries
+- Interactive dashboard with **Streamlit**
+- **Dockerized** environment
 
-Dossier : `tennis_stats_tracker/`
+Folder: `tennis_stats_tracker/`
 
 ---
 
-### Rune OCR Analyzer - Analyse d’Images par ML
+### Rune OCR Analyzer - ML Image Analysis
 
 <p align="center">
   <img src="rune_ocr_analyzer/assets/ui1.png" width="800"/><br/>
-  <sub>Interface web</sub>
+  <sub>Web interface</sub>
 </p>
 
 <br/>
 
 <p align="center">
   <img src="rune_ocr_analyzer/assets/ui2.png" width="800"/><br/>
-  <sub>Résultats d’analyse</sub>
+  <sub>Analysis results</sub>
 </p>
 
 <br/>
@@ -234,134 +234,134 @@ Dossier : `tennis_stats_tracker/`
   </tr>
 </table>
 
-Application web pour **analyser automatiquement des images de runes** par OCR et règles métier.
+Web application to **automatically analyze rune images** using OCR and business rules.
 
-- Reconnaissance de texte sur images avec **OCR**
-- Calcul automatique d’équivalences et scores
-- Interface web interactive avec **Flask**
-- Journalisation et historique des analyses
+- Text recognition on images with **OCR**
+- Automatic equivalence and score calculation
+- Interactive web interface with **Flask**
+- Logging and analysis history
 
-Dossier : `rune_ocr_analyzer/`
+Folder: `rune_ocr_analyzer/`
 
 ---
 
 ### Food Nutrition Pipeline - ETL & API
 
-Pipeline de données automatisé pour extraire et analyser des **informations nutritionnelles** de produits alimentaires.
+Automated data pipeline to extract and analyze **nutritional information** from food products.
 
-- Extraction de données via l’API **Open Food Facts**
-- Orchestration ETL avec **Luigi**
-- Transformation de données XML et stockage **Parquet + SQLite**
-- Exposition des résultats via une **API Flask**
-- Déploiement **Docker**
+- Data extraction via the **Open Food Facts** API
+- ETL orchestration with **Luigi**
+- XML data transformation and **Parquet + SQLite** storage
+- Results exposed via a **Flask API**
+- **Docker** deployment
 
-Dossier : `food_nutrition_pipeline/`
+Folder: `food_nutrition_pipeline/`
 
 ---
 
 ### NPS Prediction - Machine Learning & Text Mining
 
-Analyse des retours clients pour **prédire le Net Promoter Score** et identifier les leviers d’amélioration.
+Customer feedback analysis to **predict the Net Promoter Score** and identify areas for improvement.
 
-- Analyse de données clients quantitatives et textuelles
-- **Text mining** et traitement du langage naturel
-- Modélisation prédictive avec **Random Forest**
-- Dashboard interactif avec **Shiny** (R)
+- Quantitative and textual customer data analysis
+- **Text mining** and natural language processing
+- Predictive modeling with **Random Forest**
+- Interactive dashboard with **Shiny** (R)
 
-Dossier : `nps_prediction/`
+Folder: `nps_prediction/`
 
 ---
 
 ### RL Agents - Reinforcement Learning
 
-Plusieurs agents de **reinforcement learning** appliqués à des environnements classiques, jusqu’à un agent DQN jouant à Snake en temps réel.
+Multiple **reinforcement learning** agents applied to classic environments, up to a DQN agent playing Snake in real time.
 
-- **Q-Learning** sur CartPole, FrozenLake, MountainCar (Gymnasium)
-- Agent **DQN** avec réseau convolutionnel (CNN) inspiré de DeepMind Atari
-- Capture d’écran en temps réel + **OCR** pour lire le score
-- Suivi des métriques d’entraînement avec **Pandas / Matplotlib**
+- **Q-Learning** on CartPole, FrozenLake, MountainCar (Gymnasium)
+- **DQN** agent with convolutional network (CNN) inspired by DeepMind Atari
+- Real-time screen capture + **OCR** to read the score
+- Training metrics tracking with **Pandas / Matplotlib**
 
-Dossier : `rl_agents/`
+Folder: `rl_agents/`
 
 ---
 
-### Snake Agent RL - Analyse de Données d'Entraînement
+### Snake Agent RL - Training Data Analysis
 
 <p align="center">
   <img src="snake_agent_rl/assets/demo_snake.gif" width="500"/><br/>
-  <sub>Agent en action</sub>
+  <sub>Agent in action</sub>
 </p>
 
 <br/>
 
 <p align="center">
   <img src="snake_agent_rl/assets/photo1.png" width="800"/><br/>
-  <sub>Métriques d'entraînement</sub>
+  <sub>Training metrics</sub>
 </p>
 
 <br/>
 
 <p align="center">
   <img src="snake_agent_rl/assets/photo2.png" width="800"/><br/>
-  <sub>Courbe de convergence</sub>
+  <sub>Convergence curve</sub>
 </p>
 
 <br/>
 
 <p align="center">
   <img src="snake_agent_rl/assets/photo3.png" width="800"/><br/>
-  <sub>Analyse exploration / exploitation</sub>
+  <sub>Exploration / exploitation analysis</sub>
 </p>
 
-Analyse des données d'apprentissage d'un **agent Snake entraîné par reinforcement learning**.
+Analysis of training data from a **Snake agent trained with reinforcement learning**.
 
-- Environnement personnalisé basé sur **OpenAI Gym**
-- Collecte et analyse des **métriques d'entraînement**
-- Étude de la **convergence** et du compromis exploration / exploitation
-- Visualisation et interprétation des performances de l'agent
+- Custom environment based on **OpenAI Gym**
+- Collection and analysis of **training metrics**
+- Study of **convergence** and the exploration / exploitation trade-off
+- Visualization and interpretation of agent performance
 
-Dossier : `snake_agent_rl/`
-
----
-
-### Comparateur de Prix - Agrégation Multi-Sources
-
-Outil pour **comparer des prix produits** en agrégeant plusieurs sources de données hétérogènes.
-
-- Interrogation de 3 sources distinctes : **API REST JSON**, **XML**, **SerpAPI**
-- Normalisation multi-format (JSON, XML) en un DataFrame unifié avec **Pandas**
-- Export des résultats en **CSV** et base **SQLite**
-- Visualisation de la distribution des prix avec **Matplotlib**
-
-Dossier : `comparateur_prix/`
+Folder: `snake_agent_rl/`
 
 ---
 
-### Mini Data Lake - Pollution de l’air
+### Price Comparator - Multi-Source Aggregation
 
-Démonstration d’une architecture **Data Lake** pour analyser des données de pollution atmosphérique.
+Tool to **compare product prices** by aggregating multiple heterogeneous data sources.
 
-- Nettoyage et transformation de données CSV
-- Conversion en **Parquet optimisé**
-- Interrogation locale et distante avec **DuckDB**
-- Visualisation avec **Matplotlib**
+- Querying 3 distinct sources: **REST JSON API**, **XML**, **SerpAPI**
+- Multi-format normalization (JSON, XML) into a unified DataFrame with **Pandas**
+- Export results to **CSV** and **SQLite** database
+- Price distribution visualization with **Matplotlib**
 
-Dossier : `mini_data_lake/`
+Folder: `comparateur_prix/`
 
 ---
 
-## Ce que je mets concrètement en pratique
+### Mini Data Lake - Air Pollution
 
-- Conception de **pipelines de données robustes**
-- Modélisation et exploitation de bases de données
-- Automatisation de traitements
-- Environnements **Dockerisés**
-- Utilisation d’outils **cloud** en conditions réelles
+Demonstration of a **Data Lake** architecture to analyze air pollution data.
+
+- CSV data cleaning and transformation
+- Conversion to **optimized Parquet**
+- Local and remote querying with **DuckDB**
+- Visualization with **Matplotlib**
+
+Folder: `mini_data_lake/`
+
+---
+
+## What I Put into Practice
+
+- Designing **robust data pipelines**
+- Database modeling and exploitation
+- Workflow automation
+- **Dockerized** environments
+- Using **cloud** tools in real conditions
 
 ---
 
 ## Contact
 
-- Email : **miguelfaucheux@hotmail.com**
-- GitHub : https://github.com/Tee-Mig
-- Profil 42 : https://cv.42.fr/fPu1xydA
+- Email: **miguelfaucheux@hotmail.com**
+- GitHub: https://github.com/Tee-Mig
+- 42 Profile: https://cv.42.fr/fPu1xydA
